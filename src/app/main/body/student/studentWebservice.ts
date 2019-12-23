@@ -165,6 +165,24 @@ getlistSem(data): Observable < any > {
  .map(res => < any > res)
  .catch(this.handleError);
 }
+departMentList:any;
+sessList:any;
+setDepartList(data){
+this.departMentList =data;
+
+}
+setsessList(data){
+  this.sessList =data;
+  
+  }
+  get getDepartList(){
+    return this.departMentList ;
+    
+    }
+   get getsessList(){
+      return this.sessList ;
+      
+      }
     private handleError(error: Response) {
       console.log(error); 
        return Observable.throw(error);

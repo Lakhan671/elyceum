@@ -1,74 +1,72 @@
-<div class="container" *ngIf ="projectdetail" fusePerfectScrollbar>
+<div class="container" *ngIf="projectdetail" fusePerfectScrollbar>
   <div class="row">
-          <div class="col s12 m12 l12 margin-bottom-10">
-              <mat-card>
+    <div class="col s12 m12 l12 margin-bottom-10">
+      <mat-card>
 
-            Subject {{projectdetail.title}}  Detail
-            </mat-card>
+        Subject {{projectdetail.title}} Detail
+      </mat-card>
+    </div>
+    <div class="col l12 m12 s12" class="padding-top-20">
+
+      <div class="col l6 m6 s12">
+        <mat-card class="margin-right-10 padding-bottom-15" style="min-height:385px">
+          <div class="row">
+            <div class="col s12 m12 l12">
+              <strong> Subject Completion</strong>
+            </div>
+            <div class="col s12 m12 l12 center-align" *ngIf="projectdetail.completed">
+
+              <circle-progress [percent]="projectdetail.completed" [radius]="140" [outerStrokeWidth]="15" [innerStrokeWidth]="9" [outerStrokeColor]="'#78C000'"
+                [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300" [lazy]="false"></circle-progress>
+            </div>
           </div>
-          <div class="col l12 m12 s12" class="padding-top-20">
 
-        <div class="col l6 m6 s12">
-            <mat-card class="margin-right-10 padding-bottom-15">
-                <div class="row">
-                    <div class="col s12 m12 l12">
-                          <strong> Subject Completion</strong>
-                       </div>
-                    <div class="col s12 m12 l12 center-align" *ngIf ="projectdetail">
-                       
-                        <circle-progress
-                        [percent]="projectdetail.completed"
-                        [radius]="140"
-                        [outerStrokeWidth]="15"
-                        [innerStrokeWidth]="9"
-                        [outerStrokeColor]="'#78C000'"
-                        [innerStrokeColor]="'#C7E596'"
-                        [animation]="true"
-                        [animationDuration]="300"
-                      ></circle-progress>
-                                    </div></div>
-          
-</mat-card>
-        </div>
+        </mat-card>
+      </div>
 
-            <div class="col l6 m6 s12">
-                 <mat-card style ="height: 384px;">
-                    <div class="row">
-                        <div class="col s12 m12 l12" style ="padding-bottom: 14px;">
-                              <strong> Subject Info</strong>
-                           </div>
-                        <div class="col s12 m12 l12">
-                          <ul style=" list-style-type: none;    list-style-type: none;
+      <div class="col l6 m6 s12">
+        <mat-card style="height: 384px;">
+          <div class="row">
+            <div class="col s12 m12 l12" style="padding-bottom: 14px;">
+              <strong> Subject Info</strong>
+            </div>
+            <div class="col s12 m12 l12">
+              <ul style=" list-style-type: none;    list-style-type: none;
                           margin: 0px;
                           padding: 0px;
-                          "class="subjectdetailList">
-                           
-                            <li><button mat-icon-button>
-                              <mat-icon aria-label="Example icon-button with a heart icon" style ="    font-size: 30px;">category</mat-icon>
-                            </button>Category: {{projectdetail.category}}</li>
-                            <li><button mat-icon-button>
-                              <mat-icon aria-label="Example icon-button with a heart icon" style ="    font-size: 30px;">calendar_today</mat-icon>
-                            </button>Start Date: {{projectdetail.startDate | date}}</li>
-                          <li><button mat-icon-button>
-                              <mat-icon aria-label="Example icon-button with a heart icon"style ="    font-size: 30px; ">calendar_today</mat-icon>
-                            </button>End Date: {{projectdetail.endDate | date}}</li>
-                           
-                            <li><button mat-icon-button>
-                              <mat-icon aria-label="Example icon-button with a heart icon"style ="    font-size: 30px;" *ngIf ="projectdetail.priority =='high'" >priority_high</mat-icon>
-                            </button>Priority: {{projectdetail.priority}}</li>
-                          
-                          <li><button mat-icon-button>
-                              <mat-icon aria-label="Example icon-button with a heart icon"style ="    font-size: 30px; ">description</mat-icon>
-                            </button>Description: {{projectdetail.description}}</li>
+                          " class="subjectdetailList">
 
-                          </ul>
-                        </div>    
+                <li>
+                  <button mat-icon-button>
+                    <mat-icon aria-label="Example icon-button with a heart icon" style="    font-size: 30px;">category</mat-icon>
+                  </button>Category: {{projectdetail.category}}</li>
+                <li>
+                  <button mat-icon-button>
+                    <mat-icon aria-label="Example icon-button with a heart icon" style="    font-size: 30px;">calendar_today</mat-icon>
+                  </button>Start Date: {{projectdetail.startDate | date}}</li>
+                <li>
+                  <button mat-icon-button>
+                    <mat-icon aria-label="Example icon-button with a heart icon" style="    font-size: 30px; ">calendar_today</mat-icon>
+                  </button>End Date: {{projectdetail.endDate | date}}</li>
 
+                <li>
+                  <button mat-icon-button>
+                    <mat-icon aria-label="Example icon-button with a heart icon" style="    font-size: 30px;" *ngIf="projectdetail.priority =='high'">priority_high</mat-icon>
+                  </button>Priority: {{projectdetail.priority}}</li>
+
+                <li>
+                  <button mat-icon-button>
+                    <mat-icon aria-label="Example icon-button with a heart icon" style="    font-size: 30px; ">description</mat-icon>
+                  </button>Description: {{projectdetail.description}}</li>
+
+              </ul>
             </div>
-            </mat-card>
-            </div>
+
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+
   </div>
- 
-
-</div>
 </div>
