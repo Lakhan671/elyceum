@@ -1,0 +1,53 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Branch</span>
+            <button mat-button class="mat-icon-button"
+                    (click)="dialogRef.close()"
+                    aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <form name="registerForm" [formGroup]="registerForm" novalidate>
+
+    <div  class ="p-24 m-0" mat-dialog-content>
+<mat-card>
+   <div class ="row">
+     <div class= "col l12 s12 m12">
+        <mat-form-field class= "col l12 s12 m12"appearance="outline">
+          <mat-label>Name</mat-label>
+            <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+              <input matInput placeholder="Name" name ="name"   formControlName="branchName">
+           
+        </mat-form-field>
+     </div>
+     <div class= "col l12 s12 m12">
+
+        <mat-form-field class= "col l12 s12 m12"appearance="outline">
+          <mat-label>Select Course</mat-label>
+            <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+            <mat-select placeholder="Course"  name ="dep"  formControlName="courseId"  >
+             <mat-option  *ngFor = "let department of data.CorsetList" [value] ="department.courseId" >{{department.courseName}}</mat-option>    
+      
+           </mat-select>
+       
+        </mat-form-field>
+      
+     </div>
+
+   </div>  
+  </mat-card>
+       
+
+</div>
+<div mat-dialog-actions   style ="float:right;margin-left: 19px">
+  <button mat-raised-button color="primary" (click) ="createUser()" *ngIf ="data.type =='create'" >Add</button>
+  <button mat-raised-button color="primary" (click) ="updateUser()" *ngIf ="data.type =='update'" >Update</button>
+
+  <button mat-raised-button color="primary" (click) ="onNoClick()" >Close</button>
+
+</div>
+</form>
+
+</div>

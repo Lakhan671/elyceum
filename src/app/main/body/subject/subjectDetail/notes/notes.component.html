@@ -1,0 +1,111 @@
+<div class="container">
+    <div class="row">
+            <div class="col s12 m12 l12" style ="margin-bottom: 10px">
+                <mat-card>
+  
+            Subject   {{title}} Notes
+              </mat-card>
+            </div>
+            <div class ="col s12 m12 l12">
+                <mat-card style ="min-height: 85px; margin-bottom: 10px;">
+               <div class = "row">
+                   <div class ="col s12 m3 l3  offset-l3">
+                        <mat-form-field class="example-full-width" style ="float:right">
+                                <mat-icon matPrefix>search</mat-icon>
+                  
+                          <input type="text" matInput placeholder="Search">
+                        </mat-form-field>
+                   </div>
+                   <div class ="col s12 m6 l6">
+                     
+                        <button mat-raised-button
+                         class="add-product-button mat-white-bg my-3 mt-sm-0" style ="float:right">
+                    <span>Import cvc</span>
+                </button>
+                <button mat-raised-button
+                 class="add-product-button mat-white-bg my-3 mt-sm-0" style ="float:right">
+              <span>Sample cvc</span>
+              </button>
+              <button mat-mini-fab (click) ="addUser()"  style ="float:right">
+                    <mat-icon aria-label="Example icon-button with a heart icon">add_circle</mat-icon>
+                  </button>
+                   </div>
+
+     
+             </div>
+ </mat-card>
+             </div>
+
+             <div class ="col s12 m12 l12">
+                <mat-card style ="min-height: 85px;">
+                    <div class="content-card mat-white-bg">
+             
+                        <mat-table class="products-table"
+                        #table [dataSource]="dataSource"
+                        matSort
+                        [@animateStagger]="{value:'50'}"
+                        fusePerfectScrollbar>
+              
+                 <!-- ID Column -->
+                 <ng-container cdkColumnDef="Sno">
+                     
+                     <mat-header-cell *cdkHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                     <mat-cell *cdkCellDef="let product ;let i = index ">
+                         <p class="text-truncate"> {{i +1 }}</p>
+                     </mat-cell>
+                 </ng-container>
+              
+              
+              
+                 <!-- Name Column -->
+                 <ng-container cdkColumnDef="title">
+                     <mat-header-cell *cdkHeaderCellDef mat-sort-header>Title</mat-header-cell>
+                     <mat-cell *cdkCellDef="let department">
+                         <p class="text-truncate">{{department.title }}</p>
+                     </mat-cell>
+                 </ng-container>
+                 <ng-container cdkColumnDef="option">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Option</mat-header-cell>
+                    <mat-cell *cdkCellDef="let department">
+                         
+                          <button mat-icon-button  >
+                                <mat-icon aria-label="Example icon-button with a heart icon"  (click) ="$event.stopPropagation();Update(department)">edit</mat-icon>
+                              </button>
+                              <button mat-icon-button  >
+                                    <mat-icon aria-label="Example icon-button with a heart icon"  (click) ="$event.stopPropagation();delete(department)">delete</mat-icon>
+                                  </button>
+                                        </mat-cell>
+                </ng-container>
+                 <!-- Category Column -->
+               
+               
+                 <!-- Price Column -->
+              
+                 <!-- Quantity Column -->
+                  
+              
+                 <!-- Active Column -->
+                
+              
+                 <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+              
+                 <mat-row *cdkRowDef="let product; columns: displayedColumns;"
+                          class="product"
+                           
+                           >
+                 </mat-row>
+              
+              </mat-table>
+              
+              <mat-paginator #paginator
+                            [length]="dataSource.filteredData.length"
+                            [pageIndex]="0"
+                            [pageSize]="10"
+                            [pageSizeOptions]="[5, 10, 25, 100]">
+              </mat-paginator>
+              
+                    </div>
+</mat-card>
+</div>
+            </div>
+          </div>

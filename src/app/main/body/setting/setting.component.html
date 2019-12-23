@@ -1,0 +1,70 @@
+<!-- BOARDS -->
+<div id="boards" class="mat-primary-400-bg" fxLayout="column" fxLayoutAlign="start center" fxFlex fusePerfectScrollbar>
+
+  <div class="header pt-44 pt-mat-88" fxFlex="0 0 auto" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms'}}">
+      <h1>Setting</h1>
+  </div>
+
+  <!-- BOARD LIST -->
+  <div class="board-list" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap
+       *fuseIfOnDom [@animateStagger]="{value:'50'}">
+
+      <!-- BOARD -->
+  
+      <!-- / BOARD -->
+<div class ="row"> 
+      <div class="board-list-item add-new-board col s12 m3 l3" fxLayout="column" fxLayoutAlign="center center"
+      [@animate]="{value:'*',params:{y:'100%'}}" >
+    <mat-icon class="s-64"  [routerLink]="['/setting/college']" >add_circle</mat-icon>
+    <div class="board-name">Add Institution Detail</div>
+</div> <div class="board-list-item add-new-board col s12 m3 l3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}" >
+<mat-icon class="s-64"  [routerLink]="['/setting/student']" >add_circle</mat-icon>
+<div class="board-name">Add Course Detail</div>
+</div> <div class="board-list-item add-new-board col s12 m3 l3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}" >
+<mat-icon class="s-64"  [routerLink]="['/setting/student']" >add_circle</mat-icon>
+<div class="board-name">Class</div>
+</div><div class="board-list-item add-new-board col s12 m3 l3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}" >
+<mat-icon class="s-64"  [routerLink]="['/setting/student']" >add_circle</mat-icon>
+<div class="board-name">Teacher</div>
+</div><div class="board-list-item add-new-board col s12 m3 l3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}" >
+<mat-icon class="s-64"  [routerLink]="['/setting/student']" >add_circle</mat-icon>
+<div class="board-name">Student</div>
+</div>
+      <!-- NEW BOARD BUTTON -->
+      <div class="board-list-item add-new-board col s12 m3 l3" fxLayout="column" fxLayoutAlign="center center"
+            [@animate]="{value:'*',params:{y:'100%'}}" >
+          <mat-icon class="s-64"  [routerLink]="['/setting/student']" >add_circle</mat-icon>
+          <div class="board-name">Add User</div>
+      </div>
+      <div class="board-list-item add-new-board col s12 m3 l3" fxLayout="column" fxLayoutAlign="center center"
+      [@animate]="{value:'*',params:{y:'100%'}}">
+    <mat-icon class="s-64">email</mat-icon>
+    <div class="board-name">Send email</div>
+</div>
+
+<div class="board-list-item add-new-board col s12 m3 l3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">message</mat-icon>
+<div class="board-name">Send Message</div>
+</div>
+<div class="board-list-item add-new-board col s12 m3 l3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">backup</mat-icon>
+<div class="board-name">Template Setting</div>
+</div>
+<div class="board-list-item add-new-board col s12 m3 l3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">settings_application</mat-icon>
+<div class="board-name">Communication Setting</div>
+</div>
+ 
+      <!-- / NEW BOARD BUTTON -->
+</div>
+  </div>
+  <!-- / BOARD LIST -->
+</div>
+<!-- / BOARDS -->

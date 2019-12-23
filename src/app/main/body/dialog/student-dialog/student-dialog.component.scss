@@ -1,0 +1,29 @@
+@import "src/app/core/scss/fuse";
+
+
+ 
+#teacher {
+ 
+    @include media-breakpoint('xs') {
+        width: 100%;
+    }
+ 
+    @include media-breakpoint-up('xs') {
+        width: 100%;
+    }
+
+
+    .dialog-content-wrapper {
+         
+        display: flex;
+        flex-direction: column;
+    }
+    .mat-dialog-content {
+        height:100%;
+    }
+
+    .primary-color-input,
+    .secondary-color-input {
+        padding: 6px 8px;
+    }
+}

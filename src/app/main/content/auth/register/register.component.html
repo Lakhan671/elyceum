@@ -1,0 +1,138 @@
+<div id="register" fxLayout="column" fusePerfectScrollbar>
+  
+      <div id="register-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+  
+          <div id="register-form" *fuseIfOnDom [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+  
+              <div class="logo">
+                  <img src="assets/images/logos/logo.png">
+              </div>
+  
+   
+              <form name="registerForm" [formGroup]="registerForm" novalidate>
+                <mat-grid-list cols="4"  rowHeight="50px" >
+                    <mat-grid-tile
+                         colspan="2" style ="margin:0px"
+                         >
+                        <mat-form-field>
+                            <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+                              <input matInput placeholder="Name" formControlName="cname">
+                            <mat-error *ngIf="registerFormErrors.name.required">
+                                Name is required
+                            </mat-error> 
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile
+                    colspan="2" style ="margin:0px"
+                    >
+                   <mat-form-field  style =" margin-left:10px">
+                    <input matInput placeholder="College Email" formControlName="cemail">
+                    <mat-error *ngIf="registerFormErrors.cemail.required">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="!registerFormErrors.cemail.required && registerFormErrors.cemail.email">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+                     </mat-grid-tile>
+                     </mat-grid-list>
+                     <mat-grid-list cols="4"  rowHeight="50px" >
+
+                     <mat-grid-tile
+                       colspan="2" style ="margin:0px"
+                           >
+                          <mat-form-field>
+                            <input matInput placeholder="Email" formControlName="email">
+                            <mat-error *ngIf="registerFormErrors.email.required">
+                                Email is required
+                            </mat-error>
+                            <mat-error *ngIf="!registerFormErrors.email.required && registerFormErrors.email.email">
+                                Please enter a valid email address
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile style ="margin:0px"
+                    colspan="2"
+                    >
+                   <mat-form-field style =" margin-left:10px">
+                    <input matInput placeholder="Mobile Number" formControlName="mobileNo">
+                    
+                    <mat-error *ngIf="!registerFormErrors.mobileNo.required  ">
+                        Please enter a Mobile number
+                    </mat-error>
+                </mat-form-field>
+               </mat-grid-tile>
+               </mat-grid-list>
+               <mat-grid-list cols="4"  rowHeight="50px" >
+
+               <mat-grid-tile
+               colspan="4"
+               >
+              <mat-form-field>
+                <mat-select placeholder="User Type" formControlName="usertype">
+                  <mat-option value="1">Admin</mat-option>
+                </mat-select>
+              </mat-form-field>
+                </mat-grid-tile>
+                </mat-grid-list>
+                <!-- <mat-grid-tile
+                  colspan="2"
+                 rowspan="1"
+                     >
+                     <mat-form-field>
+                        <input matInput type="password" placeholder="Confirm Password" formControlName="password">
+                        <mat-error *ngIf="registerFormErrors.password.required">
+                            Password is required
+                        </mat-error>
+                    </mat-form-field>
+               </mat-grid-tile> -->
+                  
+               <mat-grid-list cols="4"  rowHeight="50px" >
+
+                 
+  
+                  <mat-form-field  colspan="4">
+                      <input matInput  [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password">
+                      <mat-error *ngIf="registerFormErrors.password.required">
+                          Password is required
+                      </mat-error>
+                      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                      
+                  </mat-form-field>
+  </mat-grid-list>
+  <mat-grid-list cols="4"  rowHeight="50px" >
+
+                  <mat-form-field colspan="4">
+                      <input matInput type="password" placeholder="Password (Confirm)" formControlName="passwordConfirm">
+                      <mat-error *ngIf="registerFormErrors.passwordConfirm.required">
+                          Password confirmation is required
+                      </mat-error>
+                      <mat-error *ngIf="registerFormErrors.passwordConfirm.passwordsNotMatch">
+                          Passwords must match
+                      </mat-error>
+                  </mat-form-field>
+  </mat-grid-list>
+                  <div class="terms" fxLayout="row" fxLayoutAlign="center center">
+                      <mat-checkbox name="terms" aria-label="I read and accept" required>
+                          <span>I read and accept</span>
+                      </mat-checkbox>
+                      <a href="#">terms and conditions</a>
+                  </div>
+  
+                  <button mat-raised-button color="accent" class="submit-button" aria-label="CREATE AN ACCOUNT"
+                          [disabled]="registerForm.invalid" (click) ="registerUser();">
+                      CREATE AN ACCOUNT
+                  </button>
+  
+              </form>
+  
+              <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                  <span class="text">Already have an account?</span>
+                  <a class="link" [routerLink]="'/auth/login'">Login</a>
+              </div>
+  
+          </div>
+  
+      </div>
+  
+  </div>

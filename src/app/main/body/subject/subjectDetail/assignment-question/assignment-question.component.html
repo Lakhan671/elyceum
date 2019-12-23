@@ -1,0 +1,74 @@
+
+
+              <div id="timeline" class="p-24" fxLayout="row" style ="    width: 100%;" fxLayoutWrap fusePerfectScrollbar>
+
+                <div class="timeline-content news-container" fxLayout="column">
+                    <div class ="col s4 l4 m4">
+                        <mat-form-field class="example-full-width"  appearance="outline" style ="width:25%;float:right">
+                            <span matPrefix><i class="material-icons">
+                                search
+                                </i>
+                                
+                                &nbsp;</span>
+
+                          <mat-label>Search</mat-label>
+                            <input matInput placeholder="Search"  >
+                          </mat-form-field>
+
+                      </div>
+             <form name="registerForm" [formGroup]="registerForm">       
+
+                    <div class="profile-box add-post">
+                      
+                      <div class ="clear"></div>
+                        <div class="form col s12 l12 m12" fxFlex>
+                            <div class ="col s12 l12 m12" style ="    padding: 10px;
+                            background: #0c3532;
+                            color: white;">
+                              <div class ="col-md-3">
+                                Question
+
+                              </div>
+                              
+
+                            </div>
+                                     <div>
+                                     <quill-editor [style]="{height: '100px'}" (onEditorCreated)="setFocus($event)" formControlName="question" style ="height:41%"></quill-editor>
+                                    </div>
+                                 
+                            <footer fxLayout="row" fxLayoutAlign="space-between center">
+             
+            
+                                <button mat-raised-button color="accent" class="post-button" aria-label="POST" (click) ="newsCreate();" *ngIf="!showUpdate">Add</button>
+                                <button mat-raised-button color="accent" class="post-button" aria-label="POST" (click) ="update();" *ngIf="showUpdate">Update</button>
+
+                            </footer>
+            
+                        </div>
+            
+                    </div>
+            
+                    <mat-divider></mat-divider>
+                    <mat-card>
+                    <mat-list-item >
+                        <mat-checkbox>          <p mat-line > fsa ffsaf fsaf af as?
+                            
+                            </p>
+                         
+                          </mat-checkbox>
+                          <i class="material-icons" style ="float:right">
+                              edit
+                              </i>
+
+
+
+
+            
+                      </mat-list-item>
+                    </mat-card>
+                    
+                     
+                
+                </form></div></div>
+                  
+{{newGetList}}

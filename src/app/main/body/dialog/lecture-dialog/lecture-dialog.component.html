@@ -1,0 +1,112 @@
+<div class="dialog-content-wrapper"  id="teacher">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Add lecture</span>
+            <button mat-button class="mat-icon-button"
+                    (click)="dialogRef.close()"
+                    aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <div mat-dialog-content class="p-24 m-0"  fusePerfectScrollbar>
+        <mat-card>
+
+        <form name="registerForm"   name="registerForm" [formGroup]="registerForm"   >
+    <div class =" ">
+      <div class =" row"  >
+      <div class ="col s12 m12 l12">
+          <div class ="col s12 m12 l4">
+              <mat-form-field style ="width:90%">
+    
+                  <mat-select placeholder="Select Department" name ="department" (selectionChange) ="courseSelect()"formControlName="departmentId" >
+                      <mat-option *ngFor = "let depart of  departmentList" [value] ="depart.departmentId"  >
+                        {{depart.departmentName}}
+                      </mat-option>
+                    </mat-select>    </mat-form-field>
+          </div>
+          <div class ="col s12 m12 l4">
+              <mat-form-field  style ="width:90%"  >
+                  <mat-select placeholder="Select Course" (selectionChange) ="branchSelect()"  [disabled]="registerForm.value.departmentId == ''" name ="course" formControlName="courseId">
+                    <mat-option *ngFor = "let course of courseList"  [value] ="course.courseId">
+                      {{course.courseName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>       
+                 </div>
+                <div class ="col s12 m12 l4">
+              <mat-form-field style ="width:90%"  >
+                  <mat-select placeholder="Select Branch"  (selectionChange) ="semSelect()"   [disabled]="registerForm.value.courseId == ''"  formControlName="courseBranchId" >
+                    <mat-option *ngFor = "let branch of branchList"  [value] ="branch.courseBranchId">
+                    {{branch.branchName}} 
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </div>
+          <div class ="col s12 m12 l4"> 
+              <mat-form-field style ="width:90%" >
+                  <mat-select placeholder="Select Semester" name ="semester" [disabled]="registerForm.value.courseBranchId == ''" formControlName="semesterId" >
+                    <mat-option  *ngFor = "let sem of semList"  [value] ="sem.semesterId">
+                      {{sem.semesterName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>     
+      </div>
+      <div class ="col s12 m12 l4">
+          <mat-form-field  style ="width:90%"  >
+              <mat-select placeholder="Room"   [disabled]="registerForm.value.departmentId == ''" name ="room" formControlName="roomId">
+                <mat-option *ngFor = "let course of roomList"  [value] ="course.roomId">
+                  {{course.roomName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>          </div>
+            <div class ="col s12 m12 l4">
+          <mat-form-field style ="width:90%"  >
+              <mat-select placeholder="Subject"      formControlName="subjectId" >
+                <mat-option *ngFor = "let subject of subjectLists"  [value] ="subject.subjectId">
+                {{subject.title}} 
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </div>
+      <div class ="col s12 m12 l4">
+          <mat-form-field style ="width:90%"  >
+              <mat-select placeholder="Teacher"    formControlName="teacherId" >
+                <mat-option *ngFor = "let branch of branchList"  [value] ="branch.courseBranchId">
+                {{branch.branchName}} 
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </div>
+      <div class ="col s12 m12 l4">
+               <timepicker  formControlName="lectureTime"></timepicker>
+                  </div>
+      <div class ="col s12 m12 l4">
+          <mat-form-field style ="width:90%"  >
+              <mat-select placeholder="Day"      formControlName="dayId" >
+                <mat-option *ngFor = "let branch of dayLists"  [value] ="branch.dayId">
+                {{branch.dayName}} 
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </div>
+       </div>
+        
+    </div>
+     
+  </div>
+ 
+
+</form>
+</mat-card>
+</div>
+<div mat-dialog-actions style ="float: right;padding:10px
+ "  > 
+ 
+  <span   >
+    <button mat-raised-button color="primary"  (click) ="AddLecture();" >Add</button>
+  </span>
+    
+   <button mat-raised-button color="primary" (click) ="onNoClick()" >Close</button>
+
+</div>

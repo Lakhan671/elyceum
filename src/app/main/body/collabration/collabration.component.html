@@ -1,0 +1,44 @@
+<!-- BOARDS -->
+<div id="boards" class="mat-primary-400-bg" fxLayout="column" fxLayoutAlign="start center" fxFlex fusePerfectScrollbar>
+  <div class="header pt-44 pt-mat-88" fxFlex="0 0 auto" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms'}}">
+    <h1>Collabration</h1>
+  </div>
+  <!-- BOARD LIST -->
+  <div class="board-list" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap
+       *fuseIfOnDom [@animateStagger]="{value:'50'}">
+    <!-- NEW BOARD BUTTON -->
+    <div class ="row">
+
+     <div class="board-list-item add-new-board col s12 l3 m3"   [routerLink]="['/collabration/department']" fxLayout="column" fxLayoutAlign="center center"
+    [@animate]="{value:'*',params:{y:'100%'}}" >
+  <mat-icon class="s-64"  >add_circle</mat-icon>
+  <div class="board-name">Department</div>
+</div>
+  
+      <div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center" [routerLink]="['/collabration/alumin']"
+            [@animate]="{value:'*',params:{y:'100%'}}" >
+          <mat-icon class="s-64"  >add_circle</mat-icon>
+          <div class="board-name">Alumni</div>
+      </div>
+      <div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center" [routerLink]="['/collabration/disscussion']"
+      [@animate]="{value:'*',params:{y:'100%'}}">
+    <mat-icon class="s-64">forum</mat-icon>
+    <div class="board-name">Disscussion</div>
+</div>
+<div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center" [routerLink]="['/collabration/document']"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">insert_drive_file</mat-icon>
+<div class="board-name">Documents</div>
+</div> 
+ <div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center" [routerLink]="['/collabration/gallay']"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">folder_open</mat-icon>
+<div class="board-name">Gallery</div>
+</div>
+<div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column"  [routerLink]="['/collabration/chat']" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">chat</mat-icon>
+<div class="board-name">chat</div>
+</div>
+</div></div>
+</div>

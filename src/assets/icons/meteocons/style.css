@@ -1,0 +1,672 @@
+
+
+
+.blue {
+    background: #144A8E !important;
+}
+
+
+.indigo {
+     background: #6610f2;
+}
+
+.purple {
+     background: #6f42c1;
+}
+
+.pink {
+    background: #e83e8c;
+}
+
+.red {
+    background: #dc3545 !important;
+}
+
+.orange {
+    background: #fd7e14;
+}
+
+.yellow {
+color:black !important;
+    background: #fad506;
+}
+
+.green {
+    background: #28a745;
+}
+
+.white {
+    background: #fff;
+}
+
+ .black {
+    background: #000;
+}
+
+.gray {
+    background: #6c757d;
+}
+.light-gray{
+     background: #e8e8e8 !important;
+}
+
+.gray-dark {
+    background: #343a40;
+}
+
+.primary {
+    background: #007bff;
+}
+
+.secondary {
+    background: #6c757d;
+}
+
+.success {
+    background: #28a745;
+}
+
+.info {
+    background: #17a2b8;
+}
+
+.warning {
+    background: #ffc107;
+}
+
+.danger {
+    background: #dc3545;
+}
+
+.light {
+    background: #f8f9fa;
+}
+
+.dark {
+    background: #343a40;
+}
+
+.mercon-yellow {
+    background: #fad506;
+}
+
+ .mercon-blue {
+    background: #184C8C;
+}
+
+.blue-text {
+    color: #144A8E !important;
+}
+
+.indigo-text {
+     color: #6610f2;
+}
+
+.purple-text {
+     color: #6f42c1;
+}
+
+.pink-text {
+    color: #e83e8c;
+}
+
+.red-text {
+    color: #dc3545 !important;
+}
+
+.orange-text {
+    color: #fd7e14;
+}
+
+.yellow-text {
+    color: #ffc107;
+}
+
+.green-text {
+    color: #28a745;
+}
+
+.white-text {
+    color: #fff !important;
+}
+
+ .black-text {
+    color: #000;
+}
+
+.gray-text {
+    color: #6c757d;
+}
+
+.gray-dark {
+    color: #343a40;
+}
+
+.primary-text {
+    color: #007bff;
+}
+
+.secondary-text {
+    color: #6c757d;
+}
+
+.success-text {
+    color: #28a745;
+}
+
+.info-text {
+    color: #17a2b8;
+}
+
+.warning-text {
+    color: #ffc107;
+}
+
+.danger-text {
+    color: #dc3545;
+}
+
+.light-text {
+    color: #f8f9fa;
+}
+
+.dark-text {
+    color: #343a40;
+}
+
+.mercon-yellow-text {
+    color: #F9D331;
+}
+
+ .mercon-blue-text {
+    color: #184C8C;
+}
+
+
+
+
+
+
+/*=======-- Padding Css --=======*/
+
+.padding0{
+ padding:0px !important ;
+}
+
+.padding-5{
+ padding:5px!important ;
+}
+
+.padding-10{
+ padding:10px!important ;
+}
+
+.padding-15{
+ padding:15px!important ;
+}
+
+.padding-20{
+ padding:20px!important ;
+}
+
+.padding-top{
+ padding-top:0px !important;
+}
+
+.padding-bottom{
+ padding-bottom:0px !important;
+}
+
+.padding-right{
+ padding-right:0px!important ;
+}
+
+.padding-left{
+ padding-left:0px!important ;
+}
+
+.padding-top-5{
+ padding-top:5px !important;
+}
+
+.padding-bottom-5{
+ padding-bottom:5px!important ;
+}
+
+.padding-right-5{
+ padding-right:5px!important ;
+}
+
+.padding-left-5{
+ padding-left:5px!important ;
+}
+
+.padding-top-8{
+ padding-top:8px!important ;
+}
+
+.padding-top-10{
+ padding-top:10px!important ;
+}
+
+.padding-bottom-10{
+ padding-bottom:10px!important ;
+}
+
+.padding-right-10{
+ padding-right:10px!important ;
+}
+
+.padding-left-10{
+ padding-left:10px!important ;
+}
+
+.padding-top-15{
+ padding-top:15px!important ;
+}
+
+.padding-bottom-15{
+ padding-bottom:15px!important ;
+}
+
+.padding-right-15{
+ padding-right:15px!important ;
+}
+
+.padding-left-15{
+ padding-left:15px!important ;
+}
+
+.padding-top-20{
+ padding-top:20px!important ;
+}
+
+.padding-bottom-20{
+ padding-bottom:20px!important ;
+}
+
+.padding-right-20{
+ padding-right:20px!important ;
+}
+
+.padding-left-20{
+ padding-left:20px!important ;
+}
+
+
+
+/*=======-- Margin Css --=======*/
+
+
+.margin0{
+ margin:0px !important;
+}
+
+.margin-top{
+ margin-top:0px !important;
+}
+
+.margin-bottom{
+ margin-bottom:0px !important;
+}
+
+.margin-right{
+ margin-right:0px !important;
+}
+
+.margin-left{
+ margin-left:0px !important;
+}
+
+.margin-top-5{
+ margin-top:5px !important ;
+}
+
+.margin-bottom-5{
+ margin-bottom:5px!important ;
+}
+
+.margin-right-5{
+ margin-right:5px!important ;
+}
+
+.margin-left-5{
+ margin-left:5px!important ;
+}
+
+.margin-top-10{
+ margin-top:10px!important ;
+}
+
+.margin-bottom-10{
+ margin-bottom:10px!important ;
+}
+
+.margin-right-10{
+ margin-right:10px!important ;
+}
+
+.margin-left-10{
+ margin-left:10px!important ;
+}
+
+.margin-top-15{
+ margin-top:15px!important ;
+}
+
+.margin-bottom-15{
+ margin-bottom:15px!important ;
+}
+
+.margin-right-15{
+ margin-right:15px!important ;
+}
+
+.margin-left-15{
+ margin-left:15px!important ;
+}
+
+.margin-top-20{
+ margin-top:20px!important ;
+}
+
+.margin-bottom-20{
+ margin-bottom:20px!important ;
+}
+
+.margin-right-20{
+ margin-right:20px!important ;
+}
+
+.margin-left-20{
+ margin-left:20px!important ;
+}
+.right{
+   float: right !important;
+}
+.left{
+   float: left !important;
+}
+
+/*=======-- Other Css --=======*/
+
+*{margin: 0; padding: 0;}
+
+a{
+ text-decoration: none;
+}
+.text-decoration{
+ text-decoration: underline !important;
+}
+body{
+   font-size: 14px !important;
+}
+.italic{
+    font-style: italic;
+}
+
+
+
+
+h1, h2, h3, h4, h5, h6{
+ color: #0d0a15;
+}
+
+.clear{
+ clear: both;
+}
+.overflow{
+ overflow: hidden;
+}
+
+.center-align{
+ text-align: center;
+}
+
+.right-align{
+ text-align: right;
+}
+
+.left-align{
+ text-align: left;
+}
+
+.pointer{
+ cursor: pointer;
+}
+
+.font-size20{
+ font-size: 20px !important;
+}
+
+.width-100{
+ width: 100%;
+}
+
+.hr-white{
+   border-top: 1px solid #FFF;
+}
+
+.hr-grey{
+   border-top: 1px solid #bfbfbf;
+}
+
+.hr-black{
+   border-top: 1px solid #000;
+}
+
+
+
+
+
+
+@font-face {
+    font-family: 'meteocons';
+    src: url('fonts/meteocons.ttf?1o770y') format('truetype'),
+    url('fonts/meteocons.woff?1o770y') format('woff'),
+    url('fonts/meteocons.svg?1o770y#meteocons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.meteocons {
+    font-family: 'meteocons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sunrise:before {
+    content: "\e900";
+}
+
+.icon-sun:before {
+    content: "\e901";
+}
+
+.icon-moon:before {
+    content: "\e902";
+}
+
+.icon-sun2:before {
+    content: "\e903";
+}
+
+.icon-windy:before {
+    content: "\e904";
+}
+
+.icon-wind:before {
+    content: "\e905";
+}
+
+.icon-snowflake:before {
+    content: "\e906";
+}
+
+.icon-cloudy:before {
+    content: "\e907";
+}
+
+.icon-cloud:before {
+    content: "\e908";
+}
+
+.icon-weather:before {
+    content: "\e909";
+}
+
+.icon-weather2:before {
+    content: "\e90a";
+}
+
+.icon-weather3:before {
+    content: "\e90b";
+}
+
+.icon-lines:before {
+    content: "\e90c";
+}
+
+.icon-cloud2:before {
+    content: "\e90d";
+}
+
+.icon-lightning:before {
+    content: "\e90e";
+}
+
+.icon-lightning2:before {
+    content: "\e90f";
+}
+
+.icon-rainy:before {
+    content: "\e910";
+}
+
+.icon-rainy2:before {
+    content: "\e911";
+}
+
+.icon-windy2:before {
+    content: "\e912";
+}
+
+.icon-windy3:before {
+    content: "\e913";
+}
+
+.icon-snowy:before {
+    content: "\e914";
+}
+
+.icon-snowy2:before {
+    content: "\e915";
+}
+
+.icon-snowy3:before {
+    content: "\e916";
+}
+
+.icon-weather4:before {
+    content: "\e917";
+}
+
+.icon-cloudy2:before {
+    content: "\e918";
+}
+
+.icon-cloud3:before {
+    content: "\e919";
+}
+
+.icon-lightning3:before {
+    content: "\e91a";
+}
+
+.icon-sun3:before {
+    content: "\e91b";
+}
+
+.icon-moon2:before {
+    content: "\e91c";
+}
+
+.icon-cloudy3:before {
+    content: "\e91d";
+}
+
+.icon-cloud4:before {
+    content: "\e91e";
+}
+
+.icon-cloud5:before {
+    content: "\e91f";
+}
+
+.icon-lightning4:before {
+    content: "\e920";
+}
+
+.icon-rainy3:before {
+    content: "\e921";
+}
+
+.icon-rainy4:before {
+    content: "\e922";
+}
+
+.icon-windy4:before {
+    content: "\e923";
+}
+
+.icon-windy5:before {
+    content: "\e924";
+}
+
+.icon-snowy4:before {
+    content: "\e925";
+}
+
+.icon-snowy5:before {
+    content: "\e926";
+}
+
+.icon-weather5:before {
+    content: "\e927";
+}
+
+.icon-cloudy4:before {
+    content: "\e928";
+}
+
+.icon-lightning5:before {
+    content: "\e929";
+}
+
+.icon-thermometer:before {
+    content: "\e92a";
+}
+
+.icon-compass:before {
+    content: "\e92b";
+}
+
+.icon-none:before {
+    content: "\e92c";
+}
+
+.icon-celsius:before {
+    content: "\e92d";
+}
+
+.icon-fahrenheit:before {
+    content: "\e92e";
+}

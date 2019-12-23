@@ -1,0 +1,63 @@
+<div class ="container">
+    <div class ="col s12 l12 m12">
+        <mat-card class ="col l12 m12 s12">Student Attendance</mat-card> 
+    </div>
+  <div class ="col s12 l12 m12" style ="margin-top:10px;margin-bottom: 10px;">
+   
+      <mat-card class ="col l12 m12 s12">
+          <div class ="col l12 m12 s12"  >
+              <mat-form-field class ="col l4 m4 s12" *ngIf ="subjectLists">
+                  <mat-select placeholder="Select Subject" name ="department"  [(ngModel)]="data.subjectId"  (selectionChange)="selectsubject()">
+                    <mat-option  *ngFor ="let list of subjectLists" [value] = "list.title">
+                {{list.title}}    </mat-option>
+                  </mat-select> 
+                  </mat-form-field>
+              <mat-form-field>
+                  <input matInput [matDatepicker]="dp" placeholder="Month and Year" [formControl]="date">
+                  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                  <mat-datepicker #dp
+                                  startView="multi-year"
+                                  (yearSelected)="chosenYearHandler($event)"
+                                  (monthSelected)="chosenMonthHandler($event, dp)"
+                                  panelClass="example-month-picker">
+                  </mat-datepicker>
+                </mat-form-field>
+              <button mat-raised-button
+              class="add-product-button mat-white-bg my-3 mt-sm-0" style ="    margin-left: 1%;float:right; 
+              margin-bottom: 10px;">
+              <span>Import cvc</span>
+              </button>
+              <button mat-raised-button
+              class="add-product-button mat-white-bg my-3 mt-sm-0" style ="    margin-left: 1%;float:right">
+              <span>Sample cvc</span>
+              </button>
+              <button mat-raised-button  
+              class="add-product-button mat-white-bg my-3 mt-sm-0" style ="    margin-left: 1%;float:right">
+         <span>Print</span>
+      </button>
+  
+               </div>
+      
+               <table class="width-100 border-space inr-table">
+                  <tbody>
+                      <tr class="pre-light-blue">
+                          <th>
+                              <span class="subject">Student</span>
+                              <span class="days">Day</span>
+                      </th>
+                          <th *ngFor = "let list of studentData ;let i = index">{{i +1 }}</th>
+                       </tr>
+                  </tbody>
+          
+                      <tr *ngFor ="let list of studentAttendanceList ">
+                          <td>{{list.studentName}}</td>
+                          <td *ngFor ="let list1 of list.attendance" >  <span *ngIf="list1.present == 2">-</span><span *ngIf="list1.present == 1">P</span><span *ngIf="list1.present == 0">A</span></td>
+                       </tr>
+          
+                     
+                              </table>
+                  
+      </mat-card> 
+  
+  </div> 
+  </div>

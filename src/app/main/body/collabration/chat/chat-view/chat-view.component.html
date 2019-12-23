@@ -1,0 +1,129 @@
+<!-- CHAT -->
+<div class="chat" fxFlex fxLayout="column">
+
+    <!-- CHAT TOOLBAR -->
+    <mat-toolbar class="chat-toolbar">
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <!-- RESPONSIVE CHATS BUTTON-->
+                <div mat-button fxHide.gt-md class="responsive-chats-button mat-icon-button mr-16"
+                     fuseMatSidenavToggler="chat-left-sidenav"
+                     aria-label="chats button">
+                    <mat-icon class="s-36">chat</mat-icon>
+                </div>
+                <!-- / RESPONSIVE CHATS BUTTON-->
+
+                <!-- CHAT CONTACT-->
+                <div class="chat-contact" fxLayout="row" fxLayoutAlign="start center"
+                     fuseMatSidenavToggler="chat-right-sidenav" (click)="selectContact()">
+
+                    <div class="avatar-wrapper">
+
+                        <img src="assets/images/avatars/profile.jpg"
+                             class="avatar"
+                            />
+
+                        <!-- <mat-icon class="s-16 status"
+                                  [ngClass]="contact.status">
+                        </mat-icon> -->
+                    </div>
+
+                    <div class="chat-contact-name">
+                      Mohit
+                    </div>
+
+                </div>
+                <!-- / CHAT CONTACT-->
+            </div>
+
+            <div>
+                <button mat-button class="mat-icon-button" [matMenuTriggerFor]="contactMenu"
+                        aria-label="more">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #contactMenu="matMenu">
+                    <button mat-menu-item fuseMatSidenavToggler="chat-right-sidenav" (click)="selectContact()">
+                        Contact Info
+                    </button>
+                </mat-menu>
+            </div>
+
+        </div>
+    </mat-toolbar>
+    <!-- / CHAT TOOLBAR -->
+
+    <!-- CHAT CONTENT -->
+    <div id="chat-content" fxFlex fusePerfectScrollbar (scroll)="handleScroll($event)">
+
+        <!-- CHAT MESSAGES -->
+        <div class="chat-messages" style ="    min-height: 80%;">
+
+            <!-- MESSAGE -->
+             <span *ngIf ="showChat">
+            <div fxLayout="row" *ngFor="let message of selectedChat" class="message-row"
+            [ngClass]="{'user' :message.sendBy == userId}">
+                <!-- " -->
+                <img  
+                     src="assets/images/avatars/profile.jpg"
+                     class="avatar"
+                   *ngIf ="message.sendBy == userId"/>
+
+                <img  *ngIf ="!message.sendBy == userId" class="avatar" src="assets/images/avatars/profile.jpg">
+
+                <div class="bubble">
+                    <div class="message">{{message.message}}</div>
+                    <div class="time secondary-text">{{message.date | date}}</div>
+                </div>
+
+            </div>
+            <!-- / MESSAGE -->
+        </span>
+        <div class ="row" *ngIf = "!showChat" >
+            <div class ="col s12 m12 l12">
+                <div class="col s2 offset-s4"><span class="flow-text">        
+                    <img src ="assets/images/avatars/profile.jpg" style ='width:200px;border-radius: 50%'>
+
+                </span>
+                <p>User is not in friend list send freind request to chat</p>
+                <button mat-raised-button color="primary" (click)="sendRequest()">Send Friend Request</button>
+
+            </div>
+        </div>
+        </div>
+        <!-- CHAT MESSAGES -->
+
+    </div>
+    <!-- / CHAT CONTENT -->
+
+    <!-- CHAT FOOTER -->
+    <div class="chat-footer" fxLayout="row" fxLayoutAlign="center center">
+
+        <!-- REPLY FORM -->
+                <form #replyForm="ngForm"
+                (ngSubmit)="reply();"
+                 (keyup)="onKeydown($event)"
+                fxFlex class="reply-form"
+                fxLayout="row"
+                fxLayoutAlign="start center">
+  
+              <mat-form-field class="" fxFlex floatPlaceholder="never">
+                  <textarea matInput #replyInput placeholder="Type and hit enter to send message"
+                            ngModel name="message"  (disabled) = "showChat"></textarea>
+              </mat-form-field>
+  
+              <button mat-fab class="" type="submit" aria-label="Send message" (disabled) = "showChat">
+                  <mat-icon>send</mat-icon>
+              </button>
+  
+          </form>
+         
+     
+        <!-- / REPLY FORM -->
+    </div>
+    <!-- / CHAT FOOTER-->
+</div>
+<!-- / CHAT -->

@@ -1,0 +1,75 @@
+<!-- BOARDS -->
+<div id="boards" class="mat-primary-400-bg container" fxLayout="column" fxLayoutAlign="start center" fxFlex fusePerfectScrollbar>
+
+  <div class="header pt-44 pt-mat-88" fxFlex="0 0 auto" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms'}}">
+      <h1>Academics</h1>
+  </div>
+
+  <!-- BOARD LIST -->
+  <div class="board-list" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap
+       *fuseIfOnDom [@animateStagger]="{value:'50'}">
+
+      <!-- BOARD -->
+  
+      <!-- / BOARD -->
+
+      <!-- NEW BOARD BUTTON -->
+     <div class ="row">
+      <div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center"
+      [@animate]="{value:'*',params:{y:'100%'}}" [routerLink]="['/Academics/attendance']">
+    <mat-icon class="s-64">email</mat-icon>
+    <div class="board-name">Attendance</div>
+</div>
+
+ 
+<div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}"  [routerLink]="['/Academics/lecture']" >
+<mat-icon class="s-64">backup</mat-icon>
+<div class="board-name">Lecture</div>
+</div>
+<div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center" [routerLink]="['/Academics/fee/feeType']"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">backup</mat-icon>
+<div class="board-name">Fee</div>
+</div>
+<div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center"   [routerLink]="['/Academics/section']"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">settings_application</mat-icon>
+<div class="board-name">Section</div>
+</div>
+
+<div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">settings_application</mat-icon>
+<div class="board-name">Lecture</div>
+</div>
+
+<div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">note</mat-icon>
+<div class="board-name">leaves</div>
+</div>
+<div class="board-list-item add-new-board col s12 l3 m3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}">
+<mat-icon class="s-64">settings_application</mat-icon>
+<div class="board-name">Examination</div>
+</div>
+<div class="board-list-item add-new-board col s12 l3 " fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}" [routerLink]="['/Academics/teacher']">
+<mat-icon class="s-64">add_circle</mat-icon>
+<div class="board-name">Add teacher</div>
+</div> 
+
+<div class="board-list-item add-new-board col s12 l3" fxLayout="column" fxLayoutAlign="center center"
+[@animate]="{value:'*',params:{y:'100%'}}" [routerLink]="['/Academics/class']">
+<mat-icon class="s-64">school</mat-icon>
+<div class="board-name">batches/classes</div>
+</div>
+</div>
+ 
+      <!-- / NEW BOARD BUTTON -->
+
+  </div>
+  <!-- / BOARD LIST -->
+</div>
+<!-- / BOARDS -->

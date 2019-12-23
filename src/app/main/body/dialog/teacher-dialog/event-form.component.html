@@ -1,0 +1,134 @@
+<div class="dialog-content-wrapper"  id="teacher">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Teacher</span>
+            <button mat-button class="mat-icon-button"
+                    (click)="dialogRef.close()"
+                    aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 m-0"  fusePerfectScrollbar>
+
+        <form name="eventForm" [formGroup]="eventForm" class="event-form w-100-p" fxLayout="column" fxFlex>
+                <div class=" " fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row"  >
+
+            <mat-form-field class="mr-sm-24 mr-sm-24">
+                <input matInput
+                       name="title"
+                        placeholder="First Name"
+                        formControlName="fName"
+
+                        >
+            </mat-form-field>
+            <mat-form-field class="w-100-p mr-sm-24">
+                    <input matInput
+                           name="title"
+                            placeholder="Middle Name"
+                            formControlName="mName"
+
+                           required>
+                </mat-form-field>
+                <mat-form-field class="w-100-p mr-sm-24">
+                        <input matInput
+                               name="title"
+                                placeholder="Last Name"
+                                formControlName="lName"
+
+                               required>
+                    </mat-form-field>
+            </div>
+<div class=" " fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row"  >
+
+    <mat-form-field class="mr-sm-24 mr-sm-24">
+        <input matInput
+               name="title"
+                placeholder="Email"
+                formControlName="emial"
+
+               required>
+    </mat-form-field>
+    <mat-form-field class="w-100-p mr-sm-24">
+            <input matInput
+                   name="title"
+                    placeholder="Mobile Number"
+                    formControlName="mobileNo"
+
+                   required>
+        </mat-form-field>
+        <mat-form-field class="w-100-p mr-sm-24">
+                <input matInput
+                       name="title"
+                        placeholder="Alternate Number"
+                        formControlName="contactNo1"
+
+                       >
+            </mat-form-field>
+    </div>
+    <div class=" " fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row"  >
+
+        <mat-form-field class="mr-sm-24 mr-sm-24">
+            <input matInput
+                   name="title"
+                    placeholder="Current ZipCode"
+                    formControlName="currentZipCode"
+
+                   required>
+        </mat-form-field>
+        <mat-form-field class="mr-sm-24 mr-sm-24">
+            <input matInput
+                   name="title"
+                    placeholder="Permanent ZipCode"
+                    formControlName="prmZipCode"
+
+                   required>
+        </mat-form-field>
+            <mat-form-field class="w-100-p mr-sm-24">
+                    <input matInput
+                           name="title"
+                            placeholder="Password"
+                            type ="password"
+                            formControlName="password"
+
+                           >
+                </mat-form-field>
+        </div>
+           
+
+            
+            
+
+        </form>
+
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <button  
+                mat-raised-button
+                 
+                aria-label="SAVE" (click) ="createTeacher();">
+            Create
+        </button>
+<!-- 
+        <button *ngIf="action ==='edit'"
+                mat-raised-button
+                (click)="update()"
+                class="save-button mat-accent"
+                [disabled]="eventForm.invalid"
+                aria-label="SAVE">
+            Update
+        </button>
+
+        <button *ngIf="action ==='edit'"
+                mat-button
+                class="mat-icon-button"
+                (click)="dialogRef.close(['delete',eventForm])"
+                aria-label="Delete"
+                matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+        </button> -->
+    </div>
+</div>

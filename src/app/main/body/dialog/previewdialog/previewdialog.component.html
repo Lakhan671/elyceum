@@ -1,0 +1,43 @@
+<div class="dialog-content-wrapper"  id="teacher">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <span class="title dialog-title">Image Preview</span>
+          <button mat-button class="mat-icon-button"
+                  (click)="dialogRef.close()"
+                  aria-label="Close dialog">
+              <mat-icon>close</mat-icon>
+          </button>
+      </div>
+  </mat-toolbar>
+  <div mat-dialog-content class="p-24 m-0"  fusePerfectScrollbar>
+      <mat-card>
+          <div class =" row"  >
+              <div class ="col s12 m8 l8">
+                  <image-cropper
+                  [imageChangedEvent]="imageChangedEvent"
+                  [maintainAspectRatio]="true"
+                  [aspectRatio]="4 / 3"
+                  [resizeToWidth]="128"
+                  format="png"
+                  (imageCropped)="imageCropped($event)"
+                  (imageLoaded)="imageLoaded()"
+                  (loadImageFailed)="loadImageFailed()"
+              ></image-cropper>
+                </div>
+              <div class ="col s12 m4 l4">
+                  <img [src]="croppedImage" />
+              </div>
+              </div>
+ </mat-card>
+    
+</div>
+
+<div mat-dialog-actions style ="float: right;padding:10px"  > 
+  
+    <button mat-raised-button color="primary" (click) ="AddFeeType()" >Upload</button>
+
+<button mat-raised-button color="primary" (click)="dialogRef.close()" >Close</button>
+
+</div>
+
+</div>

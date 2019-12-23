@@ -1,0 +1,166 @@
+@import "src/app/core/scss/fuse";
+
+:host {
+
+    #login {
+        width: 100%;
+        overflow: auto;
+        background: url('/assets/images/backgrounds/back.png') repeat;
+        button, input, optgroup, select, textarea{
+            font-size: 14px !important;
+        }
+        .mat-placeholder{
+            font-size: 14px !important;
+        }
+        mat-form-field.mat-form-field {
+            font-size: 14px !important;
+          }
+        #login-form-wrapper {
+            flex: 1 0 auto;
+            padding: 0px;
+
+            @include media-breakpoint('xs') {
+                padding: 16px;
+            }
+
+            #login-form {
+                width: 450px;
+                max-width: 450px;
+                padding: 32px;
+                background: #FFFFFF;
+                text-align: center;
+                @include mat-elevation(16);
+
+                @include media-breakpoint('xs') {
+                    padding: 24px;
+                    width: 100%;
+                }
+
+                .logo {
+                    width: 200px;
+                    margin: 0px auto;
+                }
+
+                .title {
+                    font-size: 18px;
+                    margin: 4px 0 0px 0;
+                }
+
+                form {
+                    width: 100%;
+                    text-align: left;
+
+                    mat-form-field {
+                        width: 100%;
+                    }
+
+                    mat-checkbox {
+                        margin: 0;
+                    }
+
+                    .remember-forgot-password {
+                        font-size: 13px;
+                        margin-top: 0px;
+
+                        .remember-me {
+                            margin-bottom: 16px
+                        }
+
+                        .forgot-password {
+                            font-size: 13px;
+                            font-weight: 500;
+                            margin-bottom: 16px
+                        }
+                    }
+
+                    .submit-button {
+                        width: 220px;
+                        margin: 16px auto;
+                        display: block;
+
+                        @include media-breakpoint('xs') {
+                            width: 90%;
+                        }
+                    }
+                }
+                .mat-input-wrapper {
+                    font-size: 14px !important;
+                }
+                
+                
+                .register {
+                    margin: 6px auto 4px auto;
+                    font-weight: 500;
+
+                    .text {
+                        margin-right: 8px;
+                    }
+                }
+                .mat-grid-tile{
+                    padding-top: calc(((25% - 40px) * 1) + 0px) !important;
+                 }
+                 .mat-grid-list{
+                    padding-bottom: calc(((1 * ((25% - 20px) * 1)) + 0px) + 0px) !important;
+
+                }
+                .separator {
+                    font-size: 13px;
+                    font-weight: 600;
+                    margin: 15px auto;
+                    position: relative;
+                    overflow: hidden;
+                    width: 100px;
+                    color: rgba(0, 0, 0, 0.54);
+
+                    .text {
+                        display: inline-flex;
+                        position: relative;
+                        padding: 0 8px;
+                        z-index: 9999;
+
+                        &:before, &:after {
+                            content: '';
+                            display: block;
+                            width: 30px;
+                            position: absolute;
+                            top: 10px;
+                            border-top: 1px solid rgba(0, 0, 0, 0.12);
+                        }
+
+                        &:before {
+                            right: 100%;
+                        }
+
+                        &:after {
+                            left: 100%;
+                        }
+                    }
+                }
+
+                button {
+
+                    &.google,
+                    &.facebook {
+                        width: 192px;
+                        text-transform: none;
+                        color: #FFFFFF;
+                        font-size: 13px;
+                    }
+
+                    @include media-breakpoint('xs') {
+                        width: 80%;
+                    }
+
+                    &.google {
+                        background-color: #D73D32;
+                        margin-bottom: 8px;
+                    }
+
+                    &.facebook {
+                        background-color: rgb(63, 92, 154);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Room </span>
+            <button mat-button class="mat-icon-button"
+                    (click)="dialogRef.close()"
+                    aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <form name="registerForm" [formGroup]="registerForm" novalidate>
+
+    <div mat-dialog-content class ="p-24 m-0">
+<mat-card>
+   <div class ="row">
+    <div class ="col s12 m12 l12"> 
+    <mat-form-field  class ="col s12 m12 l12">
+                <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+                  <input matInput placeholder="Name" name ="name"   formControlName="roomName">
+               
+            </mat-form-field>
+        
+  <mat-form-field class ="col s12 m12 l12">
+      <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+      <mat-select placeholder="Room Type"  name ="dep"  formControlName="roomTypeId"  >
+       <mat-option  *ngFor = "let department of data.RoomTypeList" [value] ="department.roomtypeId" >{{department.roomType}}</mat-option>    
+
+     </mat-select>
+ 
+  </mat-form-field>
+</div>
+</div>
+</mat-card>
+ 
+
+</div>
+<div mat-dialog-actions style ="float: right;
+margin-right: 19px;
+"  >
+  <button mat-raised-button color="primary" (click) ="createUser()" *ngIf ="data.type =='create'" >Add</button>
+  <button mat-raised-button color="primary" (click) ="updateUser()" *ngIf ="data.type =='update'" >Update</button>
+
+  <button mat-raised-button color="primary" (click) ="onNoClick()" >Close</button>
+
+</div>
+</form>
+
+</div>

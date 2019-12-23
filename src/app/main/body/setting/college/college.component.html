@@ -1,0 +1,194 @@
+<div id="products" class="page-layout carded fullwidth" fusePerfectScrollbar>
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div _ngcontent-c49="" class="black-fg" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;"><mat-icon _ngcontent-c49="" class="secondary-text s-16 mat-icon material-icons" role="img" aria-hidden="true">home</mat-icon><mat-icon _ngcontent-c49="" class="secondary-text s-16 mat-icon material-icons" role="img" aria-hidden="true">chevron_right</mat-icon><span _ngcontent-c49="" class="secondary-text">User Interface</span></div>
+        <div class="header white-fg"
+             fxLayout="column" fxLayoutAlign="center center"
+             fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+            <!-- APP TITLE -->
+            <div class="logo my-12 m-sm-0"
+                 fxLayout="row" fxLayoutAlign="start center">
+                 <span class="logo-text h1" *fuseIfOnDom >Institution Setting</span>
+            </div>
+            <!-- / APP TITLE -->
+            <!-- SEARCH -->
+            <!-- / SEARCH -->
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg"   >
+          <header class="mat-accent-bg">
+              <div class="title" >Profile Information    <button  class="mat-icon-button" aria-label="Add location" mat-icon-button="" mattooltip="Add location" aria-describedby="cdk-describedby-message-12" cdk-describedby-host="" ng-reflect-message="Add location" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);float:right;"><span class="mat-button-wrapper">
+               </span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div></button> </div>
+          </header>
+          <div id="about"   fxLayout="row" fxLayoutWrap fusePerfectScrollbar>
+  
+            <div class="about-content" style ="border:1px solid;padding: 10px;height:100%" fxLayout="column" fxFlex="70" fxFlex.xs="100" fxFlex.gt-sm="100" fxFlex.gt-xs="100"  fxFlex.gt-md="70" fxFlex.gt-lg="70"fxFlex.gt-xl="70" >
+              <form name="registerForm"   novalidate>
+                  <mat-grid-list cols="6"  rowHeight="50px" >
+                      <mat-grid-tile
+                           colspan="3" style ="margin:0px"
+                           >
+                          <mat-form-field style  ="width:90%">
+                              <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+                               <input matInput placeholder="Institution Name"  name ="name" [(ngModel)]= "data.name"  >
+                              <!-- <mat-error *ngIf="registerFormErrors.name.required">
+                                  Name is required
+                              </mat-error>  -->
+                          </mat-form-field>
+                      </mat-grid-tile>
+                      <mat-grid-tile
+                      colspan="3" style ="margin:0px"
+                      >
+                     <mat-form-field style  ="width:90%"> 
+                         <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+                           <input matInput placeholder="Institution Address" name ="address" [(ngModel)]= "data.data.address">
+                         <!-- <mat-error *ngIf="registerFormErrors.name.required">
+                             Name is required
+                         </mat-error>  -->
+                     </mat-form-field>
+                 </mat-grid-tile>
+                 <mat-grid-tile
+                 colspan="3" style ="margin:0px"
+                 >
+                <mat-form-field style  ="width:90%">
+                    <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+                      <input matInput placeholder="Institution Email" type ="email" name ="email" [(ngModel)]= "data.email">
+                    <!-- <mat-error *ngIf="registerFormErrors.name.required">
+                        Name is required
+                    </mat-error>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile
+            colspan="3" style ="margin:0px"
+            >
+           <mat-form-field style  ="width:90%"> 
+               <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+                 <input matInput placeholder="Institution Phone" name ="mobileNo" [(ngModel)]= "data.mobileNo" >
+               <!-- <mat-error *ngIf="registerFormErrors.name.required">
+                   Name is required
+               </mat-error>  -->
+           </mat-form-field>
+       </mat-grid-tile>
+  
+  
+       <mat-grid-tile
+       colspan="2" style ="margin:0px"
+       >
+      <mat-form-field style  ="width:85%"> 
+          <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+            <input matInput placeholder="Institution Fax" name ="fax" [(ngModel)]= "data.data.fax"  >
+          <!-- <mat-error *ngIf="registerFormErrors.name.required">
+              Name is required
+          </mat-error>  -->
+      </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile
+  colspan="2" style ="margin:0px"
+  >
+  <mat-form-field style  ="width:90%"> 
+     <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+       <input matInput placeholder="Institution Contact person"  name ="cPerson"[(ngModel)]= "data.data.cPerson" >
+     <!-- <mat-error *ngIf="registerFormErrors.name.required">
+         Name is required
+     </mat-error>  -->
+  </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile
+  colspan="2" style ="margin:0px"
+  >
+  <mat-form-field style  ="width:90%"> 
+     <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+       <input matInput placeholder="Country" name ="country" [(ngModel)]= "data.data.country"  >
+     <!-- <mat-error *ngIf="registerFormErrors.name.required">
+         Name is required
+     </mat-error>  -->
+  </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile
+  colspan="3" style ="margin:0px"
+  >
+  <mat-form-field style  ="width:90%"> 
+     <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+       <input matInput placeholder="Currency Type"  name ="cType"[(ngModel)]= "data.data.cType">
+     <!-- <mat-error *ngIf="registerFormErrors.name.required">
+         Name is required
+     </mat-error>  -->
+  </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile
+  colspan="3" style ="margin:0px"
+  >
+  <mat-form-field style  ="width:90%"> 
+     <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+       <input matInput placeholder="Lauaguae"  name ="lan" [(ngModel)]= "data.data.language">
+     <!-- <mat-error *ngIf="registerFormErrors.name.required">
+         Name is required
+     </mat-error>  -->
+  </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" style ="margin:0px" >
+  <mat-checkbox name ="check" [(ngModel)]= "data.data.cUser">Code (will be used as the prefix for student A No. )</mat-checkbox>
+  
+   </mat-grid-tile>
+   <mat-grid-tile
+   colspan="3" style ="margin:0px"
+   >
+   <mat-form-field style  ="width:90%"> 
+      <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+        <input matInput placeholder="Institution Code" name ="code"  [(ngModel)]= "data.collegeCode">
+        <!-- <mat-error *ngIf="registerFormErrors.name.required">
+        Name is required
+      </mat-error>  -->
+   </mat-form-field>
+   </mat-grid-tile>
+   <mat-grid-tile colspan="3" style ="margin:0px">
+      <mat-form-field style ="width:80%">
+          <mat-select placeholder="TimeZone" name ="timw"[(ngModel)]= "data.data.timeZone">
+            <mat-option  vale ="1" >
+            India
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+       </mat-grid-tile>
+       <mat-grid-tile colspan="3" style ="margin:0px">
+        <div class="file-uploader">
+            <input hidden type="file" #fileInput placeholder="Upload Logo"/>
+           
+        </div>          
+          </mat-grid-tile>
+  
+                  </mat-grid-list>
+                  <div style="float:right;margin-top:20px">
+                        <button style ="width: 100px;" mat-raised-button color="accent" class="submit-button" aria-label="CREATE AN ACCOUNT"
+                        (click) ="saveCollege(this.data);">
+                  Update
+              </button>
+              <button style ="width: 100px;" mat-raised-button color="accent" class="submit-button" aria-label="CREATE AN ACCOUNT"
+              (click) ="registerUser();">
+        Back
+        </button>
+                  </div>
+              </form>
+          
+
+            </div>
+            <div  style ="border:1px solid;"  class="about-content" fxLayout="column" fxFlex="30" fxFlex.gt-sm="100" fxFlex.gt-xs="100"  fxFlex.xs="100"  fxFlex.gt-md="30" fxFlex.gt-lg="30"fxFlex.gt-xl="30">
+                    <img src="assets/images/Demo.png" style ="    width: 279px;
+                    margin: auto;">
+                    <label>Demo school</label>
+                    
+                <label>demo@gmail.com</label>
+            </div></div>    
+        </div>
+
+
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+  </div>
+  

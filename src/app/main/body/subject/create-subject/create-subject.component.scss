@@ -1,0 +1,44 @@
+@import "src/app/core/scss/fuse";
+
+:host {
+
+    #CreateProject { 
+        mat-form-field{
+            width:100%;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+        .docs-example-viewer-title  {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding: 8px 20px;
+            margin-top: 10px;
+            margin-bottom: 28px;
+            /* font-weight: 600; */
+            color: black;
+            font-size: 15px;
+        }
+        example-viewer .docs-example-viewer-title {
+            color: black;
+            background: rgba(0,0,0,.03);
+        }
+        width:100%;
+
+        mat-grid-list{
+        }
+    }
+}

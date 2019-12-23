@@ -1,0 +1,169 @@
+<div id="CreateProject" class="container" fusePerfectScrollbar>
+  <div class="row">
+    <div class="col l12 m12 s12">
+      <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Student Info</ng-template>
+            <div class="col l4 m4 s12">
+              <mat-form-field appearance="outline" style="width:100%">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="fName">
+              </mat-form-field>
+            </div>
+            <div class="col l4 m4 s12">
+              <mat-form-field appearance="outline" style="width:100%">
+                <mat-label>Middle Name</mat-label>
+                <input matInput placeholder="Middle Name" formControlName="mName">
+              </mat-form-field>
+            </div>
+            <div class="col l4 m4 s12">
+              <mat-form-field appearance="outline" style="width:100%">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Last Name" formControlName="lName">
+              </mat-form-field>
+            </div>
+            <div class="col l3 m4 s12">
+              <mat-form-field appearance="outline" style="width:100%">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Last Name" formControlName="email">
+              </mat-form-field>
+            </div>
+            <div class="col l3 m4 s12">
+              <mat-form-field appearance="outline" style="width:100%">
+                <mat-label>Mobile No</mat-label>
+                <input matInput placeholder="Last Name" formControlName="mobileNo">
+              </mat-form-field>
+            </div>
+            <div class="col l3 m4 s12">
+              <mat-form-field appearance="outline" style="width:100%">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Last Name" formControlName="password">
+              </mat-form-field>
+            </div>
+            <div class="col l12 m12 s12"> 
+                          <!-- <button mat-raised-button color="primary" matStepperPrevious class="cancelbtn">Back</button> -->
+
+            <button mat-raised-button color="primary" matStepperNext class="successbtn">Next</button>
+</div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Student Deparment Info</ng-template>
+            <div class="col l4 m4 s12">
+              <mat-form-field appearance="outline" style="width:100%">
+                <mat-label>Select Department</mat-label>
+                <mat-select placeholder="Select Department" name="department" (selectionChange)="courseSelect()"
+                formControlName="departmentId">
+                <mat-option *ngFor="let depart of departmentList" [value]="depart.departmentId">
+                  {{depart.departmentName}}
+                </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col l4 m4 s12">
+              <mat-form-field appearance="outline" style="width:100%">
+                <mat-select placeholder="Select Course" (selectionChange)="branchSelect()"
+                [disabled]="secondFormGroup.value.departmentId == ''" name="course" formControlName="courseId">
+                <mat-option *ngFor="let course of courseList" [value]="course.courseId">
+                  {{course.courseName}}
+                </mat-option>
+              </mat-select>
+</mat-form-field></div>
+
+<div class="col l4 m4 s12">
+  <mat-form-field appearance="outline" style="width:100%">
+    <mat-select placeholder="Select New Branch" (selectionChange)="semSelect()"
+    [disabled]="secondFormGroup.value.courseId == ''" formControlName="newCourseBranchId">
+    <mat-option *ngFor="let branch of branchList" [value]="branch.courseBranchId">
+      {{branch.branchName}}
+    </mat-option>
+  </mat-select>
+</mat-form-field></div>
+
+<div class="col l3 m3 s12">  <mat-form-field appearance="outline" style="width:100%">
+  <mat-select placeholder="Select Semester" name="semester"
+  [disabled]="secondFormGroup.value.newCourseBranchId == ''" formControlName="semesterId">
+  <mat-option *ngFor="let sem of semList" [value]="sem.semesterId">
+    {{sem.semesterName}}
+  </mat-option>
+</mat-select>
+  
+</mat-form-field>
+</div>
+<div class="col l3 m3 s12"> 
+
+<mat-form-field appearance="outline" style="width:100%">
+    <mat-select placeholder="Select Session"name="selection"  formControlName="sessionId">
+    <mat-option value ="1"  *ngFor = "let session of sessList"[value] ="session.sessionId"> 
+      {{session.startYear +' - '+session.endYear}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+<div class="col l3 m3 s12"> 
+
+<mat-form-field appearance="outline" style="width:100%">
+  <input matInput [matDatepicker]="picker2" placeholder="Addmission Year" formControlName="addmissionDate">
+  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker #picker2></mat-datepicker>
+</mat-form-field>
+</div>
+
+
+  <div class="col l3 m3 s12"> 
+
+    <mat-form-field appearance="outline" style="width:100%">
+  
+  <input matInput [matDatepicker]="picker" placeholder="Current Year" formControlName="currentYear">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field></div>
+
+
+<div class="col l3 m3 s12">
+  <mat-form-field appearance="outline" style="width:100%">
+    <mat-label>Roll Number</mat-label>
+    <input matInput placeholder="Roll Number" formControlName="rollNo">
+  </mat-form-field>
+</div>
+<div class="col l3 m3 s12">
+  <mat-form-field appearance="outline" style="width:100%">
+    <mat-label>Enrollment</mat-label>
+    <input matInput placeholder="Enrollment" formControlName="enrollmentNo">
+  </mat-form-field>
+</div>
+<div class="col l3 m3 s12">
+
+<mat-checkbox class="col s12 m12 l12" style="    font-size: 14px;            
+padding: 13px;
+margin-top: 1px;            
+width: 98%;
+float: right;
+" formControlName="isHostler">Is Hostler</mat-checkbox>
+</div>
+
+<div class="col l12 m12 s12"> 
+   <button mat-raised-button color="primary" matStepperPrevious class="cancelbtn">Back</button> 
+
+<button mat-raised-button color="primary" matStepperNext class="successbtn">Next</button>
+</div>
+</form></mat-step>
+
+
+<mat-step>
+  <ng-template matStepLabel>Done</ng-template>
+  You are now done.
+  <div>
+    <button mat-raised-button color="primary" matStepperPrevious  class="cancelbtn">Back</button>
+    <button mat-raised-button color="primary" (click)="addStudent()"  class="successbtn"> Create</button>
+  </div>
+</mat-step>
+
+      </mat-horizontal-stepper>
+    </div>
+  </div>
+</div>
+<!--  -->

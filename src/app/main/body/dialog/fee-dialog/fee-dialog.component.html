@@ -1,0 +1,163 @@
+<div class="dialog-content-wrapper"  id="feeDia">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <span class="title dialog-title">Fee</span>
+          <button mat-button class="mat-icon-button"
+                  (click)="dialogRef.close()"
+                  aria-label="Close dialog">
+              <mat-icon>close</mat-icon>
+          </button>
+      </div>
+  </mat-toolbar>
+  <form name="registerForm"  [formGroup]="registerForm"  novalidate>
+  <div mat-dialog-content class="p-24 m-0"  fusePerfectScrollbar>
+      <mat-card>
+
+     <div class =" row"  >
+    <div class ="col s12 m12 l12">
+            <div class ="col s12 m6 l4">
+
+        <mat-form-field class="example-full-width">
+            <!-- <span matPrefix>+1 &nbsp;</span> -->
+            <input type="number" matInput placeholder="Actual Fee"  formControlName="actualFee" (blur) ="totaldeeselect();">
+            <mat-icon matSuffix>attach_money</mat-icon>
+          </mat-form-field>
+ </div>
+ <div class ="col s12 m6 l4">
+
+        <mat-form-field class="example-full-width">
+            <!-- <span matPrefix>+1 &nbsp;</span> -->
+            <input type="number" matInput placeholder="Hostel Fee" formControlName="hostelFee" (blur) ="totaldeeselect();" >
+            <mat-icon matSuffix>attach_money</mat-icon>
+          </mat-form-field>
+ </div>
+ <div class ="col s12 m6 l4">
+
+        <mat-form-field class="example-full-width">
+            <!-- <span matPrefix>+1 &nbsp;</span> -->
+            <input type="number" matInput placeholder="Fee Discount" formControlName="feeDiscount" max ="100" min ="0" (blur) ="totaldeeselect();">
+            <mat-icon matSuffix>%  &nbsp;</mat-icon>
+          </mat-form-field>
+ </div>
+  
+ <div class ="col s12 m6 l4">
+
+        <mat-form-field class="example-full-width">
+            <!-- <span matPrefix>+1 &nbsp;</span> -->
+            <input type="number" matInput placeholder="Total Fee" formControlName="totalfee" [disabled]="true"  >
+            <mat-icon matSuffix>attach_money</mat-icon>
+          </mat-form-field>
+ </div>
+ <div class ="col s12 m6 l4">
+
+        <mat-form-field class="example-full-width">
+            <!-- <span matPrefix>+1 &nbsp;</span> -->
+            <input type="number" matInput placeholder="Submitted Fee" formControlName="submitFee"  (blur) ="remainigFee();">
+            <mat-icon matSuffix>attach_money</mat-icon>
+          </mat-form-field>
+ </div>
+ <div class ="col s12 m6 l4">
+
+        <mat-form-field class="example-full-width">
+            <!-- <span matPrefix>+1 &nbsp;</span> -->
+            <input type="number" matInput placeholder="Remianing Fee" formControlName="remianingFee" >
+            <mat-icon matSuffix>attach_money</mat-icon>
+          </mat-form-field>
+ </div>
+ <div class ="col s12 m6 l4">
+
+     
+ <mat-form-field style ="width:79%" >
+        <mat-select placeholder="Department" name ="department" (selectionChange) ="courseSelect()" formControlName="departmentId" >
+          <mat-option *ngFor = "let depart of  depList"[value] ="depart.departmentId"  >
+            {{depart.departmentName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+ </div>
+
+ <div class ="col s12 m6 l4">
+
+     
+        <mat-form-field style ="width:100%" >
+                <mat-select placeholder="Course" (selectionChange) ="branchSelect()"  [disabled]="registerForm.value.departmentId == ''" name ="course" formControlName="courseId">
+                  <mat-option *ngFor = "let course of courseList"  [value] ="course.courseId">
+                    {{course.courseName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+
+        <div class ="col s12 m6 l4">
+
+     
+                <mat-form-field style ="width:79%"  >
+                        <mat-select placeholder=" Branch"  (selectionChange) ="semSelect()"   [disabled]="registerForm.value.courseId == ''"  formControlName="courseBranchId" >
+                          <mat-option *ngFor = "let branch of branchList"  [value] ="branch.courseBranchId">
+                          {{branch.branchName}} 
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+
+                
+        <div class ="col s12 m6 l4">
+
+     
+                <mat-form-field style ="width:79%"  >
+                        <mat-select placeholder="Semester" name ="semester" (selectionChange) ="studentList()" [disabled]="registerForm.value.courseId == ''"formControlName="semesterId" >
+                          <mat-option  *ngFor = "let sem of semList"  [value] ="sem.semesterId">
+                            {{sem.semesterName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                               
+        <div class ="col s12 m6 l4">
+
+     
+                <mat-form-field style ="width:100%">
+                        <mat-select placeholder="Session"name="selection"  (selectionChange) ="studentList()"  formControlName="sessionId">
+                          <mat-option value ="1"  *ngFor = "let session of sessList"[value] ="session.sessionId"> 
+                            {{session.startYear +' - '+session.endYear}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div class ="col s12 m6 l4">
+
+     
+                        <mat-form-field style ="width:100%">
+                                <mat-select placeholder="Student" name="selection"    formControlName="studentId">
+                                  <mat-option   *ngFor = "let list of studentLists"[value] ="list.studentId"> 
+                                    {{list.fName +' '+ list.mName +' '+ list.lName  }}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                        <div class ="col s12 m6 l4">
+
+     
+                                <mat-checkbox formControlName="isFullAmmount" value="1" >Is Full Amount</mat-checkbox>
+
+                                </div>
+
+    </div>
+ 
+  </div>
+ 
+
+
+ </mat-card>
+</div>
+<div mact-dialog-actions style ="float: right;padding:10px
+"  > 
+  
+        <button mat-raised-button color="primary" (click) ="Addfee()" >Add</button>
+ 
+ <button mat-raised-button color="primary" (click) ="onNoClick()" >Close</button>
+
+</div>
+</form>
+</div>
+ 

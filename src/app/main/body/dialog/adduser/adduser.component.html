@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Add user </h1>
+<div mat-dialog-content>
+  <form name="registerForm" [formGroup]="registerForm" novalidate>
+    <mat-grid-list cols="4"  rowHeight="50px" >
+        <mat-grid-tile
+             colspan="2" style ="margin:0px"
+             >
+            <mat-form-field>
+                <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+                  <input matInput placeholder="Name" name ="name" formControlName="name">
+               
+            </mat-form-field>
+        </mat-grid-tile> <mat-grid-tile
+        colspan="2" style ="margin:0px"
+        >
+       <mat-form-field>
+           <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+           <input matInput placeholder="Email" name ="email" formControlName="email">
+ 
+
+          </mat-form-field>
+       
+   </mat-grid-tile>
+   <mat-grid-tile
+   colspan="2" style ="margin:0px"
+   >
+  <mat-form-field style="width:90%">
+      <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+      <mat-select placeholder="User Type"  formControlName="usertype" >
+       <mat-option value ="1">Student</mat-option>    
+
+     </mat-select>
+ 
+  </mat-form-field>
+  
+</mat-grid-tile>
+ 
+    
+  </mat-grid-list>
+ 
+
+</form>
+</div>
+<div mact-dialog-actions style ="float: right;
+margin-top: 14%;
+"  >
+  <button mat-raised-button color="primary" (click) ="createUser()" >Add</button>
+  <button mat-raised-button color="primary" (click) ="onNoClick()" >Close</button>
+
+</div>

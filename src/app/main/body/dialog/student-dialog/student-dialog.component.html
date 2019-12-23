@@ -1,0 +1,138 @@
+<div class="dialog-content-wrapper">
+
+<mat-toolbar matDialogTitle class="mat-accent m-0">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Student</span>
+        <button mat-button class="mat-icon-button"
+                (click)="dialogRef.close()"
+                aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+<form name="registerForm" [formGroup]="registerForm"    novalidate  >
+
+<div mat-dialog-content class="p-24 m-0"  fusePerfectScrollbar>
+    <mat-card>
+<div class ="row">
+  <div class ="col s12 m12 l12">
+
+    <div class ="col s12 l4 m6">
+        <mat-form-field  class ="col s12 m12 l12">
+            <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+              <input matInput placeholder="First Name" name ="fname"  formControlName="fName"  >
+           
+        </mat-form-field>
+        <mat-form-field   class ="col s12 m12 l12">
+            <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+              <input matInput placeholder="Email" name ="email" formControlName="email"   >
+           
+        </mat-form-field>
+        <mat-form-field class ="col s12 m12 l12" >
+            <mat-select placeholder="Select Department" name ="department" (selectionChange) ="courseSelect()"formControlName="departmentId" >
+              <mat-option *ngFor = "let depart of data.departmentList"[value] ="depart.departmentId"  >
+                {{depart.departmentName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field  class ="col s12 m12 l12" >
+              <mat-select placeholder="Select Semester" name ="semester" [disabled]="registerForm.value.newCourseBranchId == ''"formControlName="semesterId" >
+                <mat-option  *ngFor = "let sem of semList"  [value] ="sem.semesterId">
+                  {{sem.semesterName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field  class ="col s12 m12 l12">
+                <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+                  <input matInput placeholder="Password" name ="name"  formControlName="password"  >
+               
+            </mat-form-field>
+            <mat-form-field    class ="col s12 m12 l12" >
+
+                <input matInput placeholder="Enrollment Number" name ="name"  formControlName="enrollmentNo"  >
+ </mat-form-field>
+    </div>
+    <div class ="col s12 l4 m6">
+        <mat-form-field  class ="col s12 m12 l12" >
+            <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+              <input matInput placeholder="Middle Name" name ="mname"  formControlName="mName"  >
+           
+        </mat-form-field>
+        <mat-form-field  class ="col s12 m12 l12">
+            <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+              <input matInput placeholder="Mobile Number" name ="mobilenumber"   formControlName="mobileNo" >
+           
+        </mat-form-field>
+        <mat-form-field  class ="col s12 m12 l12" >
+            <mat-select placeholder="Select Course" (selectionChange) ="branchSelect()"  [disabled]="registerForm.value.departmentId == ''" name ="course" formControlName="courseId">
+              <mat-option *ngFor = "let course of courseList"  [value] ="course.courseId">
+                {{course.courseName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field  class ="col s12 m12 l12">
+              <input matInput [matDatepicker]="picker2" placeholder="Addmission Year" formControlName="addmissionDate">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+            <mat-checkbox  class ="col s12 m12 l12" style ="    font-size: 14px;            
+            padding: 13px;
+            margin-top: 1px;            
+            width: 98%;
+            float: right;
+           " formControlName="check">Old Branch</mat-checkbox>
+            <mat-form-field class ="col s12 m12 l12"  >
+                <input matInput placeholder="Roll Number" name ="name"formControlName="rollNo"   >
+              </mat-form-field>
+</div>
+<div class ="col s12 l4 m6">
+    <mat-form-field  class ="col s12 m12 l12" >
+        <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+          <input matInput placeholder="Last Name" name ="lname"  formControlName="lName"  >
+       
+    </mat-form-field>
+    <mat-form-field  class ="col s12 m12 l12">
+        <mat-select placeholder="Select Session"name="selection"  formControlName="sessionId">
+          <mat-option value ="1"  *ngFor = "let session of data.sessList"[value] ="session.sessionId"> 
+            {{session.startYear +' - '+session.endYear}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field  class ="col s12 m12 l12" >
+          <mat-select placeholder="Select New Branch"  (selectionChange) ="semSelect()"   [disabled]="registerForm.value.courseId == ''"  formControlName="newCourseBranchId" >
+            <mat-option *ngFor = "let branch of branchList"  [value] ="branch.courseBranchId">
+            {{branch.branchName}} 
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field   class ="col s12 m12 l12">
+            <input matInput [matDatepicker]="picker" placeholder="Current Year" formControlName="currentYear">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class ="col s12 m12 l12"  >
+              <mat-select placeholder="Select Old Branch"  formControlName="oldCourceBranchId">
+                <mat-option value ="1">
+                  2015 -2016
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+</div>
+  </div>
+</div>
+     
+    
+  
+    </mat-card>
+
+</div>  
+<div mat-dialog-actions style ="float: right;margin-right:19px;
+ "  >
+  <button mat-raised-button color="primary" (click) ="addStudent()" *ngIf = "data.type == 'create'">Add</button>
+  <button mat-raised-button color="primary" (click) ="updateUser()" *ngIf = "data.type == 'update'">Update</button>
+
+  <button mat-raised-button color="primary" (click) ="onNoClick()"  >Close</button>
+
+</div>
+</form>
+</div>

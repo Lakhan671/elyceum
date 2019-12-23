@@ -1,0 +1,117 @@
+ 
+<div   class="container" fusePerfectScrollbar  >
+  <div class="row">
+      <div class ="col l12 m12 s12">
+          <mat-card class ="col l12 m12 s12">Today Atendance
+          
+              <button mat-mini-fab (click) ="SaveAttendance()" style ="   float:right">
+                  <mat-icon aria-label="Example icon-button with a heart icon">add_circle</mat-icon>
+                </button>
+          </mat-card> 
+          </div>
+   
+<div class ="col s12 m12 l12">
+    <mat-card class ="col l12 m12 s12">  
+        <mat-form-field class ="col l4 m4 s12" *ngIf ="subjectLists">
+  <mat-select placeholder="Select Subject" name ="department"  [(ngModel)]="data.subjectId"  (selectionChange)="selectsubject()">
+    <mat-option  *ngFor ="let list of subjectLists" [value] = "list.title">
+{{list.title}}    </mat-option>
+  </mat-select> 
+  </mat-form-field>
+  <mat-form-field class ="col l4 m4 s12" *ngIf="sectionList" >
+      <mat-select placeholder="Select Subject" name ="department"  [(ngModel)]="data.sectionId"   (selectionChange)="studentGet()">
+        <mat-option  *ngFor ="let list of sectionList"  [value] = "list.sectionId" >
+    {{list.sectionName}}    </mat-option>
+      </mat-select> 
+      </mat-form-field>
+   
+
+   </mat-card> 
+  
+   <mat-card  class ="col s12 m12 l12 "   >
+       
+    <mat-table class="products-table"
+    #table [dataSource]="dataSource"
+    matSort
+    [@animateStagger]="{value:'50'}"
+    fusePerfectScrollbar>
+
+<!-- ID Column -->
+<ng-container cdkColumnDef="Sno">
+ 
+ <mat-header-cell *cdkHeaderCellDef mat-sort-header>ID</mat-header-cell>
+ <mat-cell *cdkCellDef="let product ;let i = index ">
+     <p class="text-truncate"> {{i +1 }}</p>
+ </mat-cell>
+</ng-container>
+
+
+
+<!-- Name Column -->
+<ng-container cdkColumnDef="studentName">
+ <mat-header-cell *cdkHeaderCellDef mat-sort-header>Name</mat-header-cell>
+ <mat-cell *cdkCellDef="let department">
+     <p class="text-truncate">{{department.studentName }}</p>
+ </mat-cell>
+</ng-container>
+
+<!-- Category Column -->
+<ng-container cdkColumnDef="present">
+ <mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>present</mat-header-cell>
+ <mat-cell *cdkCellDef="let department" fxHide fxShow.gt-md>
+     <p class="category text-truncate">
+        <mat-checkbox [(ngModel)]="department.present"></mat-checkbox>
+     </p>
+ </mat-cell>
+</ng-container>
+<ng-container cdkColumnDef="absent">
+<mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Absent</mat-header-cell>
+<mat-cell *cdkCellDef="let department" fxHide fxShow.gt-md>
+  <p class="category text-truncate">
+      <mat-checkbox [(ngModel)]="department.absent"></mat-checkbox>
+
+  </p>
+</mat-cell>
+</ng-container>
+    
+<!-- Price Column -->
+
+<!-- Quantity Column -->
+<ng-container cdkColumnDef="option">
+ <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Action</mat-header-cell>
+ <mat-cell *cdkCellDef="let department" fxHide fxShow.gt-sm>
+
+        <button mat-mini-fab   >
+                <mat-icon aria-label="Example icon-button with a heart icon" style ="color:white">edit</mat-icon>
+              </button>
+            
+  
+
+ </mat-cell>
+</ng-container>
+
+<!-- Active Column -->
+
+
+<mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+
+<mat-row *cdkRowDef="let product; columns: displayedColumns;"
+      class="product"
+        >
+</mat-row>
+
+</mat-table>
+
+<mat-paginator #paginator
+        [length]="dataSource.filteredData.length"
+        [pageIndex]="0"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+
+
+
+ </mat-card>
+</div>
+  </div>
+  </div>

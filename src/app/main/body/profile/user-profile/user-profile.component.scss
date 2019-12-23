@@ -1,0 +1,145 @@
+@import "src/app/core/scss/fuse";
+
+#profile {
+    
+    agm-map {
+        height: 300px;
+      }
+    .header {
+        height: 320px;
+        min-height: 320px;
+        max-height: 320px;
+        background: url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat 0 45%;
+        background-size: 100% auto;
+
+        .profile-image {
+            
+            @include media-breakpoint('sm') {
+                margin: 0 0 16px 0;
+            }
+        }
+        .profileicon{
+            visibility: hidden;
+
+        }
+        .profile-image:hover .profileicon {
+            visibility: visible;
+        }
+
+        .name {
+            font-size: 34px;
+            color: #FFFFFF;
+
+            @include media-breakpoint('sm') {
+                margin-bottom: 32px;
+            }
+        }
+
+        .actions {
+
+            button {
+                text-transform: none;
+                padding: 0 16px;
+                height: 32px;
+                line-height: 32px;
+                margin: 0 0 0 8px;
+            }
+        }
+    }
+.profileicon {
+
+}
+
+
+
+     .content {
+        flex: 1;
+
+        mat-tab-group {
+            height: 100%;
+
+            .mat-tab-body-wrapper {
+                flex-grow: 1;
+            }
+        }
+    }
+}
+.update-cover{
+    position: absolute;
+    top: 20px;
+    color: #bdbdbd;
+    cursor: pointer;
+}
+
+
+.arrow-box {
+	position: relative;
+	background: #bdbdbd;
+	border: 2px solid #8a8776;
+}
+.arrow-box:after, .arrow-box:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow-box:after {
+	border-color: rgba(189, 189, 189, 0);
+	border-right-color: #bdbdbd;
+	border-width: 8px;
+	margin-top: -8px;
+}
+.arrow-box:before {
+	border-color: rgba(138, 135, 118, 0);
+	border-right-color: #8a8776;
+    border-width: 11px;
+    margin-top: -11px;
+}
+.cover-text{
+    font-size: 14px;
+    color: #000;
+    padding: 4px 20px;
+    margin: 0;
+}
+.cover-icon{
+    font-size: 32px;
+    margin-right: 10px;
+    color: #bdbdbd;
+}
+.avatar.huge {
+    width: 56px !important;
+    height: 56px !important;
+    min-width:56px !important;
+
+}
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+   
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+.profile-icon{
+    color: #fff;
+    font-size: 22px;
+    position: absolute;
+    left: 60px;
+    margin-top: 45px;
+}
+.profile-icons{
+    color: #fff;
+    cursor: pointer;
+
+}

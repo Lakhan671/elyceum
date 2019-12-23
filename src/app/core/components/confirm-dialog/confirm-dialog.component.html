@@ -1,0 +1,16 @@
+<div class="dialog-content-wrapper">
+        <mat-toolbar matDialogTitle class="mat-accent m-0">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <span class="title dialog-title">Course</span>
+                <button mat-button class="mat-icon-button"
+                        (click)="dialogRef.close()"
+                        aria-label="Close dialog">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar><div mat-dialog-content class ="p-24 m-0">{{confirmMessage}}</div>
+<div mat-dialog-actions class="pt-24 p-24 m-0 ">
+    <button mat-raised-button class="mat-accent mr-16" (click)="dialogRef.close(true)">Confirm</button>
+    <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+</div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container"  fusePerfectScrollbar *ngIf="projectdetail && lessiondetail">
+    <div class="row">
+            <div class="col s12 m12 l12">
+                <mat-card>
+  
+              Subject {{projectdetail.title}}  / unit {{unitdetail.unit}} / lession  {{lessiondetail.lessionName}} Detail 
+              </mat-card>
+            </div>
+            <div class="col l12 m12 s12" style= "padding-top: 20px">
+  
+          <div class="col l6 m6 s12" >
+              <mat-card style ="    margin-right: 10px; height: 384px;">
+                  <div class="row">
+                      <div class="col s12 m12 l12" style ="padding-bottom: 14px;">
+                            <strong> Subject Info</strong>
+                         </div>
+                      <div class="col s12 m12 l12">
+                        <ul style=" list-style-type: none;    list-style-type: none;
+                        margin: 0px;
+                        padding: 0px;
+                        "class="subjectdetailList">
+                         
+                        
+                          <li><button mat-icon-button>
+                            <mat-icon aria-label="Example icon-button with a heart icon" style ="    font-size: 30px;">calendar_today</mat-icon>
+                          </button>Start Date: {{lessiondetail.startDate | date}}</li>
+                        <li><button mat-icon-button>
+                            <mat-icon aria-label="Example icon-button with a heart icon"style ="    font-size: 30px; ">calendar_today</mat-icon>
+                          </button>End Date: {{lessiondetail.endDate | date}}</li>
+                         
+                          <li><button mat-icon-button>
+                            <mat-icon aria-label="Example icon-button with a heart icon"style ="    font-size: 30px;" *ngIf ="projectdetail.priority =='high'" >priority_high</mat-icon>
+                          </button>Priority: {{lessiondetail.status}}</li>
+                        
+                        <li><button mat-icon-button>
+                            <mat-icon aria-label="Example icon-button with a heart icon"style ="    font-size: 30px; ">description</mat-icon>
+                          </button>Description: {{lessiondetail.lessionDescription}}</li>
+
+                        </ul>
+                      </div>    
+
+          </div>
+          </mat-card>
+          <button mat-raised-button color="primary" style ="    margin-top: 16px;" (click) = "replyLession()">Reply</button>
+<span class ="update_pro"><p>Comment <span *ngIf ="lessiondetailcomment">{{lessiondetailcomment.length}}</span> </p></span>
+<div class ="_comments"  *ngFor ="let list of lessiondetailcomment">
+    <hr>
+    <h5 class="ng-binding">
+
+        <i class="fa fa-commenting" aria-hidden="true"></i>Status :
+        In Progress
+      </h5>
+      <p class="ng-binding">jh</p>
+      <span class="ng-binding">Posted by : hello on
+          20/10/2018 08:03:13 AM</span>
+</div>
+
+          </div>
+  
+             
+    </div>
+   
+  
+  </div>
+  </div>

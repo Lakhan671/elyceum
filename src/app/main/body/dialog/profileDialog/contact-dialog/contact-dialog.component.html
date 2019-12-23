@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>Genral Informaition </h1>
+
+<div mat-dialog-content>
+  <form name="genralForm"   novalidate>
+    <mat-grid-list cols="4"  rowHeight="50px" >
+        <mat-grid-tile
+             colspan="2" style ="margin:0px"
+             >
+            <mat-form-field>
+                <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+                  <input matInput placeholder="Name" name ="name"  >
+              
+            </mat-form-field>
+        </mat-grid-tile> <mat-grid-tile
+        colspan="2" style ="margin:0px"
+        >
+       <!-- <mat-form-field>
+            <mat-select placeholder="User Type"  >
+            <mat-option value="M">Male</mat-option>    
+                    <mat-option value="F">Female</mat-option>
+
+          </mat-select>
+       </mat-form-field> -->
+       
+   </mat-grid-tile>
+
+         <mat-grid-tile
+        colspan="2" style ="margin:0px"
+        >          
+
+       <mat-form-field>
+           <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+           <input matInput placeholder="Name" name ="name"  >
+          </mat-form-field>
+       
+   </mat-grid-tile>
+   <mat-grid-tile
+   colspan="4" style ="margin:0px"
+   >          
+   <input placeholder="Local Address" style ="    width: 90%;" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+</mat-grid-tile>
+<mat-grid-tile
+colspan="4" style ="margin:0px"
+>          
+ </mat-grid-tile>
+  </mat-grid-list>
+
+ 
+ 
+</form>
+</div>
+<div mact-dialog-actions style ="float: right;
+margin-top: 8%;
+"  >
+  <button mat-raised-button color="primary" (click) ="onNoClick()" >Update</button>
+  <button mat-raised-button color="primary" (click) ="onNoClick()" >Close</button>
+
+</div>
