@@ -2,7 +2,8 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ColabrationService} from '../../../../main/body/collabration/collabarationweservice'
-
+import { ElyNotificationService } from "../../../common/notification.service";
+import { CommonConstants } from '../../../common/common.constants'
 @Component({
   selector: 'app-branch-dialog',
   templateUrl: './branch-dialog.component.html',
@@ -13,23 +14,23 @@ export class BranchDialogComponent implements OnInit {  registerForm: FormGroup;
   onNoClick(){
     this.dialogRef.close();
   }
-  createUser(){
+  createBranch(){
     console.log(JSON.stringify(this.registerForm.value))
  this.WebService.saveBra(this.registerForm.value).subscribe(res=>{
     this.dialogRef.close();
- this.WebService.alertDialog(res.message,'collabration/department/branch');
+    this.elyNotificationService.showNotification({ type: CommonConstants.SUCCESS, message: res.message });
 })
   } 
-  updateUser(){
+  updateBranch(){
     this.registerForm.value.courseBranchId = this.data.courseBranchId;
     console.log(JSON.stringify(this.registerForm.value))    
 
     this.WebService.updateBra(this.registerForm.value).subscribe(res=>{
        this.dialogRef.close();
-    this.WebService.alertDialog(res.message,'collabration/department/branch');
+       this.elyNotificationService.showNotification({ type: CommonConstants.SUCCESS, message: res.message });
    })
      }
-  constructor( private formBuilder: FormBuilder, public dialogRef: MatDialogRef<BranchDialogComponent>,
+  constructor( private elyNotificationService: ElyNotificationService,private formBuilder: FormBuilder, public dialogRef: MatDialogRef<BranchDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private WebService:ColabrationService ) {
       console.log(JSON.stringify(data))
       if(data.type == 'create'){

@@ -48,17 +48,28 @@ export class FeeTypeComponent implements OnInit {
     this.Route.navigate(['Academics/fee'])
 
    }
-   addUser(){
+   addFeeType(){
     let dialogRef = this.dialog.open(FeeTypeDialogComponent, {
       height: '300px',
       width: '450px',
       data: {  type:'create'  }
    });
   dialogRef.afterClosed().subscribe(result => {
+    this.getFeetype();
    });
- 
   }
     
+  editFeeType(fee){
+    fee.type='update';
+    let dialogRef = this.dialog.open(FeeTypeDialogComponent, {
+      height: '300px',
+      width: '450px',
+      data:fee
+   });
+  dialogRef.afterClosed().subscribe(result => {
+    this.getFeetype();
+   });
+  }
   ngOnInit() {
     this.getFeetype();
 

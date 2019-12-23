@@ -9,12 +9,12 @@
           <div class="col l12 m12 s12" class="padding-top-20">
 
         <div class="col l6 m6 s12">
-            <mat-card class="margin-right-10 padding-bottom-15" style="min-height:385px">
+            <mat-card class="margin-right-10 padding-bottom-15">
                 <div class="row">
                     <div class="col s12 m12 l12">
                           <strong> Subject Completion</strong>
                        </div>
-                    <div class="col s12 m12 l12 center-align" *ngIf ="projectdetail.completed">
+                    <div class="col s12 m12 l12 center-align" *ngIf ="projectdetail">
                        
                         <circle-progress
                         [percent]="projectdetail.completed"
@@ -24,8 +24,7 @@
                         [outerStrokeColor]="'#78C000'"
                         [innerStrokeColor]="'#C7E596'"
                         [animation]="true"
-                        [animationDuration]="300" 
-                        [lazy]="false"
+                        [animationDuration]="300"
                       ></circle-progress>
                                     </div></div>
           

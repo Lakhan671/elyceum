@@ -1,37 +1,48 @@
-<h1 mat-dialog-title>Session </h1>
-<div mat-dialog-content>
-  <form name="registerForm" [formGroup]="registerForm"  novalidate>
-      
-      <mat-form-field  style ="          width: 45%;
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="elydialog-header mat-accent m-0">
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <span class="title dialog-title">Session</span>
+          <button mat-button class="mat-icon-button"
+                  (click)="dialogRef.close()"
+                  aria-label="Close dialog">
+              <mat-icon>close</mat-icon>
+          </button>
+      </div>
+  </mat-toolbar>
+  <form name="registerForm" [formGroup]="registerForm" novalidate>
+<div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+  <mat-card>
+
+    <mat-form-field style="          width: 45%;
       float: left;">
-          <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
-            <input matInput placeholder="Start Year" name ="name"  formControlName="startYear"  >
-         
-      </mat-form-field>
-      <mat-form-field  style ="        width: 45%;
-      float: right;">
-          <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
-            <input matInput placeholder="End Year" name ="name2"   formControlName="endYear" >
-         
-      </mat-form-field>
-      <mat-form-field style="width:90%">
-        <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
-        <mat-select placeholder="Select Course"  name ="dep"   formControlName="courseId" >
-         <mat-option  *ngFor = "let department of CouList" [value] ="department.courseId" >{{department.courseName}}</mat-option>    
-  
-       </mat-select>
-   
+      <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+      <input matInput placeholder="Start Year" name="name" formControlName="startYear">
+
     </mat-form-field>
-  
+    <mat-form-field style="        width: 45%;
+      float: right;">
+      <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+      <input matInput placeholder="End Year" name="name2" formControlName="endYear">
 
-</form>
+    </mat-form-field>
+    <mat-form-field style="width:90%">
+      <!-- <mat-icon matPreffix  style ="font-size:19px"> face</mat-icon>   -->
+      <mat-select placeholder="Select Course" name="dep" formControlName="courseId">
+        <mat-option *ngFor="let department of CouList" [value]="department.courseId">{{department.courseName}}</mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+  </mat-card>
+ 
 </div>
-<div mact-dialog-actions style ="float: right;
-margin-top: 14%;
-"  >
-  <button mat-raised-button color="primary" (click) ="createUser()" *ngIf = "data.type == 'create'">Add</button>
-  <button mat-raised-button color="primary" (click) ="updateUser()" *ngIf = "data.type == 'update'">Update</button>
+<div mat-dialog-actions style =" float: right;margin-right: 19px;"  >
+  <button mat-raised-button color="primary" class="elydialog-header" (click)="createUser()" *ngIf="data.type == 'create'">Add</button>
+  <button mat-raised-button color="primary" class="elydialog-header" (click)="updateUser()" *ngIf="data.type == 'update'">Update</button>
 
-  <button mat-raised-button color="primary" (click) ="onNoClick()"  >Close</button>
+  <button mat-raised-button color="primary" class="elydialog-header" (click)="onNoClick()">Close</button>
 
+</div>
+</form>
 </div>

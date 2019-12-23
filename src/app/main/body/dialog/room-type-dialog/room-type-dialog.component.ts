@@ -2,7 +2,8 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ColabrationService} from '../../../../main/body/collabration/collabarationweservice'
-
+import { ElyNotificationService } from "../../../common/notification.service";
+import { CommonConstants } from '../../../common/common.constants'
 @Component({
   selector: 'app-room-type-dialog',
   templateUrl: './room-type-dialog.component.html',
@@ -15,21 +16,20 @@ export class RoomTypeDialogComponent implements OnInit {
   onNoClick(){
     this.dialogRef.close();
   }
-  createUser(){
-    alert(JSON.stringify(this.registerForm.value))
+  createRoomType(){
  this.WebService.saveRoomType(this.registerForm.value).subscribe(res=>{
      this.dialogRef.close();
- this.WebService.alertDialog(res.message,'collabration/department/room');
+     this.elyNotificationService.showNotification({type:CommonConstants.INFO,message:res.message});
 })
   }
-  updateUser(){
+  updateRoomType(){
     this.registerForm.value.roomTypeId = this.data.roomTypeId;
      this.WebService.updateRoomType(this.registerForm.value).subscribe(res=>{
        this.dialogRef.close();
-    this.WebService.alertDialog(res.message,'collabration/department/room');
+       this.elyNotificationService.showNotification({type:CommonConstants.INFO,message:res.message});
    })
      }
-  constructor( private formBuilder: FormBuilder, public dialogRef: MatDialogRef<RoomTypeDialogComponent>,
+  constructor( private elyNotificationService:ElyNotificationService ,private formBuilder: FormBuilder, public dialogRef: MatDialogRef<RoomTypeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private WebService:ColabrationService ) {
        if(data.type == 'create'){
         this.createForm();

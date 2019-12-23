@@ -1,231 +1,261 @@
 <div id="post" class="container" fusePerfectScrollbar style="width:100% !important" (scroll)="handleScroll($event)">
-        <div class="row" style="margin-top:40px">
-            <div class="col s2 offset-s2"><span class="flow-text">             
-              <mat-card style="width: 15%;position: fixed;left: 16%;right: 0; padding:0; border: solid 1px #a7a7a7;">
-    
+    <div class="row" style="margin-top:40px">
+        <div class="col s2 offset-s2">
+            <span class="flow-text">
+                <mat-card style="width: 15%;position: fixed;left: 16%;right: 0; padding:0; border: solid 1px #a7a7a7;">
+
                     <div>
-    
+
                         <div class="pro-banner"></div>
-    
-                            <div>
-                                <img src="../../../../assets/images/profile/forground.jpg" class="pro-profile">
-                            </div>
-    
-                            <div class="pro-Details">
-        
+
+                        <div>
+                            <img src="../../../../assets/images/profile/forground.jpg" class="pro-profile">
+                        </div>
+
+                        <div class="pro-Details">
+
                             <h3>MOhit Naithani</h3>
                             <p>Fullstack developer</p>
-    
+
                             <hr>
-    
+
                             <h1 class="margin-top-10 center-align blue-text margin-bottom">50+</h1>
                             <p>Total Staf</p>
-    
+
                             <hr>
-    
+
                             <h1 class="margin-top-10 center-align blue-text margin-bottom">1250</h1>
                             <p>Total Student</p>
-    
-    
-                        </div>
-                        </div>
-        
-                        
-                    
-                </mat-card>  
-                </span>
-            </div>
-            <div class="col s4 "><span class="flow-text">    
-                                               <mat-card  >
-                                <a (click) ="showText = false" *ngIf ="showText">Somethig select</a>
-                                <span  *ngIf ="!showText"> 
-                                  <div class ="row">
-    <div class ="col s12 l12 m12 ">
-        <div _ngcontent-c3=""    style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center; float:left">
-            <img   class="avatar" src="assets/images/avatars/profile.jpg">
-            <span   class="username mr-12" fxhide=""   style="display: block;">{{userName}}</span>
-            </div>
-        </div>
-    
-    </div>
-    <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Leave a comment" [(ngModel)]="PostData"></textarea>
-    </mat-form-field>
-    </span>
-    <hr *ngIf="showText">
-    <div class="row">
-        <div class="col s10 m10 l10" *ngIf="showText">
-            <div class="col s4 m4 l4">
-                <button mat-raised-button color="primary" class="buttonpost">Article</button>
-            </div>
-            <div class="col s4 m4 l4">
-                <button mat-raised-button color="primary" class="buttonpost">Images</button>
-            </div>
-            <div class="col s4 m4 l4">
-                <button mat-raised-button color="primary" class="buttonpost">Video</button>
-            </div>
-    
-        </div>
-        <div class="col s10 m10 l10" *ngIf="!showText">
-            <button mat-icon-button>
-                <mat-icon aria-label="Example icon-button with a heart icon">camera</mat-icon>
-            </button>
-            <button mat-icon-button>
-                <mat-icon aria-label="Example icon-button with a heart icon">videocam</mat-icon>
-            </button>
-    
-        </div>
-        <div class="col s2 m2 l2">
-            <button color="primary" class="postbutton" *ngIf="showText" (click)="showText = false">Post</button>
-            <button color="primary" class="postbutton" [disabled]="PostData == ''" *ngIf="!showText" (click)="postComment();PostData=''">Post</button>
-    
-        </div>
-    </div>
-    </mat-card>
-    <mat-divider></mat-divider>
-    
-    <mat-card id="timeline" *ngFor="let list of postArrayList">
-    
-        <div class="timeline-item">
-    
-            <header fxLayout="row" fxLayoutAlign="space-between start">
-                <div class="user" fxLayout="row" fxLayoutAlign="start center">
-                    <img src="assets/images/avatars/profile.jpg" class="avatar" />
-    
-                    <div fxLayout="column">
-                        <div class="title">
-                            <span class="username"> {{list.name}} </span>
+
+
                         </div>
                     </div>
-                </div>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="editNews(list)">Edit <mat-icon class="edit-icon">create</mat-icon></button>
-                </mat-menu>
-                <button mat-icon-button aria-label="More" [matMenuTriggerFor]="menu" *ngIf="userId == list.postById">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
-    
-            </header>
-    
-            <div class="content">
-                <div class="message padding-15 padding-bottom-5" [innerHTML]="list.postText">
-                    
-                </div>
-    
-                <p class="italic padding-15 padding-top">03/02/2018</p>
-    
-                <!-- <div *ngIf="post.media" class="media">
+
+
+
+                </mat-card>
+            </span>
+        </div>
+        <div class="col s4 ">
+            <span class="flow-text">
+                <mat-card>
+                    <a (click)="showText = false" *ngIf="showText">Somethig select</a>
+                    <span *ngIf="!showText">
+                        <div class="row">
+                            <div class="col s12 l12 m12 ">
+                                <div _ngcontent-c3="" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center; float:left">
+                                    <img class="avatar" src="assets/images/avatars/profile.jpg">
+                                    <span class="username mr-12" fxhide="" style="display: block;">{{userName}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <mat-form-field class="example-full-width">
+                            <textarea matInput placeholder="Leave a comment" [(ngModel)]="PostData"></textarea>
+                        </mat-form-field>
+                    </span>
+                    <hr *ngIf="showText">
+                    <div class="row">
+                        <div class="col s10 m10 l10" *ngIf="showText">
+                            <div class="col s4 m4 l4">
+                                <button mat-raised-button color="primary" class="buttonpost">Article</button>
+                            </div>
+                            <div class="col s4 m4 l4">
+                                <button mat-raised-button color="primary" class="buttonpost">Images</button>
+                            </div>
+                            <div class="col s4 m4 l4">
+                                <button mat-raised-button color="primary" class="buttonpost">Video</button>
+                            </div>
+
+                        </div>
+                        <div class="col s10 m10 l10" *ngIf="!showText">
+                            <button mat-icon-button>
+                                <mat-icon aria-label="Example icon-button with a heart icon">camera</mat-icon>
+                            </button>
+                            <button mat-icon-button>
+                                <mat-icon aria-label="Example icon-button with a heart icon">videocam</mat-icon>
+                            </button>
+
+                        </div>
+                        <div class="col s2 m2 l2">
+                            <button color="primary" class="postbutton" *ngIf="showText" (click)="showText = false">Post</button>
+                            <button color="primary" class="postbutton" [disabled]="PostData == ''" *ngIf="!showText" (click)="postComment();PostData=''">Post</button>
+
+                        </div>
+                    </div>
+                </mat-card>
+                <mat-divider></mat-divider>
+
+                <mat-card id="timeline" *ngFor="let list of postArrayList">
+
+                    <div class="timeline-item">
+                        <header fxLayout="row" *ngIf="list.shareBy" fxLayoutAlign="space-between start">
+
+                            <div class="user" fxLayout="row" fxLayoutAlign="start center">
+                                <img src="assets/images/avatars/profile.jpg" class="avatar" />
+
+                                <div fxLayout="column">
+                                    <div class="title">
+                                        <span class="username"> {{list.shareBy}} </span>
+                                    </div>
+                                </div>
+                                <mat-icon>redo</mat-icon>
+                            </div>
+
+                        </header>
+
+                        <header fxLayout="row" fxLayoutAlign="space-between start">
+
+                            <div class="user" fxLayout="row" fxLayoutAlign="start center">
+                                <img src="assets/images/avatars/profile.jpg" class="avatar" />
+
+                                <div fxLayout="column">
+                                    <div class="title">
+                                        <span class="username"> {{list.name}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-menu>
+                                <button  [matMenuTriggerFor]="menu" mat-menu-item (click)="editNews(list)">Edit
+                                    <mat-icon class="edit-icon">create</mat-icon>
+                                </button>
+                            </mat-menu>
+                            <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="hidePost(list,'hide')" > <mat-icon [style.padding-left.px]="'0'" class="edit-icon">toggle_off</mat-icon>&nbsp;Hide</button>
+                                    <button mat-menu-item (click)="hidePost(list,'delete')"><mat-icon [style.padding-left.px]="'0'" class="edit-icon">delete</mat-icon>&nbsp;Delete</button>
+                                </mat-menu>
+                            <button mat-icon-button aria-label="More" [matMenuTriggerFor]="menu" *ngIf="userId == list.postById">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+
+                        </header>
+
+                        <div class="content">
+                            <div class="message padding-15 padding-bottom-5" [innerHTML]="list.postText">
+
+                            </div>
+
+                            <p class="italic padding-15 padding-top">{{list.date|date:'M/d/yy, h:mm a'}}</p>
+
+                            <!-- <div *ngIf="post.media" class="media">
                                                               <img *ngIf="post.media.type === 'image'" [src]="post.media.preview">
                                                               <div *ngIf="post.media.type === 'video'" [innerHtml]="post.media.embed"></div>
                                                           </div> -->
-    
-                <div fxLayout="row" fxLayoutAlign="start center">
-                    <button mat-button class="like-button">
-                        <span fxLayout="row" fxLayoutAlign="start center">
-                            <mat-icon class="s-16">favorite</mat-icon>
-                            <span>Like</span>&nbsp;<span>({{list.noOfLikes}})</span>
-                        </span>
-                    </button>
-                    <button mat-button class="share-button">
-                        <span fxLayout="row" fxLayoutAlign="start center">
-                            <mat-icon class="s-16">share</mat-icon>
-                            <span>Share</span>&nbsp;<span>(3)</span>
-                        </span>
-                    </button>
-                </div>
-            </div>
-    
-            <footer class="" fxLayout="column" fxLayoutAlign="start start">
-                <div class="comment-count" fxLayout="row" fxLayoutAlign="start center" (click)="list.show = !list.show">
-                    {{list.comment.length}} comments
-                    <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
-                </div>
-                <div class="row margin-bottom-5" *ngIf="list.show" style="width:100% ;     padding: 10px 20px 10px 10px;">
-    
-                    <div class="comment col s12 m12 l12" *ngFor="let list1 of list.comment">
-                        <!-- <img [src]="comment.user.avatar" class="avatar"/> -->
-    
-                        <div class="row">
-                            <div class="user" class="col s9 l9 m9" fxLayout="row" fxLayoutAlign="start center">
-                                <img src="assets/images/avatars/profile.jpg" class="avatar" />
-    
-                                <div>
-                                    <div class="title">
-                                        <span class="username"> {{list1.name}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="content">
-                            <div class="message padding-5" [innerHTML]="list1.commentText">
+
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <button mat-button color="accent" (click)="postLike(list)" class="like-button">
+                                    <span fxLayout="row" fxLayoutAlign="start center">
+                                        <mat-icon color="accent" class="s-16">favorite</mat-icon>
+                                        <span>Like</span>&nbsp;
+                                        <span>({{list.noOfLikes}})</span>
+                                    </span>
+                                </button>
+                                <button mat-button class="share-button" (click)="sharePost(list)">
+                                    <span fxLayout="row" fxLayoutAlign="start center">
+                                        <mat-icon class="s-16">share</mat-icon>
+                                        <span>Share</span>
+                                        <!-- &nbsp;<span>(0)</span>-->
+                                    </span>
+                                </button>
                             </div>
                         </div>
-    
-                        <div class="time padding-5 italic padding-top">{{list1.createdDate | date}}</div>
-    
-                        <div class="actions" fxLayout="row" fxLayoutAlign="space-between center">
-                            <a class="reply-button" (click)="list1.showReply = !list1.showReply">Reply <span *ngIf ="list1.replys.length > 0">({{list1.replys.length}})</span><span *ngIf ="list1.replys.length == 0">(0)</span></a>
-                            <mat-icon fxFlex class="report-button s-16">reply</mat-icon>
-                        </div>
-                        <div *ngIf="list1.showReply">
-                            <div class=" row" style="    padding: 10px;">
-                                <div class="col s12 m12 l12" *ngFor="let list2 of list1.replys">
-                                    <div class="user" class="col s12 l12 m12" fxLayout="row" fxLayoutAlign="start center">
-                                        <img src="assets/images/avatars/profile.jpg" class="avatar" />
-    
-                                        <div>
-                                            <div class="title">
-                                                <span class="username"> {{list2.replyByName}}</span>
+
+                        <footer class="" fxLayout="column" fxLayoutAlign="start start">
+                            <div class="comment-count" fxLayout="row" fxLayoutAlign="start center" (click)="list.show = !list.show">
+                                {{list.noOfComments}} comments
+                                <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
+                            </div>
+                            <div class="row margin-bottom-5" *ngIf="list.show" style="width:100% ;     padding: 10px 20px 10px 10px;">
+
+                                <div class="comment col s12 m12 l12" *ngFor="let list1 of list.comment">
+                                    <!-- <img [src]="comment.user.avatar" class="avatar"/> -->
+
+                                    <div class="row">
+                                        <div class="user" class="col s9 l9 m9" fxLayout="row" fxLayoutAlign="start center">
+                                            <img src="assets/images/avatars/profile.jpg" class="avatar" />
+
+                                            <div>
+                                                <div class="title">
+                                                    <span class="username"> {{list1.name}}</span>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
-                                    <div class="col s12 m12 l12 padding-5">
-                                        {{list2.replyText}}
+                                    <div class="content">
+                                        <div class="message padding-5" [innerHTML]="list1.commentText">
+                                        </div>
                                     </div>
-    
+
                                     <div class="time padding-5 italic padding-top">{{list1.createdDate | date}}</div>
+
+                                    <div class="actions" fxLayout="row" fxLayoutAlign="space-between center">
+                                        <a class="reply-button" (click)="list1.showReply = !list1.showReply">Reply
+                                            <span *ngIf="list1.replys.length > 0">({{list1.replys.length}})</span>
+                                            <span *ngIf="list1.replys.length == 0">(0)</span>
+                                        </a>
+                                        <mat-icon fxFlex class="report-button s-16">reply</mat-icon>
+                                    </div>
+                                    <div *ngIf="list1.showReply">
+                                        <div class=" row" style="    padding: 10px;">
+                                            <div class="col s12 m12 l12" *ngFor="let list2 of list1.replys">
+                                                <div class="user" class="col s12 l12 m12" fxLayout="row" fxLayoutAlign="start center">
+                                                    <img src="assets/images/avatars/profile.jpg" class="avatar" />
+
+                                                    <div>
+                                                        <div class="title">
+                                                            <span class="username"> {{list2.replyByName}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col s12 m12 l12 padding-5">
+                                                    {{list2.replyText}}
+                                                </div>
+
+                                                <div class="time padding-5 italic padding-top">{{list1.createdDate | date}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="reply" fxLayout="row" fxFlexFill>
+
+                                            <form fxFlex [formGroup]="replycmtForm">
+                                                <textarea placeholder="Add a comment..." formControlName="replyText"></textarea>
+                                                <button color="primary" *ngIf="replycmtForm.value.replyText" class="postbutton" (click)="reply(list1)">Reply</button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+
                                 </div>
+
                             </div>
+
                             <div class="reply" fxLayout="row" fxFlexFill>
-    
-                                <form fxFlex [formGroup]="replycmtForm">
-                                    <textarea placeholder="Add a comment..." formControlName="replyText"></textarea>
-                                    <button color="primary" class="postbutton" (click)="reply(list1)">Reply</button>
-    
+                                <img src="assets/images/avatars/profile.jpg" class="avatar" />
+
+                                <form [formGroup]="cmtForm">
+                                    <textarea placeholder="Add a comment..." formControlName="commentText"></textarea>
+                                    <button color="primary" *ngIf="cmtForm.value.commentText" class="postbutton" (click)="postCommentSend(list)">Post Comment</button>
+
                                 </form>
-    
                             </div>
-                        </div>
-    
+                        </footer>
                     </div>
-    
-                </div>
-    
-                <div class="reply" fxLayout="row" fxFlexFill>
-                    <img src="assets/images/avatars/profile.jpg" class="avatar" />
-    
-                    <form [formGroup]="cmtForm">
-                        <textarea placeholder="Add a comment..." formControlName="commentText"></textarea>
-                        <button color="primary" class="postbutton" (click)="postCommentSend(list)">Post Comment</button>
-    
-                    </form>
-                </div>
-            </footer>
+
+                </mat-card>
+            </span>
         </div>
-    
-    </mat-card>
-    </span>
-    </div>
-    <div class="col s2  "><span class="flow-text">   
-                                                                <mat-card style ="    /* width: 90%; */
+        <div class="col s2  ">
+            <span class="flow-text">
+                <mat-card style="    /* width: 90%; */
                                                                 position: fixed;
                                                                 float: right;
                                                                 /* left: 0; */
                                                                 right: 16%;
                                                                 width: 15%;">
-                                                                </mat-card>  
-                                                                          </span></div>
-    
+                </mat-card>
+            </span>
+        </div>
+
     </div>
-    </div>
+</div>

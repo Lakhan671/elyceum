@@ -13,13 +13,12 @@ import { FuseUtils } from '../../../core/fuseUtils';
 import { FuseConfigService } from '../../../core/services/config.service';
 import {GroupDialogComponent} from '../../body/dialog/group-dialog/group-dialog.component';
 import {WebService} from '../../../core/services/webservice'
-import {
- MatTableDataSource
-} from '@angular/material';
+import { ElyNotificationService } from "../../common/notification.service";
+import {CommonConstants} from '../../common/common.constants'
+import {MatTableDataSource} from '@angular/material';
 import { fuseAnimations } from '../../../core/animations';
-import {
-  Router
-} from '@angular/router';
+import {Router} from '@angular/router';
+
 @Component({
  selector: 'group',
  templateUrl: './group.component.html',
@@ -37,6 +36,7 @@ export class GroupComponent implements OnInit {
   ELEMENT_DATA: any;
   dataSource = new MatTableDataSource < Element > (ELEMENT_DATA);
  constructor(
+   private elyNotificationService:ElyNotificationService,
    private fuseConfig: FuseConfigService,
    public dialog: MatDialog ,
    private WebService : WebService,
@@ -74,11 +74,12 @@ this.WebService.groupget().subscribe(res=>{
    this.dataSource = new MatTableDataSource < Element > (res.data);
 })
  }
+ 
  addUser(){
    let dialogRef = this.dialog.open(GroupDialogComponent, {
      height: '300px',
      width: '450px',
-     data: {  type:'create'  }
+     data: {  type:'create' ,title:'Group' }
   });
  dialogRef.afterClosed().subscribe(result => {
  this.getUsers();
@@ -86,9 +87,7 @@ this.WebService.groupget().subscribe(res=>{
 
  }
  applyFilter(filterValue: string) {
-   filterValue = filterValue.trim(); // Remove whitespace
-   filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-   this.dataSource.filter = filterValue;
+   this.dataSource.filter = filterValue.trim().toLowerCase();
  }
 
  ngOnInit() { 

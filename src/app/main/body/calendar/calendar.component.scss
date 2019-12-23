@@ -92,7 +92,8 @@
         }
     }
 }
- .cal-week-view {
+
+.cal-week-view {
 
     .cal-header > b {
         font-weight: 500;
@@ -285,7 +286,7 @@
             .header-bottom {
                 position: relative;
                 z-index: 2;
-                margin-top: -34px;;
+
                 .title {
                     font-size: 20px;
                     min-width: 160px;

@@ -2,7 +2,8 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ColabrationService} from '../../../../main/body/collabration/collabarationweservice'
-
+import { ElyNotificationService } from "../../../common/notification.service";
+import { CommonConstants } from '../../../common/common.constants'
  
 @Component({
   selector: 'app-room-dialog',
@@ -14,24 +15,23 @@ export class RoomDialogComponent implements OnInit {  registerForm: FormGroup;
   onNoClick(){
     this.dialogRef.close();
   }
-  createUser(){
+  createRoom(){
     console.log(JSON.stringify(this.registerForm.value))
  this.WebService.saveRoom(this.registerForm.value).subscribe(res=>{
-   alert(JSON.stringify(res));
     this.dialogRef.close();
- this.WebService.alertDialog(res.message,'collabration/department/room/roomName');
+    this.elyNotificationService.showNotification({type:CommonConstants.INFO,message:res.message});
 })
   } 
-  updateUser(){
-    this.registerForm.value.courseId = this.data.courseId;
+  updateRoom(){
+    this.registerForm.value.roomId = this.data.roomId;
     console.log(JSON.stringify(this.registerForm.value))    
 
-    this.WebService.updateCou(this.registerForm.value).subscribe(res=>{
+    this.WebService.updateRoom(this.registerForm.value).subscribe(res=>{
        this.dialogRef.close();
-    this.WebService.alertDialog(res.message,'collabration/department/room/roomName');
+       this.elyNotificationService.showNotification({type:CommonConstants.INFO,message:res.message});
    })
      }
-  constructor( private formBuilder: FormBuilder, public dialogRef: MatDialogRef<RoomDialogComponent>,
+  constructor(private elyNotificationService:ElyNotificationService , private formBuilder: FormBuilder, public dialogRef: MatDialogRef<RoomDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private WebService:ColabrationService ) {
       console.log(JSON.stringify(data))
       if(data.type == 'create'){

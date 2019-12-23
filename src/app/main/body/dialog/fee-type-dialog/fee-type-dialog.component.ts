@@ -1,8 +1,10 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import  {feeWebService} from '../../academics/fee/feeWebservice' 
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { feeWebService } from '../../academics/fee/feeWebservice'
 import { Alert } from 'selenium-webdriver';
+import {CommonConstants} from '../../../common/common.constants'
+import { ElyNotificationService } from "../../../common/notification.service";
 
 @Component({
   selector: 'app-fee-type-dialog',
@@ -13,90 +15,68 @@ export class FeeTypeDialogComponent implements OnInit {
 
   registerForm: FormGroup;
   registerFormErrors: any;
-  onNoClick(){
+  data: any;
+  onNoClick() {
     this.dialogRef.close();
   }
-  createUser(){
- 
+
+  constructor(private elyNotificationService:ElyNotificationService,private formBuilder: FormBuilder, public dialogRef: MatDialogRef<FeeTypeDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, private webservice: feeWebService) {
+    this.data = data;
+    if (data.type == 'create') {
+      this.creatememberForm();
+    } else {
+      this.updatememberForm(data);
+    }
+  }
+  creatememberForm() {
+    this.registerForm = this.formBuilder.group({
+      instalmentType: ['', Validators.required],
+
+
+    });
+  }
+  updatememberForm(data) {
+    this.registerForm = this.formBuilder.group({
+      instalmentType: [data.instalmentType, Validators.required],
+
+
+    });
   }
 
-  friendLisst:any;
-
-  constructor( private formBuilder: FormBuilder, public dialogRef: MatDialogRef<FeeTypeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any ,private webservice:feeWebService ) { 
-      if(data.type =='create'){
-        this.creatememberForm();
-      }
-
-   }
-   creatememberForm(){
-    this.registerForm = this.formBuilder.group({
-      instalmentType           : ['', Validators.required],
-     
-  
-    });
-   }
-   updatememberForm(data){
-    this.registerForm = this.formBuilder.group({
-      instalmentType           : ['', Validators.required],
-     
-  
-    });
-   }
-   
-   AddFeeType(){ 
-     alert(JSON.stringify(this.registerForm.value));
-     this.webservice.SavefeeType(this.registerForm.value).subscribe(res=>{
-       alert(JSON.stringify(res))
-     })
-   }
-   getFriendList (){ 
-   }
-createForm(){
-  this.registerForm = this.formBuilder.group({
-    groupName           : ['', Validators.required],
-   
-
-  });
-
-this.registerForm.valueChanges.subscribe(() => {
-    this.onRegisterFormValuesChanged();
-});
-} 
-updateForm(data){
-  this.registerForm = this.formBuilder.group({
-    groupName           : [data.title, Validators.required],
-   
-
-  });
-
-this.registerForm.valueChanges.subscribe(() => {
-    this.onRegisterFormValuesChanged();
-});
-}
- 
-  ngOnInit() { 
+  addFeeType() {
+    this.webservice.SavefeeType(this.registerForm.value).subscribe(res => {
+      this.dialogRef.close();
+      this.elyNotificationService.showNotification({type:CommonConstants.INFO,message:res.message});
+    })
   }
-  onRegisterFormValuesChanged()
-  {
-      for ( const field in this.registerFormErrors )
-      {
-          if ( !this.registerFormErrors.hasOwnProperty(field) )
-          {
-              continue;
-          }
+  updateFeeType(data) {
+    this.registerForm.value.instalmentTypeId=this.data.instalmentTypeId;
+    this.webservice.updateFeeType(this.registerForm.value).subscribe(res => {
+      this.dialogRef.close();
+      this.elyNotificationService.showNotification({type:CommonConstants.INFO,message:res.message});
+    })
+  }
 
-          // Clear previous errors
-          this.registerFormErrors[field] = {};
+  ngOnInit() {
+  }
 
-          // Get the control
-          const control = this.registerForm.get(field);
-
-          if ( control && control.dirty && !control.valid )
-          {
-              this.registerFormErrors[field] = control.errors;
-          }
+  onRegisterFormValuesChanged() {
+    for (const field in this.registerFormErrors) {
+      if (!this.registerFormErrors.hasOwnProperty(field)) {
+        continue;
       }
+
+      // Clear previous errors
+      this.registerFormErrors[field] = {};
+
+      // Get the control
+      const control = this.registerForm.get(field);
+
+      if (control && control.dirty && !control.valid) {
+        this.registerFormErrors[field] = control.errors;
+      }
+    }
   }
 
 

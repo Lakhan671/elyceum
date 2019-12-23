@@ -22,7 +22,7 @@
                     <mat-icon class="secondary-text">search</mat-icon>
                 </label>
                 <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
-                    <input id="search" matInput #filter placeholder="Search">
+                    <input id="search" matInput #filter placeholder="Search" (keyup)="applyFilter($event.target.value)">
                 </mat-form-field>
             </div>
             <!-- / SEARCH -->
@@ -33,7 +33,7 @@
                     <mat-icon>more_horiz</mat-icon>
                 </button>
                 <mat-menu #projectsMenu="matMenu">
-                    <button mat-menu-item *ngFor="let project of CouList" (click)="selectedProject = project ;  "  >
+                    <button mat-menu-item *ngFor="let project of CouList" (click)="selectedProject = project ; selectedCourse() "  >
                         <span>{{project.courseName}}</span>
                     </button>
                 </mat-menu>
@@ -41,7 +41,7 @@
             <div class="search-input-wrapper mx-12 m-md-0"
                  fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
                 
-                 <button mat-mini-fab (click) ="addUser()" style ="    margin-left: 41%;">
+                 <button mat-mini-fab (click) ="addBranch()"  class="elydialog-header" style ="    margin-left: 41%;">
                     <mat-icon aria-label="Example icon-button with a heart icon">add_circle</mat-icon>
                   </button>
             <button mat-raised-button
@@ -97,10 +97,10 @@
   
      <!-- Quantity Column -->
      <ng-container cdkColumnDef="option">
-         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Type</mat-header-cell>
+         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Action</mat-header-cell>
          <mat-cell *cdkCellDef="let Course" fxHide fxShow.gt-sm>
-                <button mat-icon-button  >
-                        <mat-icon aria-label="Example icon-button with a heart icon" (click) ="$event.stopPropagation();update(Course)">edit</mat-icon>
+            <button mat-mini-fab class="elydialog-header">
+                        <mat-icon aria-label="Example icon-button with a heart icon" style="color:white" (click) ="$event.stopPropagation();update(Course)">edit</mat-icon>
                       </button>
        
           

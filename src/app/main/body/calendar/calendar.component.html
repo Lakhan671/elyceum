@@ -17,13 +17,13 @@
 
                 <!-- TOOLBAR -->
                 <div class="toolbar" fxLayout="row" fxLayoutAlign="start center">
-                    <div class="selected-project" *ngIf="selectedType">{{selectedType.calendertype}} </div>
+                    <div class="selected-project" *ngIf="selectedType">{{selectedType.calendertype | uppercase }} </div>
                     <button mat-icon-button class="project-selector" [matMenuTriggerFor]="projectsMenu" aria-label="Select project">
                         <mat-icon>more_horiz</mat-icon>
                     </button>
                     <mat-menu #projectsMenu="matMenu">
                         <button mat-menu-item *ngFor="let project of calendarTypeLis" (click)="selectedEvent(project)  "  >
-                            <span>{{project.calendertype}}</span>
+                            <span>{{project.calendertype | uppercase }}</span>
                         </button>
                     </mat-menu>
                     <button mat-button class="mat-icon-button" aria-label="Search" matTooltip="Search">
@@ -87,7 +87,7 @@
         </div>
 
         <!-- ADD EVENT BUTTON -->
-        <button mat-fab class="add-event-button mat-warn" (click)="addEvent()" aria-label="Add event"
+        <button mat-fab class="add-event-button elydialog-header" (click)="addEvent()" aria-label="Add event"
                 *fuseIfOnDom [@animate]="{value:'*',params:{delay:'300ms',scale:'0.2'}}">
             <mat-icon>add</mat-icon>
         </button>

@@ -1,23 +1,16 @@
 // Import Fuse main library
+@import "~angular-notifier/styles";
 @import "app/core/scss/core";
 *{
     font-family: "Lucida" Grande, sans-serif;
 
 }
-.mat-checkbox-inner-container{
-  padding: 11px; 
+.margin-right10{
+  margin-right: 10px !important;; 
 }
-.successbtn{
+.elydialog-header{
   background-color: #0b2725 !important;
-  margin: 3px;
-}
-.cancelbtn{
-  background-color: orange !important;
-  margin: 3px;
-
-}
-.mat-raised-button:not([class*=mat-elevation-z]){
-  margin: 4px !important;
+  color:white !important;
 }
 .mat-header-row{
   min-height: 46px !important;
@@ -39,9 +32,7 @@
 .mat-input-wrapper {
     font-size: 14px !important;
 }
-.mat-form-field{
-  width: 98% !important;
-}
+
  .mat-form-field-wrapper {
     padding-bottom: 0.9em !important;
 }

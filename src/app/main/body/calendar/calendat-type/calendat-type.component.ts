@@ -3,7 +3,9 @@
   import { MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
  import { FuseConfigService } from '../../../../core/services/config.service';
  import {CalendarTypeDialogComponent} from '../../../body/dialog/calendar-type-dialog/calendar-type-dialog.component';
-  import {
+ import { ElyNotificationService } from "../../../common/notification.service";
+ import { CommonConstants } from '../../../common/common.constants'
+ import {
   MatTableDataSource
 } from '@angular/material';
 import {
@@ -29,7 +31,9 @@ export class CalendatTypeComponent implements OnInit {
      this.WebService.seteventType(data.calenderTypeId);
      this.route.navigate(['calendar/event']);
   }
-  constructor(             public dialog: MatDialog,
+  constructor(
+    private elyNotificationService: ElyNotificationService,
+     public dialog: MatDialog,
     private fuseConfig: FuseConfigService,
     private WebService:CalendarWebService,
     private route:Router
@@ -70,7 +74,6 @@ calendarTypeList(){
     this.dataSource = new MatTableDataSource < Element > (this.calendarLis);
   })
 }
-
   ngOnInit() {
     this.calendarTypeList();
   }

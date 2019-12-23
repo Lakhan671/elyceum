@@ -73,6 +73,7 @@ import { TranslateModule } from '@ngx-translate/core';
         FuseNavbarVerticalService,
         FuseMatSidenavHelperService,
         FuseTranslationLoaderService
+        
     ]
 })
 

@@ -2,7 +2,8 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ColabrationService} from '../../../../main/body/collabration/collabarationweservice'
-
+import {CommonConstants} from '../../../common/common.constants'
+import { ElyNotificationService } from "../../../common/notification.service";
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
@@ -13,23 +14,23 @@ export class CourseDialogComponent implements OnInit {  registerForm: FormGroup;
   onNoClick(){
     this.dialogRef.close();
   }
-  createUser(){
+  createCourse(){
     console.log(JSON.stringify(this.registerForm.value))
  this.WebService.saveCou(this.registerForm.value).subscribe(res=>{
     this.dialogRef.close();
- this.WebService.alertDialog(res.message,'collabration/department/course');
+    this.elyNotificationService.showNotification({ type: CommonConstants.INFO, message: res.message });
 })
   } 
-  updateUser(){
+  updateCourse(){
     this.registerForm.value.courseId = this.data.courseId;
     console.log(JSON.stringify(this.registerForm.value))    
 
     this.WebService.updateCou(this.registerForm.value).subscribe(res=>{
        this.dialogRef.close();
-    this.WebService.alertDialog(res.message,'collabration/department/course');
+       this.elyNotificationService.showNotification({ type: CommonConstants.INFO, message: res.message });
    })
      }
-  constructor( private formBuilder: FormBuilder, public dialogRef: MatDialogRef<CourseDialogComponent>,
+  constructor(private elyNotificationService:ElyNotificationService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<CourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private WebService:ColabrationService ) {
       console.log(JSON.stringify(data))
       if(data.type == 'create'){

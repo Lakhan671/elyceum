@@ -46,6 +46,7 @@
     ROOM_TYPE_GETS = this.Model.Sevice.ROOM_TYPE_GETS;
     ROOM_SAVE=this.Model.Sevice.ROOM_SAVE;
     ROOM_GETS = this.Model.Sevice.ROOM_GETS;
+    ROOM_UPDATE=this.Model.Sevice.ROOM_UPDATE;
     SECTION_SAVE =this.Model.Sevice.SECTION_SAVE;
     SECTION_UPDATE=this.Model.Sevice.SECTION_UPDATE;
     SECTION_GETS =this.Model.Sevice.SECTION_GETS;
@@ -342,6 +343,7 @@ return this._http.post(this.BASE_URL + this.DEP_CERATE, data)
                     .catch(this.handleError);
                     
                        }
+                       
                        saveRoom(data): Observable < any >{
          
                         data.tokenId = this.gettokken;
@@ -351,6 +353,15 @@ return this._http.post(this.BASE_URL + this.DEP_CERATE, data)
                         .catch(this.handleError);
                         
                            }
+                           updateRoom(data): Observable < any >{
+         
+                            data.tokenId = this.gettokken;
+                            
+                              return this._http.post(this.BASE_URL + this.ROOM_UPDATE, data)
+                            .map(res => < any > res)
+                            .catch(this.handleError);
+                            
+                               }
                            getlistRoomList( ): Observable < any > {
                             var data= {tokenId:this.gettokken}
         

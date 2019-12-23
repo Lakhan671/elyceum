@@ -5,19 +5,15 @@
     <!-- CENTER -->
     <div class="center">
         <!-- HEADER -->
-        <div class="header white-fg"
-             fxLayout="column" fxLayoutAlign="center center"
-             fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+        <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
             <!-- APP TITLE -->
-            <div class="logo my-12 m-sm-0"
-                 fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">shopping_basket</mat-icon>
+            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">attach_money</mat-icon>
                 <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Fee</span>
             </div>
             <!-- / APP TITLE -->
             <!-- SEARCH -->
-            <div class="search-input-wrapper mx-12 m-md-0"
-                 fxFlex="1 0 auto" fxLayout="row" >
+            <div class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row">
                 <label for="search" class="mr-8">
                     <mat-icon class="secondary-text">search</mat-icon>
                 </label>
@@ -26,93 +22,114 @@
                 </mat-form-field>
             </div>
             <!-- / SEARCH -->
-            <div class="search-input-wrapper mx-12 m-md-0"
-                 fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-  
-                 <button mat-mini-fab (click) ="addUser()" style ="    margin-left: 41%;">
+            <div class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-mini-fab (click)="addUser()" style="    margin-left: 41%;">
                     <mat-icon aria-label="Example icon-button with a heart icon">add_circle</mat-icon>
-                  </button>
-            <button mat-raised-button
-             class="add-product-button mat-white-bg my-3 mt-sm-0" style ="    margin-left: 4%;">
-        <span>Import cvc</span>
-    </button>
-    <button mat-raised-button
-     class="add-product-button mat-white-bg my-3 mt-sm-0" style ="    margin-left: 4%;">
-  <span>Sample cvc</span>
-  </button>
-  </div>
+                </button>
+                <button mat-raised-button class="add-product-button mat-white-bg my-3 mt-sm-0" style="    margin-left: 4%;">
+                    <span>Import cvc</span>
+                </button>
+                <button mat-raised-button class="add-product-button mat-white-bg my-3 mt-sm-0" style="    margin-left: 4%;">
+                    <span>Sample cvc</span>
+                </button>
+            </div>
         </div>
         <!-- / HEADER -->
-  
+
         <!-- CONTENT CARD -->
         <div class="content-card mat-white-bg">
-               
-            <mat-table class="products-table"
-            #table [dataSource]="dataSource"
-            matSort
-            [@animateStagger]="{value:'50'}"
-            fusePerfectScrollbar>
-  
-     <!-- ID Column -->
-     <ng-container cdkColumnDef="Sno">
-         
-         <mat-header-cell *cdkHeaderCellDef mat-sort-header>ID</mat-header-cell>
-         <mat-cell *cdkCellDef="let product ;let i = index ">
-             <p class="text-truncate"> {{i +1 }}</p>
-         </mat-cell>
-     </ng-container>
-  
-  
-  
-     <!-- Name Column -->
-     <ng-container cdkColumnDef="instalmentType">
-         <mat-header-cell *cdkHeaderCellDef mat-sort-header>Fee </mat-header-cell>
-         <mat-cell *cdkCellDef="let department">
-             <p class="text-truncate">{{department.instalmentType }}</p>
-         </mat-cell>
-     </ng-container>
-  
-     <!-- Category Column -->
-         
-  <ng-container cdkColumnDef="option">
-      <mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Completed</mat-header-cell>
-      <mat-cell *cdkCellDef="let department" fxHide fxShow.gt-md>
-          <p class="category text-truncate"> 
-            <button mat-icon-button  >
-              <mat-icon aria-label="Example icon-button with a heart icon"  (click) ="$event.stopPropagation();editgrp(product)">edit</mat-icon>
-            </button>
-          </p>
-      </mat-cell>
-  </ng-container>
-   
-     <!-- Price Column -->
-  
-     <!-- Quantity Column -->
-      
-  
-     <!-- Active Column -->
-    
-  
-     <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-  
-     <mat-row *cdkRowDef="let product; columns: displayedColumns;"
-              class="product"
-              matRipple
-              (click)="selectSubject(product)" >
-     </mat-row>
-  
-  </mat-table>
-  
-  <mat-paginator #paginator
-                [length]="dataSource.filteredData.length"
-                [pageIndex]="0"
-                [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]">
-  </mat-paginator>
-  
+
+            <mat-table class="products-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" fusePerfectScrollbar>
+
+                <!-- ID Column -->
+                <ng-container cdkColumnDef="Sno">
+
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>S.N.</mat-header-cell>
+                    <mat-cell *cdkCellDef="let fee ;let i = index ">
+                        <p class="text-truncate"> {{i +1 }}</p>
+                    </mat-cell>
+                </ng-container>
+
+
+
+                <!-- Name Column -->
+                <ng-container cdkColumnDef="StudentName">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Student Name </mat-header-cell>
+                    <mat-cell *cdkCellDef="let fee">
+                        <p class="text-truncate">{{fee.name }}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container cdkColumnDef="instalmentType">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Fee </mat-header-cell>
+                    <mat-cell *cdkCellDef="let fee">
+                        <p class="text-truncate">{{fee.actualFee }}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container cdkColumnDef="hostelFee">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Hostel Fee </mat-header-cell>
+                    <mat-cell *cdkCellDef="let fee">
+                        <p class="text-truncate">{{fee.hostelFee }}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container cdkColumnDef="feeDiscount">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Discount </mat-header-cell>
+                    <mat-cell *cdkCellDef="let fee">
+                        <p class="text-truncate">{{fee.feeDiscount +'%'}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container cdkColumnDef="totalfee">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Total Fee </mat-header-cell>
+                    <mat-cell *cdkCellDef="let fee">
+                        <p class="text-truncate">{{fee.totalfee }}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container cdkColumnDef="submitFee">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Submited Fee </mat-header-cell>
+                    <mat-cell *cdkCellDef="let fee">
+                        <p class="text-truncate">{{fee.submitFee}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container cdkColumnDef="remianingFee">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Remianing Fee </mat-header-cell>
+                    <mat-cell *cdkCellDef="let fee">
+                        <p class="text-truncate">{{fee.remianingFee}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container cdkColumnDef="date">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Date </mat-header-cell>
+                    <mat-cell *cdkCellDef="let fee">
+                        <p class="text-truncate">{{fee.date |date:'M/d/yy, h:mm a'}}</p>
+                    </mat-cell>
+                </ng-container>
+                <!-- Category Column -->
+
+                <ng-container cdkColumnDef="option">
+                    <mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Action</mat-header-cell>
+                    <mat-cell *cdkCellDef="let department" fxHide fxShow.gt-md>
+                        <p class="category text-truncate">
+                            <button mat-icon-button>
+                                <mat-icon aria-label="Example icon-button with a heart icon" (click)="$event.stopPropagation();editgrp(product)">edit</mat-icon>
+                            </button>
+                        </p>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+
+                <mat-row *cdkRowDef="let product; columns: displayedColumns;" class="product" matRipple (click)="selectSubject(product)">
+                </mat-row>
+
+            </mat-table>
+
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+
         </div>
         <!-- / CONTENT CARD -->
     </div>
     <!-- / CENTER -->
-  </div>
-  
+</div>

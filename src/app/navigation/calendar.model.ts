@@ -18,7 +18,7 @@ export class CalendarNavigationModel implements FuseNavigationModelInterface
                 ]
             },  {
                 'id'      : 'Calendar Type',
-                'title'   : 'calendar Type',
+                'title'   : 'Calendar Type',
                 'translate': 'NAV.HOME',
                 
                 'url':'/calendar/type',

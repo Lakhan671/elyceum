@@ -49,7 +49,7 @@ export class RoomComponent implements OnInit {
   CourseSelect(data){
      this.router.navigate(['collabration/department/room/roomName'])
    }
-addUser(){
+   addRoomType(){
   let dialogRef = this.dialog.open(RoomTypeDialogComponent, {
     height: '250px',
     width: '250px',

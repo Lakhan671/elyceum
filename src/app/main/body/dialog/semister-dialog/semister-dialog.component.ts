@@ -3,7 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ColabrationService} from '../../../../main/body/collabration/collabarationweservice'
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-
+import { ElyNotificationService } from "../../../common/notification.service";
+import { CommonConstants } from '../../../common/common.constants'
 @Component({
   selector: 'app-semister-dialog',
   templateUrl: './semister-dialog.component.html',
@@ -16,26 +17,26 @@ export class SemisterDialogComponent implements OnInit {
   onNoClick(){
     this.dialogRef.close();
   }
-  createUser(){
+  createSem(){
     this.registerForm.value.semStartDate = this.startDate;
     this.registerForm.value.semEndDate = this.endDate;
 
    this.WebService.saveSem(this.registerForm.value).subscribe(res=>{
     this.dialogRef.close();
- this.WebService.alertDialog(res.message,'collabration/department/semister');
+    this.elyNotificationService.showNotification({type:CommonConstants.INFO,message:res.message});
 });
   }
-  updateUser(){
+  updateSem(){
     this.registerForm.value.semStartDate = this.startDate;
     this.registerForm.value.semEndDate = this.endDate;
     this.registerForm.value.semesterId = this.data.data.semesterId;
  
     this.WebService.updateSem(this.registerForm.value).subscribe(res=>{
        this.dialogRef.close();
-    this.WebService.alertDialog(res.message,'collabration/department/semister');
+       this.elyNotificationService.showNotification({type:CommonConstants.INFO,message:res.message});
    })
      }
-  constructor( private formBuilder: FormBuilder, public dialogRef: MatDialogRef<SemisterDialogComponent>,
+  constructor(private elyNotificationService:ElyNotificationService ,private formBuilder: FormBuilder, public dialogRef: MatDialogRef<SemisterDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private WebService:ColabrationService ) {
        if(data.type == 'create'){
         this.createForm();

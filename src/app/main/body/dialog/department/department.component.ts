@@ -2,7 +2,8 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ColabrationService} from '../../../../main/body/collabration/collabarationweservice'
-
+import {CommonConstants} from '../../../common/common.constants'
+import { ElyNotificationService } from "../../../common/notification.service";
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
@@ -15,20 +16,20 @@ export class DepartmentDialogComponent implements OnInit {
   onNoClick(){
     this.dialogRef.close();
   }
-  createUser(){
+  createDep(){
  this.WebService.saveDep(this.registerForm.value).subscribe(res=>{
     this.dialogRef.close();
- this.WebService.alertDialog(res.message,'collabration/department');
+    this.elyNotificationService.showNotification({ type: CommonConstants.INFO, message: res.message });
 })
   }
-  updateUser(){
+  updateDep(){
     this.registerForm.value.departmentId = this.data.departmentId;
     this.WebService.updateDep(this.registerForm.value).subscribe(res=>{
        this.dialogRef.close();
-    this.WebService.alertDialog(res.message,'collabration/department');
+       this.elyNotificationService.showNotification({ type: CommonConstants.INFO, message: res.message });
    })
      }
-  constructor( private formBuilder: FormBuilder, public dialogRef: MatDialogRef<DepartmentDialogComponent>,
+  constructor(private elyNotificationService:ElyNotificationService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<DepartmentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private WebService:ColabrationService ) {
        if(data.type == 'create'){
         this.createForm();

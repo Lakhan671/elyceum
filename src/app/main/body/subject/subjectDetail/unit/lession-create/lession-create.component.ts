@@ -142,8 +142,7 @@ createLession(){
      this.registerForm.value.estimatedTimeMinute = '0';
       console.log(JSON.stringify(this.registerForm.value))
       this.webservice.LessonSave(this.registerForm.value).subscribe(res=>{
-           this.webservice.alertDialog('Successfully created','subject/Detail/Unit/lession')
-
+          alert(JSON.stringify(res));
     })
 }
   ngOnInit() {

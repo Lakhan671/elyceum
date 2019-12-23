@@ -4,17 +4,18 @@ import { CalendarEvent } from 'angular-calendar';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { CalendarEventModel } from '../event.model';
 import { MatColors } from '../../../../core/matColors';
-import {CalendarWebService} from '../calendarWebService'
+import { CalendarWebService } from '../calendarWebService'
+import { ElyNotificationService } from "../../../common/notification.service";
+import { CommonConstants } from '../../../common/common.constants'
 
 @Component({
-    selector     : 'fuse-calendar-event-form-dialog',
-    templateUrl  : './event-form.component.html',
-    styleUrls    : ['./event-form.component.scss'],
+    selector: 'fuse-calendar-event-form-dialog',
+    templateUrl: './event-form.component.html',
+    styleUrls: ['./event-form.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 
-export class FuseCalendarEventFormDialogComponent implements OnInit
-{
+export class FuseCalendarEventFormDialogComponent implements OnInit {
     event: any;
     dialogTitle: string;
     eventForm: FormGroup;
@@ -22,64 +23,55 @@ export class FuseCalendarEventFormDialogComponent implements OnInit
     presetColors = MatColors.presets;
 
     constructor(
+        private elyNotificationService: ElyNotificationService,
         public dialogRef: MatDialogRef<FuseCalendarEventFormDialogComponent>,
         @Inject(MAT_DIALOG_DATA) private data: any,
         private formBuilder: FormBuilder,
-        private webService:CalendarWebService
-    )
-    {
-         
+        private webService: CalendarWebService
+    ) {
         this.event = data.event;
         this.action = data.action;
-
-        if ( this.action === 'edit' )
-        {
+        if (this.action === 'edit') {
             this.dialogTitle = this.event.title;
         }
-        else
-        {
+        else {
             this.dialogTitle = 'New Event';
             this.event = new CalendarEventModel({
                 start: data.date,
-                end  : data.date
+                end: data.date
             });
         }
 
         this.eventForm = this.createEventForm();
     }
 
-    ngOnInit()
-    {
+    ngOnInit() {
     }
 
-    createEventForm()
-    {
-         return new FormGroup({
-            title : new FormControl( this.event.title),
-            start : new FormControl( this.event.start),
-            end   : new FormControl( this.event.end),
-            allDay: new FormControl( false),
-            color1 :  new FormControl(this.event.color.primary ),
-                color2: new FormControl(this.event.color.secondary ),
-                remark:new FormControl( this.event.meta.notes)        });
+    createEventForm() {
+        return new FormGroup({
+            title: new FormControl(this.event.title),
+            start: new FormControl(this.event.start),
+            end: new FormControl(this.event.end),
+            allDay: new FormControl(false),
+            color1: new FormControl(this.event.color.primary),
+            color2: new FormControl(this.event.color.secondary),
+            remark: new FormControl(this.event.meta.notes)
+        });
     }
-    createCalendarEvent(){
+    createCalendarEvent() {
         this.eventForm.value.calenderTypeId = this.data.calenderTypeId;
-         this.webService.saveCalender(this.eventForm.value).subscribe(res=>{
-              this.webService.alertDialog(res.message,'/calendar/event')
-             this.dialogRef.close();
-
-         })
-
+        this.webService.saveCalender(this.eventForm.value).subscribe(res => {
+            this.elyNotificationService.showNotification({ type: CommonConstants.SUCCESS, message: res.message });
+            this.dialogRef.close();
+        })
     }
-    update(){
-        
+    update() {
         this.eventForm.value.calenderTypeId = this.data.calenderTypeId;
         this.eventForm.value.calendarId = this.event.calendarId
-         
-        this.webService.updateCalender(this.eventForm.value).subscribe(res=>{
-             this.webService.alertDialog(res.message,'/calendar/event')
-this.dialogRef.close();
+        this.webService.updateCalender(this.eventForm.value).subscribe(res => {
+            this.elyNotificationService.showNotification({ type: CommonConstants.SUCCESS, message: res.message });
+            this.dialogRef.close();
         })
 
     }

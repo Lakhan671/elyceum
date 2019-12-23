@@ -1,194 +1,158 @@
- 
-              
- 
-                        
+<div id="timeline" class="p-24" fxLayout="row" style="    width: 100%;" fxLayoutWrap fusePerfectScrollbar>
 
-              <div id="timeline" class="p-24" fxLayout="row" style ="    width: 100%;" fxLayoutWrap fusePerfectScrollbar>
+    <div class="timeline-content news-container" fxLayout="column">
+        <form name="registerForm" [formGroup]="registerForm">
 
-                    <div class="timeline-content news-container" fxLayout="column">
-                 <form name="registerForm" [formGroup]="registerForm">       
-  
-                        <div class="profile-box add-post">
-                
-                            <div class="form" fxFlex>
-                                
-                                    <div class ="row">
-                                        
-                                            <div class ="col s12 m12 l12">
-                                                    <div class ="col s12 l12 m12" style ="    padding: 10px;
+            <div class="profile-box add-post">
+
+                <div class="form" fxFlex>
+
+                    <div class="row">
+
+                        <div class="col s12 m12 l12">
+                            <div class="col s12 l12 m12" style="    padding: 10px;
                                                     background: #0c3532;
                                                     color: white;">
-                                                      <div class ="col-md-3">
-                                                        News 
-                        
-                                                      </div>
-                                                      
-                        
-                                                    </div>
-                                              <div class="profile-box add-post">
-                                                      <mat-form-field style ="    width: 100%;
+                                <div class="col-md-3">
+                                    News
+
+                                </div>
+
+
+                            </div>
+                            <div class="profile-box add-post">
+                                <mat-form-field style="    width: 100%;
                                                       padding: 7px;
                                                   ">
-                              
-                                                              <input matInput placeholder="Title" name ="name" formControlName="title">
-                                                    </mat-form-field>
-                                              </div>
-                                                  
-                                        </div>
-                                         </div>
-                                         <div>
-                                         <quill-editor [style]="{height: '100px'}" (onEditorCreated)="setFocus($event)" formControlName="text" style ="height:41%"></quill-editor>
-                                        </div>
-                                <footer fxLayout="row" fxLayoutAlign="space-between center">
-                
-                                    <div fxLayout="row" fxLayoutAlign="start center">
-                
-                                        <button mat-icon-button aria-label="Add photo" matTooltip="Add Photo">
-                                            <mat-icon>photo</mat-icon>
-                                        </button>
-                
-                                        <button mat-icon-button aria-label="Mention somebody" matTooltip="Mention somebody">
-                                            <mat-icon>person</mat-icon>
-                                        </button>
-                
-                                        <button mat-icon-button aria-label="Add location" matTooltip="Add location">
-                                            <mat-icon>location_on</mat-icon>
-                                        </button>
-                
-                                    </div>
-                
-                                    <button mat-raised-button color="accent" class="post-button" aria-label="POST" (click) ="newsCreate();" *ngIf="!showUpdate">POST</button>
-                                    <button mat-raised-button color="accent" class="post-button" aria-label="POST" (click) ="update();" *ngIf="showUpdate">Update</button>
-  
-                                </footer>
-                
+
+                                    <input matInput placeholder="Title" name="name" formControlName="title">
+                                </mat-form-field>
                             </div>
-                
+
                         </div>
-                
-                        <mat-divider></mat-divider>
-                
-                        <div class="timeline-item"  *ngFor ="let list of NewsList">
-                
-                            <header fxLayout="row" fxLayoutAlign="space-between start">
-                                <div class="user" fxLayout="row" fxLayoutAlign="start center">
-                                        <img src="assets/images/avatars/profile.jpg" class="avatar"/>
-                
-                                    <div fxLayout="column">
-                                        <div class="title">
-                                            <span class="username">{{list.title}} </span>
-                                         </div>
-                                     </div>
-                                </div>
-                                 <mat-menu #menu="matMenu" >
-                                  <button mat-menu-item  (click) ="editNews(list)">Edit</button>
-                                 </mat-menu>
-                                <button mat-icon-button aria-label="More" [matMenuTriggerFor]="menu" *ngIf="userId == list.createdBy">
-                                    <mat-icon>more_vert</mat-icon>
-                                </button>
-  
-                            </header>
-                
-                            <div class="content">
-                                <div   class="message"  [innerHTML] ="list.text">
-                                 </div>
-                
-                                <!-- <div *ngIf="post.media" class="media">
+                    </div>
+                    <div>
+                        <quill-editor [style]="{height: '100px'}" (onEditorCreated)="setFocus($event)" formControlName="text" style="height:41%"></quill-editor>
+                    </div>
+                    <footer fxLayout="row" fxLayoutAlign="space-between center">
+
+                        <div fxLayout="row" fxLayoutAlign="start center">
+
+                            <button mat-icon-button aria-label="Add photo" matTooltip="Add Photo">
+                                <mat-icon>photo</mat-icon>
+                            </button>
+
+                            <button mat-icon-button aria-label="Mention somebody" matTooltip="Mention somebody">
+                                <mat-icon>person</mat-icon>
+                            </button>
+
+                            <button mat-icon-button aria-label="Add location" matTooltip="Add location">
+                                <mat-icon>location_on</mat-icon>
+                            </button>
+
+                        </div>
+
+                        <button mat-raised-button color="accent" class="elydialog-header mt-sm-0" aria-label="POST" (click)="newsCreate();" *ngIf="!showUpdate">POST</button>
+                        <button mat-raised-button color="accent" class="elydialog-header mt-sm-0" aria-label="POST" (click)="update();" *ngIf="showUpdate">Update</button>
+
+                    </footer>
+
+                </div>
+
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="timeline-item" *ngFor="let list of NewsList">
+
+                <header fxLayout="row" fxLayoutAlign="space-between start">
+                    <div class="user" fxLayout="row" fxLayoutAlign="start center">
+                        <img src="assets/images/avatars/profile.jpg" class="avatar" />
+
+                        <div fxLayout="column">
+                            <div class="title">
+                                <span class="username">{{list.title | uppercase }} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="editNews(list)">Edit</button>
+                    </mat-menu>
+                    <button mat-icon-button aria-label="More" [matMenuTriggerFor]="menu" *ngIf="userId == list.createdBy">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                  
+                </header>
+                <p class="italic padding-15 padding-top">{{list.createdDate|date:'M/d/yy, h:mm a'}}</p>
+                <div class="content">
+                    <div class="message" [innerHTML]="list.text">
+                    </div>
+                    
+                    <!-- <div *ngIf="post.media" class="media">
                                     <img *ngIf="post.media.type === 'image'" [src]="post.media.preview">
                                     <div *ngIf="post.media.type === 'video'" [innerHtml]="post.media.embed"></div>
                                 </div> -->
-                 
-                
-                                <div fxLayout="row" fxLayoutAlign="start center">
-                                    <button mat-button class="like-button">
-                                        <span fxLayout="row" fxLayoutAlign="start center">
-                                            <mat-icon class="s-16">favorite</mat-icon>
-                                            <span>Like</span>&nbsp;<span>(2)</span>
-                                        </span>
-                                    </button>
-                                    <button mat-button class="share-button">
-                                        <span fxLayout="row" fxLayoutAlign="start center">
-                                            <mat-icon class="s-16">share</mat-icon>
-                                            <span>Share</span>&nbsp;<span>(3)</span>
-                                        </span>
-                                    </button>
+
+
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <button mat-button class="like-button" (click)="like(list)">
+                            <span fxLayout="row" fxLayoutAlign="start center">
+                                <mat-icon class="s-16">favorite</mat-icon>
+                                <span>Like</span>&nbsp;
+                                <span>({{list.noOfLike}})</span>
+                            </span>
+                        </button>
+                       <!-- <button mat-button class="share-button">
+                            <span fxLayout="row" fxLayoutAlign="start center">
+                                <mat-icon class="s-16">share</mat-icon>
+                                <span>Share</span>&nbsp;
+                                <span>(3)</span>
+                            </span>
+                        </button>-->
+                    </div>
+                </div>
+
+                <footer class="" fxLayout="column" fxLayoutAlign="start start">
+                    <div class="comment-count" fxLayout="row" fxLayoutAlign="start center" (click)="list.show = !list.show">
+                        {{list.cmnt.length}} comments
+                        <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
+                    </div>
+                    <div class="reply" fxLayout="row" fxFlexFill>
+                        <img src="assets/images/avatars/profile.jpg" class="avatar" />
+
+                        <form>
+                            <textarea [ngModelOptions]="{standalone: true}" placeholder="Add a comment..." [(ngModel)]="list.cmntText"></textarea>
+                            <button color="primary" class="postbutton" *ngIf="list.cmntText" (click)="newsCmntPost(list)">Post</button>
+
+                        </form>
+                    </div>
+                    <div class="row" *ngIf="list.show" style="width:100% ;     padding: 10px 20px 10px 10px;">
+
+                        <div class="comment col s12 m12 l12" *ngFor="let list1 of list.cmnt">
+                            <!-- <img [src]="comment.user.avatar" class="avatar"/> -->
+                            <div class="row">
+                                <div class="user" class="col s9 l9 m9" fxLayout="row" fxLayoutAlign="start center">
+                                    <img src="assets/images/avatars/profile.jpg" class="avatar" />
+
+                                    <div>
+                                        <div class="title">
+                                            <span class="username"> {{list1.name}}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                
-                            <footer class="" fxLayout="column" fxLayoutAlign="start start">
-                              <div   class="comment-count" fxLayout="row" fxLayoutAlign="start center" (click) = "list.show = !list.show">
-                                 {{list.cmnt.length}} comments
-                                  <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
-                              </div>
-              <div class ="row"  *ngIf ="list.show" style ="width:100% ;     padding: 10px 20px 10px 10px;">
-            
-                    <div class="comment col s12 m12 l12"     *ngFor ="let list1 of list.comment" >
-                        <!-- <img [src]="comment.user.avatar" class="avatar"/> -->
-    
-                             <div class = "row">
-                              <div class="user" class ="col s9 l9 m9" fxLayout="row" fxLayoutAlign="start center">
-                                  <img src="assets/images/avatars/profile.jpg" class="avatar"/>
-          
-                              <div    >
-                                  <div class="title">
-                                      <span class="username"> {{list1.name}}</span>
-                                   </div>
-                               </div>
-                          </div>
                                 <span class="time col s3 m3 l3">{{list1.createdDate | date}}</span>
                             </div>
                             <div class="content">
-                              <div   class="message"  [innerHTML] ="list1.commentText">
-                            </div>   </div>
-                            
-                            <div class="actions" fxLayout="row" fxLayoutAlign="space-between center">
-                                <a   class="reply-button" (click) = "list1.showReply = !list1.showReply">Reply <span *ngIf ="list1.replys.length > 0">({{list1.replys.length}})</span><span *ngIf ="list1.replys.length == 0">(0)</span></a>
-                                <mat-icon fxFlex class="report-button s-16">flag</mat-icon>
-                            </div>
-                            <div  *ngIf ="list1.showReply">
-                            <div class =" row"  style ="    padding: 10px;">
-                                    <div class ="col s12 m12 l12" *ngFor ="let list2 of list1.replys">
-                                            <div class="user" class ="col s12 l12 m12" fxLayout="row" fxLayoutAlign="start center">
-                                                    <img src="assets/images/avatars/profile.jpg" class="avatar" />
-                            
-                                                <div    >
-                                                    <div class="title">
-                                                        <span class="username"> {{list2.replyByName}}</span>
-                                                     </div>
-                                                 </div>
-                                            </div> 
-                                            <div class ="col s12 m12 l12" style ="padding:10px 10px 10px 15px;">
-                                                {{list2.replyText}}
-                                            </div>
-                                    </div>
+                                <div class="message" [innerHTML]="list1.commentText">
                                 </div>
-                            <div class="reply" fxLayout="row" fxFlexFill>
-                               
-                               <form fxFlex >
-                                  <textarea placeholder="Add a comment..."      ></textarea>
-                                  <button   color="primary" class ="postbutton"   (click) ="reply(list1)">Reply</button>
-  
-                              </form>
-  
-                          </div></div>
-                         
-                    </div>
-                  
-              </div>
-                             
-              
-                              <div class="reply" fxLayout="row" fxFlexFill>
-                                  <img src="assets/images/avatars/profile.jpg" class="avatar"/>
-              
-                                  <form  > 
-                                      <textarea placeholder="Add a comment..."    ></textarea>
-                                       <button   color="primary" class ="postbutton"   (click) ="postCommentSend(list)">Post Comment</button>
-  
-                                  </form>
-                              </div>
-                          </footer>
+                            </div>
                         </div>
-                    
-                    </form></div></div>
-                      
-  
+
+                    </div>
+
+                </footer>
+            </div>
+
+        </form>
+    </div>
+</div>

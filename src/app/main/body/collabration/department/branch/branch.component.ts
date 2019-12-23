@@ -55,7 +55,7 @@ export class BranchComponent implements OnInit {
      this.web.setBranch(data.courseBranchId)
     this.rou.navigate(['collabration/department/semister'])
   }
-addUser(){
+  addBranch(){
   let dialogRef = this.dialog.open(BranchDialogComponent, {
     height: '350px',
     width: '450px',
@@ -127,7 +127,7 @@ selectedCourse(){
 
     }
   this.web.getlistBran(data).subscribe(res=>{
-
+    console.log(JSON.stringify(res));
      this.dataSource = new MatTableDataSource < Element > (res.data);
 
   })

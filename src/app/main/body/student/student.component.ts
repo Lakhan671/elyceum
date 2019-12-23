@@ -9,7 +9,7 @@ import { FuseConfigService } from '../../../core/services/config.service';
 import {StudentDialogComponent} from '../dialog/student-dialog/student-dialog.component';
 import {StudentService} from './studentWebservice';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
- 
+
    import {
   MatTableDataSource
 } from '@angular/material';
@@ -37,8 +37,7 @@ export class StudentComponent implements OnInit {
   constructor(private fuseConfig:FuseConfigService,
     public dialog: MatDialog,
     private webService:StudentService,
-    private formBuilder: FormBuilder,
-    private Router:Router
+    private formBuilder: FormBuilder
   ) { 
 
     this.fuseConfig.setSettings({
@@ -105,19 +104,13 @@ this.semList = res.data;
  }
   depList:any;
   addUser(){
-    this.webService.setDepartList(this.depList);
-    alert(this.sessList)
-    this.webService.setsessList(this.sessList);
-    alert(JSON.stringify(this.webService.getsessList))
-    this.Router.navigate(['/student/Add']);
-    
-  //   let dialogRef = this.dialog.open(StudentDialogComponent, {
-  //     height: '550px',
-  //     width: '750px',
-  //     data: {  type:'create',departmentList: this.depList ,sessList:this.sessList}
-  //  });
-  // dialogRef.afterClosed().subscribe(result => {
-  //  });
+    let dialogRef = this.dialog.open(StudentDialogComponent, {
+      height: '550px',
+      width: '750px',
+      data: {  type:'create',departmentList: this.depList ,sessList:this.sessList}
+   });
+  dialogRef.afterClosed().subscribe(result => {
+   });
   
   }
   depListes(){

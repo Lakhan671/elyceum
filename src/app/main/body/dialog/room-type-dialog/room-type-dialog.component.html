@@ -1,5 +1,5 @@
 <div class="dialog-content-wrapper">
-    <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <mat-toolbar matDialogTitle class="elydialog-header mat-accent m-0">
         <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
             <span class="title dialog-title">Room Type</span>
             <button mat-button class="mat-icon-button"
@@ -25,10 +25,10 @@
 <div mat-dialog-actions style ="float: right;
 margin-right: 19px;
 "  >
-  <button mat-raised-button color="primary" (click) ="createUser()" *ngIf = "data.type == 'create'">Add</button>
-  <button mat-raised-button color="primary" (click) ="updateUser()" *ngIf = "data.type == 'update'">Update</button>
+  <button mat-raised-button color="primary" class="elydialog-header" (click) ="createRoomType()" *ngIf = "data.type == 'create'">Add</button>
+  <button mat-raised-button color="primary" class="elydialog-header" (click) ="updateRoomType()" *ngIf = "data.type == 'update'">Update</button>
 
-  <button mat-raised-button color="primary" (click) ="onNoClick()"  >Close</button>
+  <button mat-raised-button color="primary" class="elydialog-header" (click) ="onNoClick()"  >Close</button>
 
 </div>
 </form>

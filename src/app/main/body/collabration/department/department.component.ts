@@ -52,7 +52,7 @@ export class DepartmentComponent implements OnInit {
      this.web.setDepartment(data.departmentId);
      this.router.navigate(['collabration/department/course']);
   }
-addUser() {
+addDepartment() {
   const dialogRef = this.dialog.open(DepartmentDialogComponent, {
     height: '350px',
     width: '450px',
@@ -89,6 +89,7 @@ applyFilter(filterValue: string) {
   this.dataSource.filter = filterValue;
 }
 }
+
  export interface Element {
 }
 

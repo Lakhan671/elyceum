@@ -26,8 +26,8 @@
     NEWS_SAVE = this.Model.Sevice.NEWS_SAVE;
     NEWS_GETS = this.Model.Sevice.NEWS_GETS;
     NEWS_UPDATE = this.Model.Sevice.NEWS_UPDATE;
-
-
+    LIKE_NEWS=this.Model.Sevice.LIKE_NEWS;
+    NEWS_CMNT=this.Model.Sevice.NEWS_CMNT;
      constructor( private _http: HttpClient, private router: Router,public dialog: MatDialog
     ,private Model:WebserModel,private datePipe: DatePipe ) {
      }
@@ -65,7 +65,9 @@
        }
  
   NewsSave(data): Observable < any >{
-    
+    let newsDate=new Date();
+     data. createdDate=newsDate,
+     data.updatedDate=newsDate
     data.tokenId = this.gettokken;
     console.log(JSON.stringify(data))
     return this._http.post(this.BASE_URL + this.NEWS_SAVE, data)
@@ -73,8 +75,15 @@
     .catch(this.handleError);
     
        }
+
+       newsLike(data): Observable < any >{
+        data.tokenId = this.gettokken;
+        return this._http.post(this.BASE_URL + this.LIKE_NEWS, data)
+        .map(res => < any > res)
+        .catch(this.handleError);
+        
+           }
        NewsUpdate(data): Observable < any >{
-    
         data.tokenId = this.gettokken;
         console.log(JSON.stringify(data))
         return this._http.post(this.BASE_URL + this.NEWS_UPDATE, data)
@@ -87,4 +96,11 @@
       console.log(error); 
        return Observable.throw(error);
     }
+    newsCmntPost(data){
+      data.tokenId = this.gettokken;
+      return this._http.post(this.BASE_URL + this.NEWS_CMNT, data)
+      .map(res => < any > res)
+      .catch(this.handleError);
+      
+         }
   }

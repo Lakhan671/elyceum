@@ -13,11 +13,11 @@ import { FuseUtils } from '../../../../core/fuseUtils';
 import { FuseConfigService } from '../../../../core/services/config.service';
 import {GroupDialogComponent} from '../../../body/dialog/group-dialog/group-dialog.component';
 import {WebService} from '../../../../core/services/webservice'
-import {
- MatTableDataSource
-} from '@angular/material';
+import { MatTableDataSource} from '@angular/material';
 import { fuseAnimations } from '../../../../core/animations';
 import {SelectionModel} from '@angular/cdk/collections'; 
+import { ElyNotificationService } from "../../../common/notification.service";
+import {CommonConstants} from '../../../common/common.constants'
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -34,7 +34,7 @@ const ELEMENT_DATA: PeriodicElement[] = [ ];
 })
 export class GroupMemberComponent implements OnInit {
 GroupDetail:any;
-displayedColumns = ['select','Sno', 'name'];
+displayedColumns = ['select','Sno', 'name','action'];
 @ViewChild(MatSort,   {static: true}) sort: MatSort;
 @ViewChild(MatPaginator,   {static: true}) paginator: MatPaginator;
 @ViewChild('filter',   {static: true}) filter: ElementRef;
@@ -42,7 +42,7 @@ productsService: any;
 ELEMENT_DATA: any;
 dataSource = new MatTableDataSource < PeriodicElement > (ELEMENT_DATA);
   constructor(   private fuseConfig: FuseConfigService,private Web: WebService,
-    public dialog: MatDialog ,
+    public dialog: MatDialog ,   private elyNotificationService:ElyNotificationService,
 
   ) { 
 this.GroupDetail = this.Web.getgroupDetail;
@@ -79,7 +79,7 @@ console.log(JSON.stringify(this.GroupDetail))
     let dialogRef = this.dialog.open(GroupDialogComponent, {
       height: '300px',
       width: '450px',
-      data: {  type:'create', option:'member'  }
+      data: {  type:'create', option:'member' ,title:'User' }
    });
   dialogRef.afterClosed().subscribe(result => {
   this.getGroupMembers();
@@ -91,10 +91,24 @@ console.log(JSON.stringify(this.GroupDetail))
       groupId:this.GroupDetail.groupId
     }
     this.Web.groupmemberGet(data).subscribe(res =>{
-       
-      this.dataSource = new MatTableDataSource < PeriodicElement > (res.data);
+    this.dataSource = new MatTableDataSource < PeriodicElement > (res.data);
 
     })
+    
+  }
+  deleteGroupMember(group){
+let data={
+  groupMemberId:group.groupMemberId
+}
+  this.Web.deleteGroupMember(data).subscribe(res =>{
+    this.elyNotificationService.showNotification({type:CommonConstants.DEFAULT,message:res.message});
+  this.getGroupMembers();
+
+  })
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   ngOnInit() {
     this.getGroupMembers();

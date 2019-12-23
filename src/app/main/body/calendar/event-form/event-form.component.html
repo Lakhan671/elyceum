@@ -1,5 +1,5 @@
 <div class="dialog-content-wrapper">
-    <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <mat-toolbar matDialogTitle class="mat-accent m-0 elydialog-header" >
         <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
             <span class="title dialog-title">{{dialogTitle}}</span>
             <button mat-button class="mat-icon-button"
@@ -111,27 +111,31 @@
 
     <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
 
-        <button *ngIf="action !=='edit'"
+      
+        <button *ngIf="action ==='new'" 
                 mat-raised-button
-                (click)="createCalendarEvent();"
-                class="save-button mat-accent"
+                style="color:white"
+                (click)="createCalendarEvent()"
+                class="elydialog-header margin-right10"
                 [disabled]="eventForm.invalid"
-                aria-label="SAVE">
-            SAVE
+                aria-label="Save">
+            Save
         </button>
-
-        <button *ngIf="action ==='edit'"
+        <button *ngIf="action ==='edit'" 
                 mat-raised-button
+                color=""
                 (click)="update()"
-                class="save-button mat-accent"
+                class="elydialog-header margin-right10"
                 [disabled]="eventForm.invalid"
-                aria-label="SAVE">
+                aria-label="update">
             Update
         </button>
 
-        <button *ngIf="action ==='edit'"
+        
+
+        <button *ngIf="action ==='delete'" 
                 mat-button
-                class="mat-icon-button"
+                class="elydialog-header"
                 (click)="dialogRef.close(['delete',eventForm])"
                 aria-label="Delete"
                 matTooltip="Delete">

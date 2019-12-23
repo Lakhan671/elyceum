@@ -34,6 +34,7 @@
     GROUP_MEMBER_DELETE=this.Model.Sevice.GROUP_MEMBER_DELETE
     GROUP_MEMBER_ADD=this.Model.Sevice.GROUP_MEMBER_ADD
     GROUP_MSG_POST=this.Model.Sevice.GROUP_MSG_POST
+    GROUP_POST_SHARE=this.Model.Sevice.GROUP_MSG_SHARE
     GROUP_MSG_GET=this.Model.Sevice.GROUP_MSG_GET
     GROUP_REPLY_SEND=this.Model.Sevice.GROUP_REPLY_SEND
     GROUP_REPLY_GET=this.Model.Sevice.GROUP_REPLY_GET
@@ -144,7 +145,7 @@ groupmemberGet(data): Observable < any > {
    .map(res => < any > res)
    .catch(this.handleError);
 }
-groupmemberDelete(data): Observable < any > {
+deleteGroupMember(data): Observable < any > {
   data.tokenId=this.gettokken
    
 
@@ -161,12 +162,19 @@ console.log(data)
    .map(res => < any > res)
    .catch(this.handleError);
 }
+
 groupmsgPost(data): Observable < any > {
-  data.tokenId=this.gettokken
+  data.tokenId=this.gettokken;
   data.groupId = this.getgroupDetail.groupId;
-
-
  return this._http.post(this.BASE_URL + this.GROUP_MSG_POST, data)
+   .map(res => < any > res)
+   .catch(this.handleError);
+}
+
+groupPostShare(data): Observable < any > {
+  data.tokenId=this.gettokken;
+  data.groupId = this.getgroupDetail.groupId;
+ return this._http.post(this.BASE_URL + this.GROUP_POST_SHARE, data)
    .map(res => < any > res)
    .catch(this.handleError);
 }
@@ -201,8 +209,6 @@ groupmsgReplyGet(data): Observable < any > {
 }
 groupmsgPostLike(data): Observable < any > {
   data.tokenId=this.gettokken
-   
-
  return this._http.post(this.BASE_URL + this.GROUP_POST_ADD_LIKE, data)
    .map(res => < any > res)
    .catch(this.handleError);

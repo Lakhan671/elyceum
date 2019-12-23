@@ -2,7 +2,8 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ColabrationService} from '../../../../main/body/collabration/collabarationweservice'
-
+import {CommonConstants} from '../../../common/common.constants'
+import { ElyNotificationService } from "../../../common/notification.service";
 @Component({
   selector: 'app-session-dialog',
   templateUrl: './session-dialog.component.html',
@@ -18,17 +19,17 @@ export class SessionDialogComponent implements OnInit {
   createUser(){
  this.WebService.saveSession(this.registerForm.value).subscribe(res=>{
     this.dialogRef.close();
- this.WebService.alertDialog(res.message,'collabration/department/session');
+    this.elyNotificationService.showNotification({ type: CommonConstants.INFO, message: res.message });
 })
   }
   updateUser(){
     this.registerForm.value.sessionId = this.data.sessionId;
     this.WebService.updateSession(this.registerForm.value).subscribe(res=>{
        this.dialogRef.close();
-    this.WebService.alertDialog(res.message,'collabration/department/session');
+       this.elyNotificationService.showNotification({ type: CommonConstants.INFO, message: res.message });
    })
      }
-  constructor( private formBuilder: FormBuilder, public dialogRef: MatDialogRef<SessionDialogComponent>,
+  constructor(private elyNotificationService:ElyNotificationService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<SessionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private WebService:ColabrationService ) {
        if(data.type == 'create'){
         this.createForm();

@@ -11,8 +11,8 @@
             <!-- APP TITLE -->
             <div class="logo my-12 m-sm-0"
                  fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">shopping_basket</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{GroupDetail.title}} Member</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">group</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{GroupDetail.title}}'s Members</span>
             </div>
             <!-- / APP TITLE -->
             <!-- SEARCH -->
@@ -22,7 +22,7 @@
                     <mat-icon class="secondary-text">search</mat-icon>
                 </label>
                 <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
-                    <input id="search" matInput #filter placeholder="Search">
+                    <input id="search" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
                 </mat-form-field>
             </div>
             <!-- / SEARCH -->
@@ -30,8 +30,8 @@
                  fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
   
             <button mat-raised-button (click) ="addUser()"
-                     class="add-product-button mat-white-bg my-3 mt-sm-0" style ="    margin-left: 30%;">
-                <span>Add Member</span>
+                     class="elydialog-header my-3 mt-sm-0" style ="    margin-left: 30%;">
+                     <mat-icon>add</mat-icon>
             </button>
             <button mat-raised-button
              class="add-product-button mat-white-bg my-3 mt-sm-0" style ="    margin-left: 4%;">
@@ -84,7 +84,7 @@
   
                
                 <ng-container cdkColumnDef="Sno">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Sno</mat-header-cell>
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>S.N.</mat-header-cell>
                     <mat-cell *cdkCellDef="let product ;let i = index">
                         <p class="text-truncate">{{i+1}}</p>
                     </mat-cell>
@@ -98,8 +98,14 @@
                         <p class="text-truncate">{{product.name}}</p>
                     </mat-cell>
                 </ng-container>
-  
+                <ng-container cdkColumnDef="action">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>action</mat-header-cell>
+                    <mat-cell *cdkCellDef="let product">
+                        <mat-icon  aria-label="Example icon-button with a heart icon" (click)="$event.stopPropagation();deleteGroupMember(product)">delete</mat-icon>
+                    </mat-cell>
+                </ng-container>
                   
+                
   
                
               

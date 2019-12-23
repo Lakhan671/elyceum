@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ColorPickerService} from 'ngx-color-picker';
 import {CalendarWebService} from '../../calendar/calendarWebService'
+import { ElyNotificationService } from "../../../common/notification.service";
+import { CommonConstants } from '../../../common/common.constants'
 @Component({
   selector: 'app-calendar-type-dialog',
   templateUrl: './calendar-type-dialog.component.html',
@@ -14,22 +16,24 @@ export class CalendarTypeDialogComponent implements OnInit {
   onNoClick(){
     this.dialogRef.close();
   }
-  createUser(){
+  createCalendar(){
   this.webService.saveCalenderType(this.registerForm.value).subscribe(res=>{
-     this.webService.alertDialog(res.message,'calendar/type');
+    // this.webService.alertDialog(res.message,'calendar/type');
+    this.elyNotificationService.showNotification({ type: CommonConstants.SUCCESS, message: res.message });
     this.dialogRef.close();
   })
   }
-  updateUser(){
+  updateCalendar(){
     this.registerForm.value.calenderTypeId = this.data.calenderTypeId;
     this.webService.updateCalenderType(this.registerForm.value).subscribe(res=>{
-       this.webService.alertDialog(res.message,'calendar/type');
+      // this.webService.alertDialog(res.message,'calendar/type');
+      this.elyNotificationService.showNotification({ type: CommonConstants.SUCCESS, message: res.message });
       this.dialogRef.close();
     })
     }private color: string = "#127bdc";
   
   
-  constructor( private webService:CalendarWebService,private cpService: ColorPickerService,private formBuilder: FormBuilder, public dialogRef: MatDialogRef<CalendarTypeDialogComponent>,
+  constructor(  private elyNotificationService: ElyNotificationService,private webService:CalendarWebService,private cpService: ColorPickerService,private formBuilder: FormBuilder, public dialogRef: MatDialogRef<CalendarTypeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any   ) {
        if(data.type == 'create'){
         this.createForm();

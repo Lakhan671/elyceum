@@ -15,17 +15,18 @@ import {
 import { FuseConfirmDialogComponent } from '../../../core/components/confirm-dialog/confirm-dialog.component';
 import { fuseAnimations } from '../../../core/animations';
 import { FuseConfigService } from '../../../core/services/config.service';
-import {    Router  } from '@angular/router';
-import {CalendarWebService} from './calendarWebService';
+import { Router } from '@angular/router';
+import { CalendarWebService } from './calendarWebService';
+import { ElyNotificationService } from "../../common/notification.service";
+import { CommonConstants } from '../../common/common.constants'
 @Component({
-    selector     : 'fuse-calendar',
-    templateUrl  : './calendar.component.html',
-    styleUrls    : ['./calendar.component.scss'],
+    selector: 'fuse-calendar',
+    templateUrl: './calendar.component.html',
+    styleUrls: ['./calendar.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations: fuseAnimations
 })
-export class FuseCalendarComponent implements OnInit
-{
+export class FuseCalendarComponent implements OnInit {
     view: string;
     viewDate: Date;
     events: CalendarEvent[];
@@ -37,33 +38,34 @@ export class FuseCalendarComponent implements OnInit
     selectedDay: any;
 
     constructor(
+        private elyNotificationService: ElyNotificationService,
         private fuseConfig: FuseConfigService,
         public dialog: MatDialog,
         public calendarService: CalendarService,
-        private WebService:CalendarWebService
-    )
-    {  this.fuseConfig.setSettings({
-        layout: {
-            navigation: 'top',
-        toolbar   : 'above',
-           footer    : 'none'
-        }
-    });
+        private WebService: CalendarWebService
+    ) {
+        this.fuseConfig.setSettings({
+            layout: {
+                navigation: 'top',
+                toolbar: 'above',
+                footer: 'none'
+            }
+        });
         this.view = 'month';
         this.viewDate = new Date();
         this.activeDayIsOpen = true;
-        this.selectedDay = {date: startOfDay(new Date())};
+        this.selectedDay = { date: startOfDay(new Date()) };
 
         this.actions = [
             {
-                label  : '<i class="material-icons s-16">edit</i>',
-                onClick: ({event}: { event: any }): void => {
+                label: '<i class="material-icons s-16">edit</i>',
+                onClick: ({ event }: { event: any }): void => {
                     this.editEvent('edit', event);
-                 }
+                }
             },
             {
-                label  : '<i class="material-icons s-16">delete</i>',
-                onClick: ({event}: { event: any }): void => {
+                label: '<i class="material-icons s-16">delete</i>',
+                onClick: ({ event }: { event: any }): void => {
                     this.deleteEvent(event);
                 }
             }
@@ -74,86 +76,86 @@ export class FuseCalendarComponent implements OnInit
          */
         this.eventTypeList();
     }
-    eventId:any;
-    calendaerList:any;
-calendarevent(){
- this.calendaerList = [];
-     var data ={calenderTypeId: this.eventId };
-      
-    this.WebService.getCalender(data).subscribe(res=>{
-        
-          for(var i =0 ;i<res.data.length ;i++){
-this.calendaerList.push({
-    "start":new Date(res.data[i].startDate),
-    "end":new Date(res.data[i].endDate),
-    "title":res.data[i].title,
-    "allDay":false,
-    "color":{"primary":res.data[i].color1,"secondary":res.data[i].color2},
-    "resizable":{"beforeStart":true,"afterEnd":true},
-    "draggable":true,"meta":{ 
-        "notes":res.data[i].remark},
-        calendarId:res.data[i].calendarId,
-        calenderTypeId:''
+    eventId: any;
+    calendaerList: any;
+    calendarevent() {
+        this.calendaerList = [];
+        var data = { calenderTypeId: this.eventId };
+
+        this.WebService.getCalender(data).subscribe(res => {
+
+            for (var i = 0; i < res.data.length; i++) {
+                this.calendaerList.push({
+                    "start": new Date(res.data[i].startDate),
+                    "end": new Date(res.data[i].endDate),
+                    "title": res.data[i].title,
+                    "allDay": false,
+                    "color": { "primary": res.data[i].color1, "secondary": res.data[i].color2 },
+                    "resizable": { "beforeStart": true, "afterEnd": true },
+                    "draggable": true, "meta": {
+                        "notes": res.data[i].remark
+                    },
+                    calendarId: res.data[i].calendarId,
+                    calenderTypeId: ''
 
 
 
-    
-})
-        }
-        
-        this.events  =  this.calendaerList.map(item => {
-             item.actions = this.actions;
-            console.log(JSON.stringify(item))
-             return new CalendarEventModel(item);
-        });
- 
-    })
 
- 
-}
-calendarTypeLis:any;
-selectedType:any;
-eventTypeList(){
-    
-    this.WebService.getCalenderType().subscribe(res=>{
-        this.calendarTypeLis =res.data;
-       if(this.WebService.geteventType){
-        this.eventId = this.WebService.geteventType
-        for(var i =0 ;i <res.data.length;i++){
-            if(res.data[i].calenderTypeId ==  this.WebService.geteventType){
-                this.selectedType = res.data[i];
-                this.eventId = res.data[i].calenderTypeId;
+                })
+            }
+
+            this.events = this.calendaerList.map(item => {
+                item.actions = this.actions;
+                console.log(JSON.stringify(item))
+                return new CalendarEventModel(item);
+            });
+
+        })
+
+
+    }
+    calendarTypeLis: any;
+    selectedType: any;
+    eventTypeList() {
+
+        this.WebService.getCalenderType().subscribe(res => {
+            this.calendarTypeLis = res.data;
+            if (this.WebService.geteventType) {
+                this.eventId = this.WebService.geteventType
+                for (var i = 0; i < res.data.length; i++) {
+                    if (res.data[i].calenderTypeId == this.WebService.geteventType) {
+                        this.selectedType = res.data[i];
+                        this.eventId = res.data[i].calenderTypeId;
+
+                    }
+                }
+            } else {
+                this.selectedType = res.data[0]
+                this.eventId = res.data[0].calenderTypeId;
 
             }
-        }
-        }else{
-          this.selectedType = res.data[0]
-          this.eventId = res.data[0].calenderTypeId;
 
-        }
- 
+            this.calendarevent();
+
+        })
+    }
+    selectedEvent(data) {
+        this.eventId =data.calenderTypeId;
+        this.WebService.seteventType(data.calenderTypeId);
+        this.selectedType = data;
         this.calendarevent();
+    }
+    ngOnInit() {
+        /**
+        * Watch re-render-refresh for updating db
+        */
+    }
 
-      })
-}
-selectedEvent(data){
-  this.WebService.seteventType(data.calenderTypeId);
-  this.selectedType = data;
- this.calendarevent();
-}
-    ngOnInit()
-    {
-         /**
-         * Watch re-render-refresh for updating db
-         */
-     }
-
-    setEvents()
-    {
+    setEvents() {
         this.events = this.calendarService.events.map(item => {
             item.actions = this.actions;
             console.log(JSON.stringify(item))
-             return new CalendarEventModel(item);
+            return new CalendarEventModel(item);
         });
     }
 
@@ -162,8 +164,7 @@ selectedEvent(data){
      * @param {any} header
      * @param {any} body
      */
-    beforeMonthViewRender({header, body})
-    {
+    beforeMonthViewRender({ header, body }) {
         // console.info('beforeMonthViewRender');
         /**
          * Get the selected day
@@ -172,8 +173,7 @@ selectedEvent(data){
             return _day.date.getTime() === this.selectedDay.date.getTime();
         });
 
-        if ( _selectedDay )
-        {
+        if (_selectedDay) {
             /**
              * Set selectedday style
              * @type {string}
@@ -187,19 +187,15 @@ selectedEvent(data){
      * Day clicked
      * @param {MonthViewDay} day
      */
-    dayClicked(day: CalendarMonthViewDay): void
-    {
+    dayClicked(day: CalendarMonthViewDay): void {
         const date: Date = day.date;
         const events: CalendarEvent[] = day.events;
 
-        if ( isSameMonth(date, this.viewDate) )
-        {
-            if ( (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0 )
-            {
+        if (isSameMonth(date, this.viewDate)) {
+            if ((isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0) {
                 this.activeDayIsOpen = false;
             }
-            else
-            {
+            else {
                 this.activeDayIsOpen = true;
                 this.viewDate = date;
             }
@@ -215,8 +211,7 @@ selectedEvent(data){
      * @param {Date} newStart
      * @param {Date} newEnd
      */
-    eventTimesChanged({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void
-    {
+    eventTimesChanged({ event, newStart, newEnd }: CalendarEventTimesChangedEvent): void {
         event.start = newStart;
         event.end = newEnd;
         // console.warn('Dropped or resized', event);
@@ -227,17 +222,13 @@ selectedEvent(data){
      * Delete Event
      * @param event
      */
-    deleteEvent(event)
-    {
+    deleteEvent(event) {
         this.confirmDialogRef = this.dialog.open(FuseConfirmDialogComponent, {
             disableClose: false
         });
-
         this.confirmDialogRef.componentInstance.confirmMessage = 'Are you sure you want to delete?';
-
         this.confirmDialogRef.afterClosed().subscribe(result => {
-            if ( result )
-            {
+            if (result) {
                 const eventIndex = this.events.indexOf(event);
                 this.events.splice(eventIndex, 1);
                 this.refresh.next(true);
@@ -252,16 +243,15 @@ selectedEvent(data){
      * @param {string} action
      * @param {CalendarEvent} event
      */
-    editEvent(action: string, event: CalendarEvent)
-    {
+    editEvent(action: string, event: CalendarEvent) {
         const eventIndex = this.events.indexOf(event);
 
         this.dialogRef = this.dialog.open(FuseCalendarEventFormDialogComponent, {
             panelClass: 'event-form-dialog',
-            data      : {
-                event : event,
+            data: {
+                event: event,
                 action: action,
-            calenderTypeId:this.selectedType.calenderTypeId
+                calenderTypeId: this.selectedType.calenderTypeId
 
             }
         });
@@ -269,14 +259,12 @@ selectedEvent(data){
         this.dialogRef.afterClosed()
             .subscribe(response => {
                 this.calendarevent()
-                if ( !response )
-                {
+                if (!response) {
                     return;
                 }
                 const actionType: string = response[0];
                 const formData: FormGroup = response[1];
-                switch ( actionType )
-                {
+                switch (actionType) {
                     /**
                      * Save
                      */
@@ -301,17 +289,17 @@ selectedEvent(data){
     /**
      * Add Event
      */
-    addEvent(): void
-    {
+    addEvent(): void {
         this.dialogRef = this.dialog.open(FuseCalendarEventFormDialogComponent, {
             panelClass: 'event-form-dialog',
-            data      : {
+            data: {
                 action: 'new',
-                date  : this.selectedDay.date,calenderTypeId:this.selectedType.calenderTypeId
+                date: this.selectedDay.date, calenderTypeId: this.selectedType.calenderTypeId
             }
         });
         this.dialogRef.afterClosed()
-            .subscribe(() => { 
+            .subscribe(() => {
+                this.calendarevent();
             });
     }
 }

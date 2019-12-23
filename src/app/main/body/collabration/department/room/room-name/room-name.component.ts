@@ -52,9 +52,9 @@ export class RoomNameComponent implements OnInit {
   }
   
   BranchSelect(data){
-     this.rou.navigate(['collabration/department/section'])
+   //  this.rou.navigate(['collabration/department/section'])
   }
-addUser(){
+  addRoom(){
   let dialogRef = this.dialog.open(RoomDialogComponent, {
     height: '350px',
     width: '450px',
@@ -64,11 +64,12 @@ dialogRef.afterClosed().subscribe(result => {
 this.getcourseList();
 });
 }
-update(data){
+updateRoom(data){
+  console.log(JSON.stringify(data))
   let dialogRef = this.dialog.open(RoomDialogComponent, {
     height: '350px',
     width: '450px',
-    data: {  type:'update',courseName: data.courseName,courseDuration:data.courseDuration,RoomTypeList:this.RoomTypeList,departmentId:data.departmentId,courseId:data.courseId}
+    data: {  type:'update',roomId:data.roomId,roomName: data.roomName,roomTypeId:data.roomTypeId,RoomTypeList:this.RoomTypeList}
  });
 dialogRef.afterClosed().subscribe(result => {
 this.getcourseList();

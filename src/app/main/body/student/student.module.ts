@@ -8,7 +8,6 @@ import {StudentComponent} from './student.component'
 import {StudentService} from './studentWebservice'
 import {MatDatepickerModule} from '@angular/material/datepicker';
  import { StudentAttendanceComponent } from './student-attendance/student-attendance.component';
-import { SutdentAddComponent } from './sutdent-add/sutdent-add.component';
  
  const routes = [
       
@@ -22,21 +21,11 @@ import { SutdentAddComponent } from './sutdent-add/sutdent-add.component';
      }, {
         path     : 'Attendance',
         component: StudentAttendanceComponent       
-    }, {
-        path     : 'Add',
-        component: SutdentAddComponent ,
-        data: { title: 'Add'} 
-     
-    }, {
-        path     : 'Update',
-        component: SutdentAddComponent  ,
-        data: { title: 'Update'} 
-   
     }
 ];
 
 @NgModule({
-     declarations: [StudentComponent,StudentDialogComponent, StudentAttendanceComponent, SutdentAddComponent
+     declarations: [StudentComponent,StudentDialogComponent, StudentAttendanceComponent
         
        ],
     imports     : [
