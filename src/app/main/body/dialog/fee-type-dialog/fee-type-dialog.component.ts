@@ -15,7 +15,7 @@ export class FeeTypeDialogComponent implements OnInit {
 
   registerForm: FormGroup;
   registerFormErrors: any;
-  data: any;
+ // data: any;
   onNoClick() {
     this.dialogRef.close();
   }
