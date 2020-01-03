@@ -28,7 +28,7 @@
           </div>
           <!-- / SEARCH -->
           <div fxLayout="row">
-            <div class="selected-project">{{selectedProject.branchName}}</div>
+            <div class="selected-project">{{selectedProject?selectedProject.branchName:''}}</div>
             <button mat-icon-button class="project-selector" [matMenuTriggerFor]="projectsMenu" aria-label="Select project">
                 <mat-icon>more_horiz</mat-icon>
             </button>

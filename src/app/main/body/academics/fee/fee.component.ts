@@ -24,7 +24,7 @@ export class FeeComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild('filter', { static: true }) filter: ElementRef;
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
-  addUser() {
+  addFee() {
     let dialogRef = this.dialog.open(FeeDialogComponent, {
       height: '500px',
       width: '600px',

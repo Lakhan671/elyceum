@@ -38,7 +38,7 @@ export class SemisterComponent implements OnInit {
   });
 
   }
-
+  selectedProject:any;
   displayedColumns = ['Sno', 'semesterName', 'semStartDate','semEndDate','option'];
   @ViewChild(MatSort,   {static: true}) sort: MatSort;
   @ViewChild(MatPaginator,   {static: true}) paginator: MatPaginator;
@@ -47,7 +47,6 @@ export class SemisterComponent implements OnInit {
   ELEMENT_DATA: any;
   dataSource = new MatTableDataSource < Element > (ELEMENT_DATA);
 BranCouList:any;
-selectedProject:any;
   CourseSelect(data){
      this.web.setSem(data.semesterId)
     this.router.navigate(['collabration/department/section'])

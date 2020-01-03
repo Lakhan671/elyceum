@@ -25,7 +25,7 @@
       </div>
 
       <div class="col l6 m6 s12">
-        <mat-card style="height: 384px;">
+        <mat-card>
           <div class="row">
             <div class="col s12 m12 l12" style="padding-bottom: 14px;">
               <strong> Subject Info</strong>
@@ -51,14 +51,44 @@
 
                 <li>
                   <button mat-icon-button>
-                    <mat-icon aria-label="Example icon-button with a heart icon" style="    font-size: 30px;" *ngIf="projectdetail.priority =='high'">priority_high</mat-icon>
+                    <mat-icon aria-label="Example icon-button with a heart icon" style="    font-size: 30px;">priority_high</mat-icon>
                   </button>Priority: {{projectdetail.priority}}</li>
 
                 <li>
                   <button mat-icon-button>
                     <mat-icon aria-label="Example icon-button with a heart icon" style="    font-size: 30px; ">description</mat-icon>
-                  </button>Description: {{projectdetail.description}}</li>
+                  </button>Description: {{projectdetail.description}}
 
+                </li>
+                <li *ngIf="projectdetail.sectionString">
+                    <button mat-icon-button>
+                      <mat-icon aria-label="Example icon-button with a heart icon" style="    font-size: 30px; ">description</mat-icon>
+                    </button>Section ID: {{projectdetail.sectionString}}
+  
+                  </li>
+                  <li *ngIf="projectdetail.sectionName">
+                      <button mat-icon-button>
+                        <mat-icon aria-label="Example icon-button with a heart icon" style="    font-size: 30px; ">description</mat-icon>
+                      </button>Section Name: {{projectdetail.sectionName}}
+    
+                    </li>
+                <li >
+                  <div class="row">
+                    <div *ngIf="!projectdetail.sectionString">
+                    <div class="col s4 m4 l4">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Add Section to Subject</mat-label>
+                        <input  matInput [(ngModel)]="sectionString" placeholder="Enter section ID">
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <div  class="col s6 m6 l6" style="margin-top: .6rem;">
+                          <button mat-raised-button class="elydialog-header" color="primary" (click)="addSectionToSubject(projectdetail,sectionString)">Add</button>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </div>
 

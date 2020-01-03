@@ -46,6 +46,11 @@ import {SectionStudentDialogComponent} from '../dialog/section-student-dialog/se
         path:'section',
         component: SectionComponent
 
+    },
+    {
+        path:'leaves',
+        loadChildren: './leaves/leaves.module#LeavesModule'
+
     }
 ];
 

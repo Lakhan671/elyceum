@@ -62,7 +62,7 @@
             </mat-form-field>          </div>
             <div class ="col s12 m12 l4">
           <mat-form-field style ="width:90%"  >
-              <mat-select placeholder="Subject"      formControlName="subjectId" >
+              <mat-select placeholder="Subject"   (selectionChange)="getSubjectTeacherList()"   formControlName="subjectId" >
                 <mat-option *ngFor = "let subject of subjectLists"  [value] ="subject.subjectId">
                 {{subject.title}} 
                 </mat-option>
@@ -72,8 +72,8 @@
       <div class ="col s12 m12 l4">
           <mat-form-field style ="width:90%"  >
               <mat-select placeholder="Teacher"    formControlName="teacherId" >
-                <mat-option *ngFor = "let branch of branchList"  [value] ="branch.courseBranchId">
-                {{branch.branchName}} 
+                <mat-option *ngFor = "let teacher of subjectTeacherList"  [value] ="teacher.userId">
+                {{teacher.userName}} 
                 </mat-option>
               </mat-select>
             </mat-form-field>

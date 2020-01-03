@@ -16,6 +16,7 @@ import { FuseThemeOptionsComponent } from '../core/components/theme-options/them
 import { FuseShortcutsModule } from '../core/components/shortcuts/shortcuts.module';
 import { FuseSearchBarModule } from '../core/components/search-bar/search-bar.module';
 import { AlertModule } from 'ngx-bootstrap';
+import { LeaveTypeDialogComponent } from './body/dialog/leave-type-dialog/leave-type-dialog.component';
 @NgModule({
     declarations: [
         FuseContentComponent,
@@ -27,8 +28,6 @@ import { AlertModule } from 'ngx-bootstrap';
         FuseNavbarVerticalToggleDirective,
         FuseThemeOptionsComponent,
         FuseQuickPanelComponent,
-
-
     ],
     imports     : [
         SharedModule, AlertModule.forRoot(),
