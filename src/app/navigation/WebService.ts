@@ -155,16 +155,16 @@
                 STUDENT_PERMOTION_UPDATE :'student/permotion/update',
                 DASHBOARD_COURSE_DEPT_COUNT_GET :'dashBoard/cd/get',
                 DASHBOARD_STUDENT_COUNT_GET :'dashBoard/ns/get',
-                LEAVE_GET:'leave/get',
-                LEAVE_ADD:'leave/add',
-                LEAVE_UPDATE:'leave/update',
-                LEAVE_APPROVE:'leave/approve',
                 STUDENT_LEAVE_WEEKLY:'dashBoard/student/present',
                 WEB_API : 'https://api.darksky.net/forecast/93c441cc4fd3941e49eef5b982f53827/',
                 //leaves
-                GET_LEAVE_TYPE:'',
-                UPDATE_LEAVE_TYPE:'',
-                ADD_LEAVE_TYPE:'',
+                GET_LEAVE_TYPE:'leave/type/get',
+                UPDATE_LEAVE_TYPE:'leave/type/update',
+                ADD_LEAVE_TYPE:'leave/type/add',
+                LEAVE_APPROVE:'leave/approve',
+                ADD_LEAVES:'leave/add',
+                UPADATE_LEAVE:'leave/update',
+                GET_LEAVE:'leave/get'
             }
         }
     }

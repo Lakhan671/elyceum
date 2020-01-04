@@ -10,7 +10,8 @@ import {LectureDialogComponent} from '../../dialog/lecture-dialog/lecture-dialog
 import { LeaveTypeComponent } from 'src/app/main/body/academics/leaves/leaves-type/leaves-type.component';
 import { LeaveTypeDialogComponent } from 'src/app/main/body/dialog/leave-type-dialog/leave-type-dialog.component';
 
-   const routes = [  
+   const routes = [
+  
     {
         path     : '',
         component: LeavesComponent ,
@@ -23,7 +24,7 @@ import { LeaveTypeDialogComponent } from 'src/app/main/body/dialog/leave-type-di
 ];
 
 @NgModule({
-     declarations: [ LeavesComponent,LeaveTypeComponent,LeaveTypeDialogComponent
+     declarations: [ LeavesComponent,LeaveTypeComponent,LeaveTypeDialogComponent,
        ],
     imports     : [
         TimepickerModule.forRoot(),

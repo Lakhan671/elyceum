@@ -26,7 +26,10 @@ import {
     ADD_LEAVE_TYPE = this.Model.Sevice.ADD_LEAVE_TYPE;
     UPDATE_LEAVE_TYPE = this.Model.Sevice.UPDATE_LEAVE_TYPE;
     GET_LEAVE_TYPE = this.Model.Sevice.GET_LEAVE_TYPE;
-
+    GET_LEAVES=this.Model.Sevice.GET_LEAVE;
+    UPDATE_LEAVES=this.Model.Sevice.UPADATE_LEAVE;
+    ADD_LEAVES=this.Model.Sevice.ADD_LEAVES;
+    APPROVE_LEAVES=this.Model.Sevice.LEAVE_APPROVE;
     constructor(private _http: HttpClient, private router: Router, public dialog: MatDialog
       , private Model: WebserModel, private datePipe: DatePipe) {
     }
@@ -36,7 +39,7 @@ import {
     
     addLeaveType(data): Observable<any> {
       data.tokenId = this.gettokken;
-      return this._http.get(this.BASE_URL + this.ADD_LEAVE_TYPE)
+      return this._http.post(this.BASE_URL + this.ADD_LEAVE_TYPE, data)
         .map(res => <any>res)
         .catch(this.handleError);
     }
@@ -53,6 +56,32 @@ import {
         .map(res => <any>res)
         .catch(this.handleError);
     }
+
+    getLeaves(data): Observable<any> {
+        data.tokenId=this.gettokken;
+       return this._http.post(this.BASE_URL + this.GET_LEAVES, data)
+         .map(res => <any>res)
+         .catch(this.handleError);
+     }
+
+     updareLeaves(data): Observable<any> {
+      data.tokenId=this.gettokken;
+     return this._http.post(this.BASE_URL + this.GET_LEAVES, data)
+       .map(res => <any>res)
+       .catch(this.handleError);
+   }
+   addLeaves(data): Observable<any> {
+    data.tokenId=this.gettokken;
+   return this._http.post(this.BASE_URL + this.ADD_LEAVES, data)
+     .map(res => <any>res)
+     .catch(this.handleError);
+ }
+ approveLeave(data){
+  data.tokenId=this.gettokken;
+  return this._http.post(this.BASE_URL + this.APPROVE_LEAVES, data)
+    .map(res => <any>res)
+    .catch(this.handleError);
+ }
     // Handle Api Errors
     private handleError(error: Response) {
       console.log(error);
