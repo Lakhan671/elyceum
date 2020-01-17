@@ -35,7 +35,36 @@
                 </button>
             </div>
         </div>
-        <div class="mat-white-bg content-card ">
+        <div class="mat-white-bg">
+            <div class="row">
+                <div class="col l3 m3 s12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seach Option</mat-label>
+                        <mat-select [(ngModel)]="searchType" (ngModelChange)="getLeaves(searchType,'')">
+                            <mat-option *ngFor="let search of seachOption" [value]="search.value">
+                                {{search.type}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="searchType==='date'  || searchType==='name'">
+                    <div class="col l3 m3 s12">
+                        <mat-form-field color="accent" appearance="outline" *ngIf="searchType==='date'">
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="to" [(ngModel)]="searchTypeOption">
+                            <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+                            <mat-datepicker #to></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field color="accent" appearance="outline" *ngIf="searchType==='name'">
+                            <mat-label>Name</mat-label>
+                            <input matInput [(ngModel)]="searchTypeOption">
+                        </mat-form-field>
+
+                    </div>
+                    <button mat-raised-button (click)="getLeaves(searchType,searchTypeOption)"class="elydialog-header" style="margin-top: 10px!important;">Search</button>
+                </div>
+            </div>
             <div class="content-card mat-white-bg">
 
                 <mat-table class="products-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" fusePerfectScrollbar>
@@ -70,14 +99,14 @@
                         <mat-header-cell *cdkHeaderCellDef mat-sort-header>Description</mat-header-cell>
                         <mat-cell *cdkCellDef="let leave">
                             <p class="text-truncate">{{leave.text }}</p>
-                            <button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                                 <mat-icon>more_vert</mat-icon>
                             </button>
                             <mat-menu #menu="matMenu">
                                 <div>
                                     <p>{{leave.text}}</p>
                                 </div>
-                              
+
                             </mat-menu>
                         </mat-cell>
 
@@ -106,21 +135,18 @@
                         </mat-cell>
                     </ng-container>
                     <ng-container cdkColumnDef="approvedPendding">
-                            <mat-header-cell *cdkHeaderCellDef mat-sort-header>Approve/Reject</mat-header-cell>
-                            <mat-cell *cdkCellDef="let leave">
-                                    <mat-slide-toggle
-                                    (change)="approveRejectLeave($event,leave)"
-                                     [checked]="leave.approved===0?'false':'true'"
-                                     >{{leaveApprove}}</mat-slide-toggle>
-                            </mat-cell>
-                        </ng-container>
-                    
+                        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Approve/Reject</mat-header-cell>
+                        <mat-cell *cdkCellDef="let leave">
+                            <mat-slide-toggle (change)="approveRejectLeave($event,leave)" [checked]="leave.approved===0 ||leave.approved===2?'false':'true'">{{leaveApprove}}</mat-slide-toggle>
+                        </mat-cell>
+                    </ng-container>
+
                     <ng-container cdkColumnDef="action">
                         <mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Action</mat-header-cell>
                         <mat-cell *cdkCellDef="let leave" fxHide fxShow.gt-md>
                             <p class="category text-truncate">
                                 <button mat-mini-fab class="elydialog-header">
-                                    <mat-icon aria-label="Example icon-button with a heart icon" style="color:white" (click)="$event.stopPropagation();editLeave(leave)">edit</mat-icon>
+                                    <mat-icon aria-label="Example icon-button with a heart icon" style="color:white" (click)="editLeave(leave)">edit</mat-icon>
                                 </button>
                             </p>
                         </mat-cell>

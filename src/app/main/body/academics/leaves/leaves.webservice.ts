@@ -66,7 +66,7 @@ import {
 
      updareLeaves(data): Observable<any> {
       data.tokenId=this.gettokken;
-     return this._http.post(this.BASE_URL + this.GET_LEAVES, data)
+     return this._http.post(this.BASE_URL + this.UPDATE_LEAVES, data)
        .map(res => <any>res)
        .catch(this.handleError);
    }
