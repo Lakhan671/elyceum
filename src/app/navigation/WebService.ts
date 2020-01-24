@@ -6,7 +6,7 @@
     {
         this.Sevice =  
             { 
-                BASE_URL: 'http://localhost:8088/elyceum/',
+                BASE_URL: '/elyceum/',
                 CREATE_USER: 'user/signup',
                 USER_LOGIN: 'user/login',
                 ADD_USER : 'user/add',
@@ -76,6 +76,8 @@
                 SUBJECT_NOTES_GET:'subject/notes/get',
                 SUBJECT_NOTES_DELETES:'subject/notes/delete',
                 SUBJECT_NOTES_UPDATE:'subject/notes/create',
+                ADD_SUBJECT_TO_SECTION:'subject//section/add',
+                GET_SUBJECT_TEACHER:'subject/members/get',
 
                 UNIT_GET:'subject/unit/get',
                 LESSON_CREATE:'subject/lession/create',
@@ -159,6 +161,10 @@
                 LEAVE_APPROVE:'leave/approve',
                 STUDENT_LEAVE_WEEKLY:'dashBoard/student/present',
                 WEB_API : 'https://api.darksky.net/forecast/93c441cc4fd3941e49eef5b982f53827/',
+                //leaves
+                GET_LEAVE_TYPE:'',
+                UPDATE_LEAVE_TYPE:'',
+                ADD_LEAVE_TYPE:'',
             }
         }
     }

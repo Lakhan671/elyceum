@@ -41,7 +41,7 @@ export class SubjectDetailNavigationModel implements FuseNavigationModelInterfac
                 'title'   : 'Teacher',
                 'translate': 'NAV.HOME',
                 
-                'url':'/subject/Detail/Unit',
+                'url':'/subject/Detail/Member',
                 'icon':'view_compact',
                 'type'    : 'item',
                 'children': [ 

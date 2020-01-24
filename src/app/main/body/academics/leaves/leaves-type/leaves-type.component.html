@@ -11,8 +11,8 @@
           <!-- APP TITLE -->
           <div class="logo my-12 m-sm-0"
                fxLayout="row" fxLayoutAlign="start center">
-              <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">shopping_basket</mat-icon>
-              <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Teacher</span>
+              <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">attach_money</mat-icon>
+              <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Leaves type</span>
           </div>
           <!-- / APP TITLE -->
           <!-- SEARCH -->
@@ -29,7 +29,7 @@
           <div class="search-input-wrapper mx-12 m-md-0"
                fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
 
-               <button mat-mini-fab (click) ="addUser()" style ="    margin-left: 41%;">
+               <button mat-mini-fab (click) ="addLeaveType()" class="elydialog-header" style ="    margin-left: 41%;">
                   <mat-icon aria-label="Example icon-button with a heart icon">add_circle</mat-icon>
                 </button>
           <button mat-raised-button
@@ -46,7 +46,7 @@
 
       <!-- CONTENT CARD -->
       <div class="content-card mat-white-bg">
-
+             
           <mat-table class="products-table"
           #table [dataSource]="dataSource"
           matSort
@@ -55,6 +55,7 @@
 
    <!-- ID Column -->
    <ng-container cdkColumnDef="Sno">
+       
        <mat-header-cell *cdkHeaderCellDef mat-sort-header>ID</mat-header-cell>
        <mat-cell *cdkCellDef="let product ;let i = index ">
            <p class="text-truncate"> {{i +1 }}</p>
@@ -64,73 +65,50 @@
 
 
    <!-- Name Column -->
-   <ng-container cdkColumnDef="image">
-       <mat-header-cell *cdkHeaderCellDef mat-sort-header></mat-header-cell>
+   <ng-container cdkColumnDef="instalmentType">
+       <mat-header-cell *cdkHeaderCellDef mat-sort-header>Fee Type</mat-header-cell>
        <mat-cell *cdkCellDef="let department">
-           <p class="text-truncate"></p>
+           <p class="text-truncate">{{department.instalmentType }}</p>
        </mat-cell>
    </ng-container>
 
    <!-- Category Column -->
-   <ng-container cdkColumnDef="Name">
-       <mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Name</mat-header-cell>
-       <mat-cell *cdkCellDef="let department" fxHide fxShow.gt-md>
-           <p class="category text-truncate">
-               {{department.fName + ' ' + (department.mName?department.mName:'') + ' '+ department.lName }}
-           </p>
-       </mat-cell>
-   </ng-container>
-
+       
+<ng-container cdkColumnDef="option">
+    <mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Action</mat-header-cell>
+    <mat-cell *cdkCellDef="let department" fxHide fxShow.gt-md>
+        <p class="category text-truncate"> 
+          <button mat-mini-fab class="elydialog-header">
+            <mat-icon aria-label="Example icon-button with a heart icon"  style="color:white" (click) ="$event.stopPropagation();editFeeType(department)">edit</mat-icon>
+          </button>
+        </p>
+    </mat-cell>
+</ng-container>
+ 
    <!-- Price Column -->
-   <ng-container cdkColumnDef="email">
-        <mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Email</mat-header-cell>
-        <mat-cell *cdkCellDef="let department" fxHide fxShow.gt-md>
-            <p class="category text-truncate">
-                {{department.email }}
-            </p>
-        </mat-cell>
-    </ng-container>
-    <ng-container cdkColumnDef="contactNo1">
-            <mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Contact No.</mat-header-cell>
-            <mat-cell *cdkCellDef="let department" fxHide fxShow.gt-md>
-                <p class="category text-truncate">
-                    {{department.contactNo1}}
-                </p>
-            </mat-cell>
-        </ng-container>
+
    <!-- Quantity Column -->
-   <ng-container cdkColumnDef="option">
-       <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Type</mat-header-cell>
-       <mat-cell *cdkCellDef="let department" fxHide fxShow.gt-sm>
-
-              <button mat-mini-fab (click) ="$event.stopPropagation();update(department)">
-                      <mat-icon aria-label="Example icon-button with a heart icon" style ="color:white">edit</mat-icon>
-                    </button>
-                  
-        
-
-       </mat-cell>
-   </ng-container>
+    
 
    <!-- Active Column -->
   
 
-   <mat-header-row  *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+   <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
 
    <mat-row *cdkRowDef="let product; columns: displayedColumns;"
             class="product"
             matRipple
-            (click)="CourseSelect(product)" >
+            (click)="selectSubject(product)" >
    </mat-row>
 
 </mat-table>
 
-<!-- <mat-paginator #paginator
+<mat-paginator #paginator
               [length]="dataSource.filteredData.length"
               [pageIndex]="0"
               [pageSize]="10"
               [pageSizeOptions]="[5, 10, 25, 100]">
-</mat-paginator> -->
+</mat-paginator>
 
       </div>
       <!-- / CONTENT CARD -->

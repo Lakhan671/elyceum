@@ -45,7 +45,9 @@ unitdetail:any;
    data: {  type:'category',action:'create'   }
 });
 dialogRef.afterClosed().subscribe(result => {
-
+if(result){
+  this.lessionDetails();
+}
  });}
    
    

@@ -24,7 +24,7 @@
             <!-- / SEARCH -->
             <div class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
 
-                <button mat-mini-fab (click)="addUser()" style="    margin-left: 41%;">
+                <button mat-mini-fab (click)="addFee()" style="    margin-left: 41%;">
                     <mat-icon aria-label="Example icon-button with a heart icon">add_circle</mat-icon>
                 </button>
                 <button mat-raised-button class="add-product-button mat-white-bg my-3 mt-sm-0" style="    margin-left: 4%;">
@@ -96,7 +96,7 @@
                 <ng-container cdkColumnDef="remianingFee">
                     <mat-header-cell *cdkHeaderCellDef mat-sort-header>Remianing Fee </mat-header-cell>
                     <mat-cell *cdkCellDef="let fee">
-                        <p class="text-truncate">{{fee.remianingFee}}</p>
+                        <p class="text-truncate redColor">{{fee.remianingFee}}</p>
                     </mat-cell>
                 </ng-container>
 
