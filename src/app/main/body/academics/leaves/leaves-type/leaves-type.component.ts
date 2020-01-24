@@ -23,15 +23,15 @@ import { LeavesWebService } from 'src/app/main/body/academics/leaves/leaves.webs
 
 })
 export class LeaveTypeComponent implements OnInit {
-  displayedColumns = ['Sno', 'instalmentType', 'option'];
+  displayedColumns = ['Sno', 'leaveType', 'action'];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild('filter', { static: true }) filter: ElementRef;
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
 
-  constructor(private leaveService:LeavesWebService,private fuseConfig: FuseConfigService, private Route: Router, public dialog: MatDialog
-      ) {
+  constructor(private leaveService: LeavesWebService, private fuseConfig: FuseConfigService, private Route: Router, public dialog: MatDialog
+  ) {
     this.fuseConfig.setSettings({
       layout: {
         navigation: 'top',
@@ -41,30 +41,40 @@ export class LeaveTypeComponent implements OnInit {
     });
   }
   getLeaveType() {
-   
+    this.leaveService.getLeaveType().subscribe(res => {
+      this.dataSource = new MatTableDataSource<Element>(res.data);
+    })
   }
   addLeaveType(data) {
-   
-      let dialogRef = this.dialog.open(LeaveTypeDialogComponent, {
-        height: '300px',
-        width: '450px',
-        data: {  type:'create'  }
-     });
+    let dialogRef = this.dialog.open(LeaveTypeDialogComponent, {
+      height: '300px',
+      width: '450px',
+      data: { action: 'create',page: 'leaveType',header:' Add a leave type...' }
+    });
     dialogRef.afterClosed().subscribe(result => {
       this.getLeaveType();
-     });
-   
+    });
   }
- 
 
-  editLeaveType(fee) {
-   
+  editLeaveType(leaveType) {
+    leaveType.action = 'update';
+    let dialogRef = this.dialog.open(LeaveTypeDialogComponent, {
+      height: '300px',
+      width: '450px',
+      data: leaveType
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getLeaveType();
+    });
   }
   ngOnInit() {
-  
-
+    this.getLeaveType();
   }
-
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 }
 
 const ELEMENT_DATA: Element[] = [];

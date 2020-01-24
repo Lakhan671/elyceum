@@ -2,9 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Alert } from 'selenium-webdriver';
-import {CommonConstants} from '../../../common/common.constants'
+import { CommonConstants } from '../../../common/common.constants'
 import { ElyNotificationService } from "../../../common/notification.service";
 import { LeavesWebService } from 'src/app/main/body/academics/leaves/leaves.webservice';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -15,34 +16,65 @@ import { LeavesWebService } from 'src/app/main/body/academics/leaves/leaves.webs
 export class LeaveTypeDialogComponent implements OnInit {
 
   registerFormErrors: any;
- leaveType: string='';
+  leaveType: string = '';
+
+  leave = {
+    title: '',
+    text: '',
+    from: '',
+    to: '',
+    leaveType: ''
+  }
+  leaveTypes: any;
+
+  constructor(private datePipe: DatePipe, private leaveService: LeavesWebService, private elyNotificationService: ElyNotificationService, public dialogRef: MatDialogRef<LeaveTypeDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.data = data;
+    if (data.action == 'update') {
+      this.leaveType = this.data.type;
+    }
+  }
   onNoClick() {
     this.dialogRef.close();
   }
-  constructor(private leaveService:LeavesWebService,private elyNotificationService:ElyNotificationService, public dialogRef: MatDialogRef<LeaveTypeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.data = data;
-    if (data.type == 'create') {
-     
-    } else {
+  public addLeaveType(): void {
+    let sickLeaveDate = new Date();
+    let data = {
+      createdDate: sickLeaveDate,
+      updatedDate: sickLeaveDate,
+      type: this.leaveType
     }
-  }
-  public addLeaveType():void{
-   let data={
-   }
+
     this.leaveService.addLeaveType(data).subscribe(res => {
       this.dialogRef.close();
-      this.elyNotificationService.showNotification({type:CommonConstants.INFO,message:res.message});
+      this.elyNotificationService.showNotification({ type: CommonConstants.INFO, message: res.message });
     });
   }
-  public updateLeaveType(data):void{
-     this.leaveService.updateLeaveType(data).subscribe(res => {
-       this.dialogRef.close();
-       this.elyNotificationService.showNotification({type:CommonConstants.INFO,message:res.message});
-     });
+
+  public updateLeaveType(): void {
+    this.data.type = this.leaveType;
+    this.leaveService.updateLeaveType(this.data).subscribe(res => {
+      this.dialogRef.close();
+      this.elyNotificationService.showNotification({ type: CommonConstants.INFO, message: res.message });
+    });
   }
 
+  addLeave(leave) {
+    leave.to = this.datePipe.transform(leave.to, CommonConstants.YYY_MM_DD_HH_MM_SS);
+    leave.from = this.datePipe.transform(leave.from, CommonConstants.YYY_MM_DD_HH_MM_SS);
+    leave.date = this.datePipe.transform(new Date(), CommonConstants.YYY_MM_DD_HH_MM_SS);
+    this.leaveService.addLeaves(leave).subscribe(res => {
+      this.dialogRef.close();
+      this.elyNotificationService.showNotification({ type: CommonConstants.SUCCESS, message: res.message });
+    });
+  }
+  getLeaveType() {
+    this.leaveService.getLeaveType().subscribe(res => {
+      this.leaveTypes = res.data;
+    })
+  }
   ngOnInit() {
+    this.getLeaveType();
   }
 
 }
