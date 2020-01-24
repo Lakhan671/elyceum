@@ -41,21 +41,24 @@
 
           </div>
           </mat-card>
-          <button mat-raised-button color="primary" style ="    margin-top: 16px;" (click) = "replyLession()">Reply</button>
+          </div>
+          <div class="col l12 m12 s12" >
+
+          <button mat-raised-button *ngIf ="lessiondetailcomment[lessiondetailcomment.length -1].status != 'Close'" color="primary" style ="    margin-top: 16px;" (click) = "replyLession()">Reply</button>
 <span class ="update_pro"><p>Comment <span *ngIf ="lessiondetailcomment">{{lessiondetailcomment.length}}</span> </p></span>
 <div class ="_comments"  *ngFor ="let list of lessiondetailcomment">
     <hr>
     <h5 class="ng-binding">
 
         <i class="fa fa-commenting" aria-hidden="true"></i>Status :
-        In Progress
+        {{list.status}}
       </h5>
-      <p class="ng-binding">jh</p>
-      <span class="ng-binding">Posted by : hello on
-          20/10/2018 08:03:13 AM</span>
+      <p class="ng-binding">{{list.description}}</p>
+      <span class="ng-binding">Posted by : {{list.name}} on
+          {{list.date | date}}</span>
 </div>
 
-          </div>
+           </div>
   
              
     </div>

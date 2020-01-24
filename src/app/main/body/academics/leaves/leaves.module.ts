@@ -7,7 +7,7 @@ import {LeavesComponent} from '../leaves/leaves.component';
 import {LeavesWebService} from './leaves.webservice';
 import {LectureDialogComponent} from '../../dialog/lecture-dialog/lecture-dialog.component';
  import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { LeaveTypeComponent } from 'src/app/main/body/academics/leaves/leaves-type/leaves-type.component';
+import { LeaveTypeComponent } from '../../academics/leaves/leaves-type/leaves-type.component';
 import { LeaveTypeDialogComponent } from 'src/app/main/body/dialog/leave-type-dialog/leave-type-dialog.component';
 
    const routes = [

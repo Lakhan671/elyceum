@@ -17,17 +17,16 @@ export class LeaveTypeDialogComponent implements OnInit {
 
   registerFormErrors: any;
   leaveType: string = '';
+
   leave = {
     title: '',
     text: '',
     from: '',
     to: '',
     leaveType: ''
+
   }
   leaveTypes: any;
-  onNoClick() {
-    this.dialogRef.close();
-  }
   constructor(private datePipe: DatePipe, private leaveService: LeavesWebService, private elyNotificationService: ElyNotificationService, public dialogRef: MatDialogRef<LeaveTypeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.data = data;
@@ -42,6 +41,11 @@ export class LeaveTypeDialogComponent implements OnInit {
     }
   }
 
+
+  onNoClick() {
+    this.dialogRef.close();
+  }
+  
   public addLeaveType(): void {
     let sickLeaveDate = new Date();
     let data = {
@@ -62,6 +66,7 @@ export class LeaveTypeDialogComponent implements OnInit {
       this.elyNotificationService.showNotification({ type: CommonConstants.INFO, message: res.message });
     });
   }
+
   addLeave(leave) {
     leave.to = this.datePipe.transform(leave.to, CommonConstants.YYY_MM_DD_HH_MM_SS);
     leave.from = this.datePipe.transform(leave.from, CommonConstants.YYY_MM_DD_HH_MM_SS);
@@ -75,6 +80,7 @@ export class LeaveTypeDialogComponent implements OnInit {
     this.leaveService.getLeaveType().subscribe(res => {
       this.leaveTypes = res.data;
     })
+
   }
   updateLeave(leave) {
     leave.id = this.data.leave.id;
