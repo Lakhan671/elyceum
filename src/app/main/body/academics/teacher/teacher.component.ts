@@ -43,6 +43,7 @@ addUser(){
     data: {  type:'create'   }
  });
 dialogRef.afterClosed().subscribe(result => {
+  this.teacherList();
  });
 }
 teacherList(){

@@ -40,6 +40,7 @@ export class FeeTypeComponent implements OnInit {
    }
    getFeetype(){
      this.web.getfeeType().subscribe(res=>{
+      console.log(JSON.stringify(res))
       this.dataSource = new MatTableDataSource < Element > (res.data);
     })
   }
@@ -73,6 +74,11 @@ export class FeeTypeComponent implements OnInit {
   ngOnInit() {
     this.getFeetype();
 
+  }
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 
 }

@@ -12,7 +12,8 @@ export class CommonConstants {
     public static  SUCCESS:string='success';
     public static  WARNING:string='warning';
     public static  ERROR:string='error';
-
+    //date format
+    public static YYY_MM_DD_HH_MM_SS='yyyy-MM-dd HH:MM:SS';
     public static customNotifierOptions: NotifierOptions = {
         position: {
             horizontal: {
@@ -54,5 +55,6 @@ export class CommonConstants {
         }
     };
 
+   
 
 }

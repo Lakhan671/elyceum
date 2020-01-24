@@ -1,0 +1,75 @@
+<div class="dialog-content-wrapper" id="leaves">
+    <mat-toolbar matDialogTitle class="mat-accent elydialog-header m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{data.header}}</span>
+            <button mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+        <mat-card>
+            <div class=" row" *ngIf="data.page==='leaveType'">
+                <div class="col s12 m12 l12">
+                    <mat-form-field>
+                        <input matInput placeholder="leave Type" name="name" [(ngModel)]="leaveType">
+                    </mat-form-field>
+
+                </div>
+            </div>
+            <div class="row" *ngIf="data.page==='leave'">
+                <div class="col l6 m6 s12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>leave title</mat-label>
+                        <input matInput placeholder="leave subject" name="title" [(ngModel)]="leave.title">
+                    </mat-form-field>
+                </div>
+
+                <div class="col l6 m6 s12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>discription</mat-label>
+                        <textarea matInput placeholder="leave discription" name="text" [(ngModel)]="leave.text"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div class="col l6 m6 s12">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>from</mat-label>
+                        <input matInput [matDatepicker]="from" [(ngModel)]="leave.from">
+                        <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+                        <mat-datepicker #from></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="col l6 m6 s12">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>To</mat-label>
+                        <input matInput [matDatepicker]="to" [(ngModel)]="leave.to">
+                        <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+                        <mat-datepicker #to></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="col l6 m6 s12">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Leave Type</mat-label>
+                        <mat-select required [(ngModel)]="leave.leaveType" >
+                            <mat-option [value]="l.leaveTypeId" *ngFor="let l of leaveTypes" >{{l.type}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+        </mat-card>
+    </div>
+    <div mat-dialog-actions style="float: right;padding:10px" *ngIf="data.page==='leaveType'">
+        <button mat-raised-button class="elydialog-header margin-right10" color="primary" (click)="data.action=='create' ? addLeaveType(leaveType): updateLeaveType(leaveType)">{{data.action=='create'?'Create':'Update'}}</button>
+        <button mat-raised-button color="primary" (click)="onNoClick()">Close</button>
+    </div>
+    <div mat-dialog-actions style="float: right;padding:10px" *ngIf="data.page==='leave'">
+        <button mat-raised-button class="elydialog-header margin-right10" color="primary" (click)="data.action=='create' ? addLeave(leave): updateLeave(leave)">{{data.action=='create'?'Create':'Update'}}</button>
+        <button mat-raised-button color="primary" (click)="onNoClick()">Close</button>
+    </div>
+</div>

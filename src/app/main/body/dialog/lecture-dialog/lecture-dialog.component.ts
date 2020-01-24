@@ -18,6 +18,7 @@ export class LectureDialogComponent implements OnInit {
  dayLists: any;
  branchList: any;
  courseList: any;
+ subjectTeacherList:any;
  private config = { hour: 7, minute: 15, meriden: 'PM', format: 12 };
  departmentList:any;
 
@@ -59,6 +60,14 @@ teacherList(){
   this.LectureWeb.getlistTeacher().subscribe(res=>{
     this.teacherLists = res.data;
   })
+}
+getSubjectTeacherList(){
+  let teacherRequest={
+   subjectId:this.registerForm.value.subjectId
+  }
+  this.LectureWeb.getSubjectTeacherList(teacherRequest).subscribe(res=>{
+    this.subjectTeacherList = res.data;
+   })
 }
 subjectList(){
 
