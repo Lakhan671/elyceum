@@ -6,7 +6,8 @@ import { ElementRef, ViewChild, VERSION } from '@angular/core';
 import { AtendanceWebService } from './attendance.webservice';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource } from '@angular/material';
-
+import { CommonConstants } from '../../../common/common.constants'
+import { ElyNotificationService } from "../../../common/notification.service";
 @Component({
   selector: 'app-attendace',
   templateUrl: './attendace.component.html',
@@ -17,7 +18,7 @@ import { MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatTab
 export class AttendaceComponent implements OnInit {
   @Output()
   dateChange: EventEmitter<MatDatepickerInputEvent<any>>;
-  displayedColumns = ['Sno', 'studentName', 'present', 'absent'];
+  displayedColumns = ['Sno', 'studentName', 'present'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   StudentLists: any;
@@ -27,8 +28,10 @@ export class AttendaceComponent implements OnInit {
   selectedsemesterId: any;
   sectionList: any;
   tableShow: boolean;
+  dayList:any;
+  selectedSubject:any;
 
-  constructor(private translationLoader: FuseTranslationLoaderService,
+  constructor(private elyNotificationService:ElyNotificationService,private translationLoader: FuseTranslationLoaderService,
     private fuseConfig: FuseConfigService, private webservice: AtendanceWebService) {
     this.translationLoader.loadTranslations();
 
@@ -48,9 +51,8 @@ export class AttendaceComponent implements OnInit {
   }
   dataSent: any;
   SaveAttendance() {
-
-    console.log(this.dataSource.data);
-    this.dataSent = this.dataSource.data;
+    this.dataSent  =JSON.parse(JSON.stringify(this.dataSource.data));
+   // this.dataSent = this.dataSource.data;
     for (var i = 0; i < this.dataSent.length; i++) {
       if (this.dataSent[i].present == true) {
         this.dataSent[i].present = '1';
@@ -61,67 +63,38 @@ export class AttendaceComponent implements OnInit {
 
     }
     var dataJson = {
-      lectureRoutineId: this.lectureRoutingId,
+      lectureRoutineId: this.selectedSubject.lectureRoutineId,
       students: this.dataSent,
-      subjectId: this.subjectLists[0].subjectId
+      subjectId: this.selectedSubject.subjectId
     }
 
     console.log(JSON.stringify(dataJson));
     this.webservice.StudentAttenceSave(dataJson).subscribe(res => {
-      alert(JSON.stringify(res));
+      this.elyNotificationService.showNotification({ type: CommonConstants.SUCCESS, message: res.message});
     })
   }
-  selectsubject() {
-    this.data.date = new Date();
-    if (this.data.date && this.data.subjectId) {
-      this.data.month = this.data.date.getMonth();
-      this.data.year = this.data.date.getFullYear();
-      this.data.day = this.data.date.getDay() + 1;
-
-
-      this.lectureroutineGet();
-    }
-  }
-  lectureRoutingId: any;
-  lectureroutineGet() {
-    var showtoSection = 0;
-    this.webservice.LectureGet().subscribe(res => {
-      for (var i = 0; i < res.data.length; i++) {
-
-        if (res.data[i].subjectName == this.data.subjectId) {
-          for (var j = 0; j < res.data[i].lecture.length; j++) {
-            if (res.data[i].lecture[j].dayId == this.data.day) {
-
-              this.selectedsemesterId = res.data[i].lecture[j].semesterId;
-              this.lectureRoutingId = res.data[i].lecture[j].lectureRoutineId;
-              if (showtoSection == 0) {
-                this.sectionGet();
-                showtoSection = 1;
-              }
-
-            }
-
-          }
+  selectsubject(subject) {
+    this.selectedSubject=subject;
+  let date=new Date();
+       let day=date.getDay()+1;
+       let status=false;
+       this.subjectLists.forEach(sub=> {
+        if(sub.title===subject.title && day===sub.dayId){
+          status=true;
         }
-      }
-    })
+     });
+     if(!status){
+      this.elyNotificationService.showNotification({ type: CommonConstants.WARNING, message: subject.title+' is not your today lecture'});
+     }else{
+       this.studentGet(subject);
+     }
+
+    
   }
 
-  sectionGet() {
+  studentGet(subject) {
     var dataJson = {
-      semesterId: this.selectedsemesterId
-    }
-    this.webservice.sectionList(dataJson).subscribe(res => {
-
-      this.sectionList = res.data;
-
-
-    })
-  }
-
-  studentGet() {
-    var dataJson = {
-      sectionId: this.data.sectionId
+      sectionId: subject.sectionId
     }
     this.StudentLists = [];
     this.webservice.SectionStudentGet(dataJson).subscribe(res => {
@@ -129,8 +102,7 @@ export class AttendaceComponent implements OnInit {
         this.StudentLists.push({
           studentName: res.data[i].studentName,
           studentId: res.data[i].studentId,
-          present: false,
-          absent: false
+          present: false
         })
 
 
@@ -143,18 +115,26 @@ export class AttendaceComponent implements OnInit {
 
     })
   }
-  subjectget() {
-    var dataJson = {
-      start: this.start,
-      end: this.end
-    }
-    this.webservice.Subjectget(dataJson).subscribe(res => {
+getDays(){
+  this.webservice.getDays().subscribe(res => {
+    console.log(JSON.stringify(res))
+    this.dayList = res.data;
+  })
+}
+uniqueSubject=[];
+  getTeacherSubject(){
+    this.webservice.getTeacherSubject().subscribe(res => {
       console.log(JSON.stringify(res))
       this.subjectLists = res.data;
+      this.uniqueSubject= this.subjectLists.filter(
+        (thing, i, arr) => arr.findIndex(t => t.title === thing.title) === i
+      );
     })
   }
+  
   ngOnInit() {
-    this.subjectget();
+    this.getTeacherSubject();
+    this.getDays();
   }
 
 }
