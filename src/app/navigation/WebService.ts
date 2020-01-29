@@ -4,7 +4,8 @@ export class WebserModel {
     constructor() {
         this.Sevice =
             {
-                BASE_URL: 'http://134.209.167.153/elyceum/',
+                BASE_URL: 'http://localhost:8088/elyceum/',
+
                 CREATE_USER: 'user/signup',
                 USER_LOGIN: 'user/login',
                 ADD_USER: 'user/add',
@@ -82,7 +83,7 @@ export class WebserModel {
                 LESSON_GET: 'subject/lession/list/get',
                 LESSION_STATUS_POST: 'subject/lession/status/post',
                 LESSION_DETAIL_GET: 'subject/lession/details/get',
-
+                GET_TEACHER_SUBJECT:'lectureRoutine/bySubject',
 
                 USER_SERACH: 'user/search/user',
                 CHAT_FRIEND_LIST: 'chat/get/friend/list',
