@@ -64,7 +64,7 @@ data:any;
   }
   attendanceGet(){
     var data ={
-      "lectureRoutineId":6,"month":this.data.month,"year":this.data.year
+      "lectureRoutineId":21,"month":this.data.month,"year":this.data.year
 
     };
      this.web.StudentAttenceGet(data).subscribe(res=>{

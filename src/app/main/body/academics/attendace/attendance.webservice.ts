@@ -27,10 +27,13 @@ export class AtendanceWebService {
   SUBJECT_GETS = this.Model.Sevice.SUBJECT_GETS;
   TEACHER_GETS = this.Model.Sevice.TEACHER_GETS;
   SECTION_GET_STUDENT = this.Model.Sevice.SECTION_GET_STUDENT;
-  LECTURE_ROUTINE_GET = this.Model.Sevice.LECTURE_ROUTINE_GET_;;
+  LECTURE_ROUTINE_GET = this.Model.Sevice.LECTURE_ROUTINE_GET_;
   SECTION_GETS = this.Model.Sevice.SECTION_GETS;
   STUDENT_ATTENDENCE_SAVE = this.Model.Sevice.STUDENT_ATTENDENCE_SAVE;
   STUDENT_ATTENDENCE_GET = this.Model.Sevice.STUDENT_ATTENDENCE_GET;
+  GET_TEACHER_SUBJECT=this.Model.Sevice.GET_TEACHER_SUBJECT;
+  DAY_LIST=this.Model.Sevice.DAY_LIST;
+
    constructor( private http: HttpClient, private router: Router,public dialog: MatDialog
   ,private Model:WebserModel,private datePipe: DatePipe ) {
    }
@@ -62,10 +65,7 @@ dialogRef.afterClosed().subscribe(result => {
   });
 }
 SectionStudentGet(data): Observable < any >{
-  
   data.tokenId=this.gettokken;
-
-
   console.log(JSON.stringify(data))
    return this.http.post(this.BASE_URL + this.SECTION_GET_STUDENT, data)
  .map(res => < any > res)
@@ -107,9 +107,24 @@ sectionList(data):Observable <any>{
 LectureGet(): Observable < any >{
   var data ={
     tokenId: this.gettokken,
-    teacherId: '1'
+   // teacherId: '1'
   };
   return this.http.post(this.BASE_URL + this.LECTURE_ROUTINE_GET, data)
+ .map(res => < any > res)
+ .catch(this.handleError);
+}
+
+getTeacherSubject(){
+  var data ={
+    tokenId: this.gettokken,
+  };
+  return this.http.post(this.BASE_URL + this.GET_TEACHER_SUBJECT, data)
+ .map(res => < any > res)
+ .catch(this.handleError);
+}
+
+getDays(){
+  return this.http.get(this.BASE_URL + this.DAY_LIST)
  .map(res => < any > res)
  .catch(this.handleError);
 }
