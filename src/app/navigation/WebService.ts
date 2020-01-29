@@ -5,6 +5,7 @@ export class WebserModel {
         this.Sevice =
             {
                 BASE_URL: 'http://localhost:8088/elyceum/',
+
                 CREATE_USER: 'user/signup',
                 USER_LOGIN: 'user/login',
                 ADD_USER: 'user/add',
